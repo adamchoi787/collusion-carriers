@@ -4,8 +4,8 @@
     python -m testbed.agents.models --write    # also record the IDs in prices.yaml
     python -m testbed.agents.models --provider deepseek
 
---write replaces only the `listed_models:` block at the end of prices.yaml,
-so the hand-written rows and comments above it are untouched. The listing
+--write rewrites only the `listed_models:` block at the end of prices.yaml
+(merging per provider), so the hand-written rows and comments above it are untouched. The listing
 does not go through the spend guard because it costs nothing.
 """
 from __future__ import annotations
@@ -19,11 +19,13 @@ import yaml
 from .budget import PRICES_PATH, PROVIDERS, Prices, key_present, load_env
 from .providers import make_provider
 
-# Providers in scope (coordinator, 24 Oct 2026). The OpenAI and Anthropic
-# adapters are kept, but their caps are 0 and they have no default model.
-ACTIVE_PROVIDERS = ("deepseek", "moonshot", "minimax")
-# Cheapest model per active provider, with its cheapest reasoning setting.
+# Providers in scope (coordinator, 24 Oct 2026).
+ACTIVE_PROVIDERS = ("deepseek", "moonshot", "minimax", "openai", "anthropic")
+# Cheapest current-generation model per provider, with its cheapest reasoning
+# setting. (openai/gpt-5-nano is cheaper per token but a generation older.)
 DEFAULT_MODELS = {
+    "openai": {"model": "gpt-6-luna", "reasoning": "low"},
+    "anthropic": {"model": "claude-haiku-5-5", "reasoning": "low"},
     "deepseek": {"model": "deepseek-flash", "reasoning": "off"},
     "moonshot": {"model": "kimi-k2.6", "reasoning": "off"},
     "minimax": {"model": "MiniMax-M3", "reasoning": "disabled"},
@@ -40,7 +42,8 @@ def write_listed(listed: dict[str, list[str]]) -> None:
     text = PRICES_PATH.read_text()
     head = text.split(MARKER)[0].rstrip() + "\n\n"
     prices = Prices.load()
-    block = {"listed_models": {}}
+    # Merge: providers not listed this time keep their earlier entry.
+    block = {"listed_models": dict(prices.table.get("listed_models") or {})}
     for prov, ids in listed.items():
         priced = set(prices.provider(prov).get("models", {}))
         block["listed_models"][prov] = {

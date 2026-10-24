@@ -1,4 +1,4 @@
-"""The spend guard: zero caps block, per-provider and total caps hold, and
+"""The spend guard: zero provider caps block, per-provider and optional total caps hold, and
 concurrent reservations never overshoot (threads, separate ledger handles,
 and the modal.Dict backend with an in-memory fake)."""
 import threading
@@ -19,7 +19,7 @@ def test_zero_or_missing_cap_blocks(tmp_path, monkeypatch):
         monkeypatch.delenv(k, raising=False)
     monkeypatch.setattr("testbed.agents.budget.load_env", lambda: None)
     c = Caps.from_env()
-    assert c.total == 0 and c.for_provider("openai") == 0
+    assert c.total is None and c.for_provider("openai") == 0
     led = LocalLedger(tmp_path / "l.jsonl", caps=c)
     with pytest.raises(BudgetExceeded):
         led.reserve("openai", 0.0)
@@ -29,12 +29,40 @@ def test_zero_or_missing_cap_blocks(tmp_path, monkeypatch):
     led.reserve("anthropic", 0.001)
 
 
-def test_bad_cap_values_parse_to_zero(monkeypatch):
+def test_bad_cap_values_parse_to_zero(tmp_path, monkeypatch):
     monkeypatch.setattr("testbed.agents.budget.load_env", lambda: None)
     monkeypatch.setenv("BUDGET_USD_TOTAL", "lots")
     monkeypatch.setenv("BUDGET_USD_DEEPSEEK", "-3")
     c = Caps.from_env()
     assert c.total == 0 and c.for_provider("deepseek") == 0
+    led = LocalLedger(tmp_path / "l.jsonl", caps=Caps(total=c.total, per_provider={"deepseek": 1.0}))
+    with pytest.raises(BudgetExceeded, match="BUDGET_USD_TOTAL"):
+        led.reserve("deepseek", 0.01)  # a set-but-invalid total fails closed
+
+
+def test_unset_or_empty_total_means_no_overall_cap(tmp_path, monkeypatch):
+    monkeypatch.setattr("testbed.agents.budget.load_env", lambda: None)
+    for raw in (None, "", "  "):
+        if raw is None:
+            monkeypatch.delenv("BUDGET_USD_TOTAL", raising=False)
+        else:
+            monkeypatch.setenv("BUDGET_USD_TOTAL", raw)
+        assert Caps.from_env().total is None
+    led = LocalLedger(tmp_path / "l.jsonl", caps=Caps(total=None, per_provider={"a": 3.0, "b": 3.0}))
+    led.reserve("a", 2.5)
+    led.reserve("b", 2.5)          # 5.0 in total: no overall cap applies
+    with pytest.raises(BudgetExceeded, match="b:"):
+        led.reserve("b", 0.6)      # the provider cap still does
+    with pytest.raises(BudgetExceeded, match="c:"):
+        led.reserve("c", 0.01)     # no cap for c -> blocked
+
+
+def test_spend_report_shows_no_total_cap():
+    from testbed.agents.spend import report
+    from testbed.agents.budget import _empty_state
+
+    assert "no overall cap" in report(_empty_state(), Caps(total=None, per_provider={"openai": 1.0}))
+    assert "no overall cap" not in report(_empty_state(), Caps(total=5.0))
 
 
 def test_per_provider_and_total_caps(tmp_path):
@@ -175,8 +203,8 @@ def test_prices_estimate_and_cost():
     # cached tokens at the cached price; unknown cached price falls back to input
     c = p.cost("openai", "gpt-6-luna", {"input": 1_000_000, "cached": 500_000, "output": 0})
     assert c == pytest.approx(0.5 * 0.10 + 0.5 * 0.01)
-    c = p.cost("anthropic", "claude-haiku-5-5", {"input": 1_000_000, "cached": 1_000_000, "output": 0})
-    assert c == pytest.approx(0.10)
+    c = p.cost("deepseek", "deepseek-v4-pro", {"input": 1_000_000, "cached": 1_000_000, "output": 0})
+    assert c == pytest.approx(1.32)
     with pytest.raises(UnknownPrice):
         p.estimate("openai", "gpt-unknown", 1, 1)
 

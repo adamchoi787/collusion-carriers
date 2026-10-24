@@ -8,9 +8,14 @@ Every paid call goes reserve -> call -> settle (or release):
 
 A reservation counts against the caps until it is settled or released, so
 parallel callers (threads, processes, Modal containers) can never jointly
-exceed a cap. Caps come from BUDGET_USD_TOTAL and BUDGET_USD_<PROVIDER>
-(`.env` locally, the Modal Secret `collusion-api-keys` on Modal). A missing,
-unparsable or zero cap blocks every paid call.
+exceed a cap. Caps come from BUDGET_USD_<PROVIDER> (`.env` locally, the
+Modal Secret `collusion-api-keys` on Modal) and are mandatory: a missing,
+unparsable or zero provider cap blocks that provider's calls.
+
+BUDGET_USD_TOTAL is optional. Unset or empty means no overall cap (spending is
+already bounded by the prepaid balances the provider caps track). A positive
+value is enforced across all providers; any other value (0, negative,
+unparsable) blocks every paid call, so a typo fails closed.
 
 Backends:
   * LocalLedger: `runs/ledger.jsonl`, an append-only event log under a file lock.
@@ -108,6 +113,13 @@ class Prices:
 
 # ---- caps -------------------------------------------------------------------
 
+def _parse_total(raw: str | None) -> float | None:
+    """None (no overall cap) when unset or empty; otherwise as _parse_cap."""
+    if raw is None or not raw.strip():
+        return None
+    return _parse_cap(raw)
+
+
 def _parse_cap(raw: str | None) -> float:
     try:
         v = float(raw) if raw is not None else 0.0
@@ -118,14 +130,14 @@ def _parse_cap(raw: str | None) -> float:
 
 @dataclass
 class Caps:
-    total: float = 0.0
+    total: float | None = None     # None: no overall cap
     per_provider: dict[str, float] = field(default_factory=dict)
 
     @classmethod
     def from_env(cls) -> "Caps":
         load_env()
         return cls(
-            total=_parse_cap(os.environ.get("BUDGET_USD_TOTAL")),
+            total=_parse_total(os.environ.get("BUDGET_USD_TOTAL")),
             per_provider={p: _parse_cap(os.environ.get(f"BUDGET_USD_{p.upper()}")) for p in PROVIDERS},
         )
 
@@ -213,15 +225,17 @@ class Ledger:
         if est_usd < 0:
             raise ValueError("estimate must be non-negative")
         cap_p, cap_t = self.caps.for_provider(provider), self.caps.total
-        if cap_p <= 0 or cap_t <= 0:
-            raise BudgetExceeded(f"{provider}: cap is 0 or unset (BUDGET_USD_{provider.upper()}={cap_p}, TOTAL={cap_t})")
+        if cap_p <= 0:
+            raise BudgetExceeded(f"{provider}: cap is 0 or unset (BUDGET_USD_{provider.upper()}={cap_p})")
+        if cap_t is not None and cap_t <= 0:
+            raise BudgetExceeded(f"BUDGET_USD_TOTAL is set but not a positive number ({cap_t}); unset it for no overall cap")
         with self._locked():
             state = self._read()
             used_p = _committed(_prov(state, provider))
             used_t = sum(_committed(p) for p in state["providers"].values())
             if used_p + est_usd > cap_p:
                 raise BudgetExceeded(f"{provider}: ${used_p:.4f} committed + ${est_usd:.4f} would exceed cap ${cap_p:.2f}")
-            if used_t + est_usd > cap_t:
+            if cap_t is not None and used_t + est_usd > cap_t:
                 raise BudgetExceeded(f"total: ${used_t:.4f} committed + ${est_usd:.4f} would exceed cap ${cap_t:.2f}")
             t = Ticket(uuid.uuid4().hex, provider, float(est_usd), time.time())
             self._commit({"ev": "reserve", "t": t.id, "p": provider, "usd": t.usd, "ts": t.ts})

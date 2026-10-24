@@ -28,7 +28,10 @@ def report(state: dict, caps: Caps) -> str:
         lines.append(f"{prov:<10} {'yes' if key_present(prov) else 'no':<4} {caps.for_provider(prov):>7.2f} "
                      f"{p['settled_usd']:>9.4f} {reserved:>9.4f} {p['calls']:>6} {p['input']:>10} "
                      f"{p['cached']:>10} {p['output']:>9} {p.get('errors', 0):>6}")
-    lines.append(f"{'total':<10} {'':<4} {caps.total:>7.2f} {total_s:>9.4f} {total_r:>9.4f}")
+    total_cap = f"{caps.total:>7.2f}" if caps.total is not None else f"{'none':>7}"
+    lines.append(f"{'total':<10} {'':<4} {total_cap} {total_s:>9.4f} {total_r:>9.4f}")
+    if caps.total is None:
+        lines.append("(no overall cap: BUDGET_USD_TOTAL is unset; each provider's cap still applies)")
     c = state["compute"]
     lines += ["", "Modal compute (estimated from container time x prices.yaml; check the Modal dashboard)",
               f"jobs {c['jobs']}  seconds {c['seconds']:.0f}  usd {c['usd']:.4f}"]

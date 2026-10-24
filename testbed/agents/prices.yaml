@@ -26,14 +26,15 @@ providers:
       claude-haiku-5-5:
         input: 0.10
         output: 0.50
-        cached: null
-        note: "Prompts up to 100K tokens; $0.50 / $2.50 beyond. The guard does not model the long-prompt tier, so keep prompts under 100K."
+        cached: 0.01
+        note: "Prompts up to 100K tokens; $0.50 / $2.50 beyond (cache hit $0.05). The guard does not model the long-prompt tier, so keep prompts under 100K. Checked against the pricing page 24 Oct 2026."
         verify: true
         source: "https://platform.claude.com/docs/en/about-claude/pricing"
       claude-sonnet-5-5:
         input: 2.00
         output: 10.00
-        cached: 0.20
+        cached: 0.10
+        note: "Cache hits are 0.05x input (pricing page, 24 Oct 2026)."
         verify: true
         source: "https://platform.claude.com/docs/en/about-claude/pricing"
       claude-opus-5-5:
@@ -51,20 +52,28 @@ providers:
         input: 0.10
         output: 0.50
         cached: 0.01
+        note: "Standard tier, prompts up to 272K tokens. Checked against the pricing page 24 Oct 2026."
         verify: true
-        source: "https://openai.com/api/pricing/"
+        source: "https://developers.openai.com/api/docs/pricing"
       gpt-5.6-luna:
         input: 0.20
         output: 1.20
-        cached: null
+        cached: 0.02
         verify: true
-        source: "https://openai.com/api/pricing/"
+        source: "https://developers.openai.com/api/docs/pricing"
+      gpt-5-nano:
+        input: 0.05
+        output: 0.40
+        cached: 0.005
+        note: "Cheapest per token on the page (24 Oct 2026), but an older generation than gpt-6-luna."
+        verify: true
+        source: "https://developers.openai.com/api/docs/pricing"
       gpt-6-sol:
         input: 2.00
         output: 10.00
         cached: 0.20
         verify: true
-        source: "https://openai.com/api/pricing/"
+        source: "https://developers.openai.com/api/docs/pricing"
 
   moonshot:
     key_env: MOONSHOT_API_KEY
@@ -144,6 +153,169 @@ modal:
 
 # --- listed models (written by `python -m testbed.agents.models --write`) ---
 listed_models:
+  openai:
+    date: '2026-10-24'
+    ids:
+    - babbage-002
+    - chat-latest
+    - chatgpt-image-latest
+    - davinci-002
+    - gpt-3.5-turbo
+    - gpt-3.5-turbo-0125
+    - gpt-3.5-turbo-1106
+    - gpt-3.5-turbo-16k
+    - gpt-3.5-turbo-instruct
+    - gpt-3.5-turbo-instruct-0914
+    - gpt-4
+    - gpt-4-0613
+    - gpt-4-turbo
+    - gpt-4-turbo-2024-04-09
+    - gpt-4.1
+    - gpt-4.1-2025-04-14
+    - gpt-4.1-mini
+    - gpt-4.1-mini-2025-04-14
+    - gpt-4.1-nano
+    - gpt-4.1-nano-2025-04-14
+    - gpt-4o
+    - gpt-4o-2024-05-13
+    - gpt-4o-2024-08-06
+    - gpt-4o-2024-11-20
+    - gpt-4o-mini
+    - gpt-4o-mini-2024-07-18
+    - gpt-4o-mini-search-preview
+    - gpt-4o-mini-search-preview-2025-03-11
+    - gpt-4o-mini-transcribe
+    - gpt-4o-mini-transcribe-2025-03-20
+    - gpt-4o-mini-transcribe-2025-12-15
+    - gpt-4o-mini-tts
+    - gpt-4o-mini-tts-2025-03-20
+    - gpt-4o-mini-tts-2025-12-15
+    - gpt-4o-search-preview
+    - gpt-4o-search-preview-2025-03-11
+    - gpt-4o-transcribe
+    - gpt-4o-transcribe-diarize
+    - gpt-5
+    - gpt-5-2025-08-07
+    - gpt-5-chat-latest
+    - gpt-5-codex
+    - gpt-5-mini
+    - gpt-5-mini-2025-08-07
+    - gpt-5-nano
+    - gpt-5-nano-2025-08-07
+    - gpt-5-pro
+    - gpt-5-pro-2025-10-06
+    - gpt-5-search-api
+    - gpt-5-search-api-2025-10-14
+    - gpt-5.1
+    - gpt-5.1-2025-11-13
+    - gpt-5.1-chat-latest
+    - gpt-5.1-codex
+    - gpt-5.1-codex-max
+    - gpt-5.1-codex-mini
+    - gpt-5.2
+    - gpt-5.2-2025-12-11
+    - gpt-5.2-chat-latest
+    - gpt-5.2-codex
+    - gpt-5.2-pro
+    - gpt-5.2-pro-2025-12-11
+    - gpt-5.3-chat-latest
+    - gpt-5.3-codex
+    - gpt-5.4
+    - gpt-5.4-2026-03-05
+    - gpt-5.4-mini
+    - gpt-5.4-mini-2026-03-17
+    - gpt-5.4-nano
+    - gpt-5.4-nano-2026-03-17
+    - gpt-5.4-pro
+    - gpt-5.4-pro-2026-03-05
+    - gpt-5.5
+    - gpt-5.5-2026-04-23
+    - gpt-5.5-pro
+    - gpt-5.5-pro-2026-04-23
+    - gpt-5.6-luna
+    - gpt-5.6-sol
+    - gpt-5.6-terra
+    - gpt-6-astra
+    - gpt-6-luna
+    - gpt-6-sol
+    - gpt-6.1-sol
+    - gpt-audio
+    - gpt-audio-1.5
+    - gpt-audio-2025-08-28
+    - gpt-audio-mini
+    - gpt-audio-mini-2025-10-06
+    - gpt-audio-mini-2025-12-15
+    - gpt-image-1
+    - gpt-image-1-mini
+    - gpt-image-1.5
+    - gpt-image-2
+    - gpt-image-2-2026-04-21
+    - gpt-image-2.5-flare
+    - gpt-image-2.5-flare-2026-09-08
+    - gpt-image-2.5-sunburst
+    - gpt-image-2.5-sunburst-2026-09-08
+    - gpt-live-1
+    - gpt-live-transcribe
+    - gpt-realtime
+    - gpt-realtime-1.5
+    - gpt-realtime-2
+    - gpt-realtime-2.1
+    - gpt-realtime-2.1-mini
+    - gpt-realtime-2025-08-28
+    - gpt-realtime-mini
+    - gpt-realtime-mini-2025-12-15
+    - gpt-realtime-translate
+    - gpt-realtime-whisper
+    - gpt-transcribe
+    - o1
+    - o1-2024-12-17
+    - o1-pro
+    - o1-pro-2025-03-19
+    - o3
+    - o3-2025-04-16
+    - o3-mini
+    - o3-mini-2025-01-31
+    - o4-mini
+    - o4-mini-2025-04-16
+    - omni-moderation-2024-09-26
+    - omni-moderation-latest
+    - sora-2
+    - sora-2-pro
+    - text-embedding-3-large
+    - text-embedding-3-small
+    - text-embedding-ada-002
+    - tts-1
+    - tts-1-1106
+    - tts-1-hd
+    - tts-1-hd-1106
+    - whisper-1
+    priced_and_listed:
+    - gpt-5-nano
+    - gpt-5.6-luna
+    - gpt-6-luna
+    - gpt-6-sol
+    priced_not_listed: []
+  anthropic:
+    date: '2026-10-24'
+    ids:
+    - claude-fable-5
+    - claude-fable-5-1
+    - claude-haiku-4-5-20251001
+    - claude-haiku-5-5
+    - claude-opus-4-5-20251101
+    - claude-opus-4-6
+    - claude-opus-4-7
+    - claude-opus-4-8
+    - claude-opus-5
+    - claude-opus-5-5
+    - claude-sonnet-4-6
+    - claude-sonnet-5
+    - claude-sonnet-5-5
+    priced_and_listed:
+    - claude-haiku-5-5
+    - claude-opus-5-5
+    - claude-sonnet-5-5
+    priced_not_listed: []
   deepseek:
     date: '2026-10-24'
     ids:
@@ -152,6 +324,18 @@ listed_models:
     priced_and_listed:
     - deepseek-flash
     - deepseek-v4-pro
+    priced_not_listed: []
+  moonshot:
+    date: '2026-10-24'
+    ids:
+    - kimi-k2.6
+    - kimi-k2.7-code
+    - kimi-k2.7-code-highspeed
+    - kimi-k3
+    - kimi-k3.1-pro
+    priced_and_listed:
+    - kimi-k2.6
+    - kimi-k3
     priced_not_listed: []
   minimax:
     date: '2026-10-24'
@@ -168,16 +352,4 @@ listed_models:
     priced_and_listed:
     - MiniMax-M3
     - MiniMax-M3.1-Flash
-    priced_not_listed: []
-  moonshot:
-    date: '2026-10-24'
-    ids:
-    - kimi-k2.6
-    - kimi-k2.7-code
-    - kimi-k2.7-code-highspeed
-    - kimi-k3
-    - kimi-k3.1-pro
-    priced_and_listed:
-    - kimi-k2.6
-    - kimi-k3
     priced_not_listed: []
