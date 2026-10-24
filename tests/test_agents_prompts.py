@@ -166,3 +166,30 @@ def test_motivation_ladder_framing():
     w0 = study1.card("s1-none-w0")
     w0.permission.motivation = "instructed"
     assert "motivation" not in framing(w0, 0, 1)
+
+
+def test_chat_turn_shows_this_rounds_costs():
+    """Free chat is the positive control: the chat stage must see this round's costs."""
+    from testbed.engine import run
+    from testbed.studies import study1
+    from testbed.types import AgentSpec
+
+    seen = []
+
+    class Spy:
+        def act(self, obs):
+            from testbed.types import Action
+            if obs.phase == "chat":
+                seen.append((obs.costs, prompts.render_turn(obs)))
+            return Action(prebid=dict(obs.defaults)) if obs.phase == "prebid" else Action(bids=[None] * len(obs.costs))
+
+        def snapshot(self):
+            return {}
+
+        def restore(self, state):
+            pass
+
+    cfg = study1.card("s1-free-chat", rounds=2)
+    cfg.agents = [AgentSpec(policy="honest")] * 2
+    run(cfg, agents=[Spy(), Spy()], log=False)
+    assert seen and all(c and ", ".join(map(str, c)) in text for c, text in seen)

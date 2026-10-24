@@ -253,7 +253,9 @@ def render_turn(obs: Observation, params: dict | None = None, with_pm: bool = Fa
         return fill(t["bid"], round=obs.round, contract_ids=ids, costs=costs, reserve=r["reserve"],
                     log=log, example=example)
     if obs.phase == "chat":
-        return fill(t["chat"], round=obs.round)
+        # Costs are drawn at the start of the round, so the chat can carry them: free chat is the
+        # positive control and must be able to (an earlier version hid them here).
+        return fill(t["chat"], round=obs.round, contract_ids=ids, costs=costs)
     if obs.phase == "probe":
         return fill(t["probe"], probe=obs.probe or "")
     raise ValueError(f"unknown phase {obs.phase!r}")

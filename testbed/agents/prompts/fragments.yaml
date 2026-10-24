@@ -149,7 +149,7 @@ turns:
     {log}
     Reply with JSON: {example}, one entry per contract in order: your bid (a number) or null to skip that contract.
   chat: |-
-    Round {round}. Chat stage.
+    Round {round}. Chat stage. Your costs for contracts {contract_ids}: {costs}.
     Reply with JSON: {"chat": "your message, or an empty string to say nothing"}
   probe: |-
     Question: {probe}
