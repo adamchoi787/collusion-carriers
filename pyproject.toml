@@ -24,3 +24,4 @@ include = ["testbed*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["paid: real API calls; skipped unless RUN_PAID=1"]
