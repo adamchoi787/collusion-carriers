@@ -12,6 +12,7 @@ dependencies = [
 
 [project.optional-dependencies]
 llm = ["anthropic", "openai"]
+modal = ["modal"]
 dev = ["pytest>=8"]
 
 [build-system]
