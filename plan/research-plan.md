@@ -540,6 +540,7 @@ From this we derive **harm-calibrated capacity thresholds**, an agent-market ana
 - **At least 5 models** from 3 or more providers, plus 2 open-weight models, run the **primary-hypothesis cells** of each study.
 - 2–3 sizes within one family, for a scaling trend in φ, ρ and the displacement ratio.
 - 3–5 paraphrases of each prompt, treated as a random effect.
+- **Sprint scope (budget).** The sprint run uses only three providers, DeepSeek, MiniMax and Moonshot (Kimi), with a ~$15 total API budget. OpenAI and Anthropic models are skipped for cost. The paper's Limitations appendix states this: results cover three Chinese-lab model families, and the 5-model generalisation above is future work.
 
 **Ethics and dual use.** Everything runs in a sandbox, and every deception is disclosed in the paper:
 - decoy and scrambled channels (Study 1);

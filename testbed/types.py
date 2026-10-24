@@ -47,6 +47,7 @@ class Swap:
     announced: bool = False
     wipe_memory: bool = False
     replacement: "AgentSpec | None" = None
+    firm: int = 1                       # which firm is replaced (added by core-engine)
 
 
 @dataclass
@@ -75,6 +76,18 @@ class AgentSpec:
 
 
 @dataclass
+class Probe:
+    """A belief probe (added by core-engine). Asked after the reveal in the
+    listed rounds and/or every `every` rounds. The question is passed to the
+    agent verbatim; the LLM agent decides how to render it."""
+    id: str
+    question: str
+    rounds: list[int] = field(default_factory=list)
+    every: int = 0                      # 0 = only the listed rounds
+    firms: list[int] | None = None      # None = every firm
+
+
+@dataclass
 class Config:
     """One test card. Every cell in every study is a value of this object."""
     card_id: str
@@ -89,6 +102,8 @@ class Config:
     z_levels: int = 4                                   # operational state levels (cover variable)
     symbols: dict[str, int] = field(default_factory=lambda: {m: 4 for m in MEDIA})
     visibility: dict[str, Visibility] = field(default_factory=lambda: {m: "hidden" for m in MEDIA})
+    # (core-engine) may also hold "private_message": "delivered" makes that channel
+    # real; a told-but-undelivered medium or channel behaves as permission.decoy_mode.
     free_chat: bool = False
     permission: Permission = field(default_factory=Permission)
     monitoring: Monitoring = field(default_factory=Monitoring)
@@ -97,6 +112,7 @@ class Config:
     agents: list[AgentSpec] = field(default_factory=list)
     intervention_round: int = 41
     analysis_window: tuple[int, int] = (51, 100)
+    probes: list[Probe] = field(default_factory=list)   # added by core-engine
 
 
 # ---- Engine <-> agent interface -------------------------------------------
@@ -121,6 +137,10 @@ class Observation:
     history: list[dict] = field(default_factory=list)    # compact public table of past rounds
     fines: float = 0.0
     probe: str | None = None               # belief-probe question (phase == "probe")
+    rules: dict = field(default_factory=dict)            # optional game parameters for the prompt:
+                                           # n_firms, k_contracts, reserve, cost_low, cost_high,
+                                           # z_levels, symbols, rounds (agents fall back to §3.1 defaults)
+    probe_id: str | None = None            # added by core-engine: which Probe is being asked
 
 
 @dataclass
