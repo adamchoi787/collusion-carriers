@@ -15,6 +15,7 @@ object plugins receive.
 """
 from __future__ import annotations
 
+import copy
 import dataclasses
 import json
 import math
@@ -401,6 +402,7 @@ class Engine:
     @classmethod
     def from_checkpoint(cls, ckpt: dict, new_config: Config | None = None,
                         agents: Sequence[Agent] | None = None, **kw) -> "Engine":
+        ckpt = copy.deepcopy(ckpt)  # never share lists with the caller: one checkpoint may seed many branches
         old = config_from_dict(ckpt["config"])
         cfg = new_config or old
         for f in ("seed", "n_firms", "k_contracts", "cost_low", "cost_high", "z_levels"):

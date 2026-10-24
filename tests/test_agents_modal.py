@@ -101,3 +101,24 @@ def test_modal_app_declares_secret_volume_and_image():
 
     assert m.SECRET_NAME == "collusion-api-keys" and m.VOLUME_NAME == "collusion-runs"
     assert all(hasattr(m, n) for n in ("main", "sync", "spend", "run_job"))
+
+
+def test_study_plugins_apply_on_modal_jobs(tmp_path):
+    """Study 2 cells must run with their monitor plugin, both as a one-shot job
+    (the study's run_card) and as a branch from a formation checkpoint."""
+    runs = tmp_path / "vol" / "runs"
+    colluders = [{"kind": "scripted", "policy": "kbit_colluder", "params": {"medium": "val", "k": 2}}] * 2
+
+    def monitored(log):
+        recs = [r for r in read_log(log) if r["type"] == "round" and r["round"] >= 50]  # first test once 10 monitored rounds exist
+        return recs and all("monitor" in r for r in recs)
+
+    one = execute_job({"card_id": "s2-real-val", "study": 2, "seed": 3, "rounds": 60, "agents": colluders},
+                      runs_dir=runs)
+    assert monitored(one["log"])
+    form = execute_job({"card_id": "s2-formation", "study": 2, "seed": 3, "rounds": 60, "until_round": 40,
+                        "agents": colluders}, runs_dir=runs)
+    rel = str(Path(form["checkpoint"]).relative_to(runs))
+    cell = execute_job({"card_id": "s2-real-val", "study": 2, "seed": 3, "rounds": 60, "agents": colluders,
+                        "checkpoint": rel}, runs_dir=runs)
+    assert monitored(cell["log"])

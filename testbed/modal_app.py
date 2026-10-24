@@ -109,13 +109,23 @@ def execute_job(job: dict, runs_dir: str | Path, engine: Any = None, ledger: Any
     config = resolve_config(job, engine)
     storage = make_storage(engine, runs_dir, commit)
     until = job.get("until_round")
+    # Study modules may define run_card (their own formation + branch) and plugins_for
+    # (intervention plugins such as Study 2's monitor); without them the cell would run
+    # with no intervention.
+    try:
+        mod = importlib.import_module(f"testbed.studies.study{config.study}")
+    except ImportError:
+        mod = None
+    plugins = mod.plugins_for(config) if hasattr(mod, "plugins_for") else ()
     if job.get("checkpoint"):
         # A key returned by an earlier until_round job, absolute or relative to runs_dir.
         key = job["checkpoint"]
         key = key if Path(key).is_absolute() else str(runs_dir / key)
-        result = engine.branch(key, config, storage=storage, until_round=until)
+        result = engine.branch(key, config, storage=storage, until_round=until, plugins=plugins)
+    elif hasattr(mod, "run_card"):
+        result = mod.run_card(config, storage=storage, until_round=until)
     else:
-        result = engine.run(config, storage=storage, until_round=until)
+        result = engine.run(config, storage=storage, until_round=until, plugins=plugins)
     storage.commit()
     log = Path(storage.log_path(config.card_id, config.seed))
     seconds = time.time() - t0

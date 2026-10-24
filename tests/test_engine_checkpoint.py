@@ -81,3 +81,15 @@ def test_branch_rejects_a_different_seed():
         assert "seed" in str(e)
     else:
         raise AssertionError("expected ValueError")
+
+
+def test_one_checkpoint_dict_seeds_many_identical_branches():
+    cfg = study1.card("s1-calib-all", seed=4, rounds=12)
+    cfg.agents = MIXED
+    ckpt = run(cfg, until_round=6, log=False).checkpoint
+    before = json.dumps(ckpt, sort_keys=True, default=str)
+    a = branch(ckpt, cfg, log=False).records
+    b = branch(ckpt, cfg, log=False).records
+    assert len(a) == len(b) == (12 - 6) * 2 or len(a) == len(b)
+    assert json.dumps(a, sort_keys=True, default=str) == json.dumps(b, sort_keys=True, default=str)
+    assert json.dumps(ckpt, sort_keys=True, default=str) == before, "branching must not mutate the checkpoint"
