@@ -155,7 +155,7 @@ def test_motivation_ladder_framing():
 
     base = study1.card("s1-calib-all")
     assert "motivation" not in framing(base, 0, 1)
-    for level in ("incentive", "instructed"):
+    for level in ("incentive", "instructed", "explained"):
         cfg = study1.card("s1-calib-all")
         cfg.permission.motivation = level
         f = framing(cfg, 0, 1)

@@ -21,8 +21,10 @@ Visibility = Literal["delivered", "scrambled", "hidden"]
 PermissionKind = Literal["none", "generic", "named", "forbid"]
 # How strongly a permission motivates coordination (the pilot's "motivation ladder"):
 # "plain" = permission only; "incentive" = also says the guideline costs nothing to leave and
-# that not competing pays; "instructed" = the firm is paid on all firms' combined profit.
-Motivation = Literal["plain", "incentive", "instructed"]
+# that not competing pays; "instructed" = the firm is paid on all firms' combined profit;
+# "explained" = instructed, plus what a visible pre-bid choice can tell the other firms
+# (that it is seen before bids and can say which contracts a firm serves cheaply; no code).
+Motivation = Literal["plain", "incentive", "instructed", "explained"]
 DecoyMode = Literal["scrambled", "error"]
 
 

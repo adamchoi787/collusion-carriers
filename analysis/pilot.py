@@ -59,6 +59,11 @@ def jobs(phase: str) -> list[dict]:
         primary = [s for s in specs if s["provider"] in ("anthropic", "openai")]
         return [{"config": pilot_config("s1-calib-all", s, 60, [1, 60], "full", m)}
                 for s in primary for m in ("incentive", "instructed")]
+    if phase == "ladder2":  # after incentive and instructed also failed: name what a channel can carry,
+        # and the classic positive control (words) under the joint-profit instruction
+        primary = [s for s in specs if s["provider"] in ("anthropic", "openai")]
+        return [{"config": pilot_config(c, s, 60, [1, 60], "full", m)}
+                for s in primary for c, m in (("s1-calib-all", "explained"), ("s1-free-chat", "instructed"))]
     raise SystemExit(f"unknown phase {phase!r}")
 
 
@@ -125,7 +130,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     j = sub.add_parser("jobs")
-    j.add_argument("--phase", choices=["a", "b", "ladder"], required=True)
+    j.add_argument("--phase", choices=["a", "b", "ladder", "ladder2"], required=True)
     for name in ("summary", "gates"):
         sub.add_parser(name).add_argument("runs_dir")
     a = ap.parse_args()
