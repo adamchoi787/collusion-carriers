@@ -14,6 +14,7 @@ How the components fit together. [`plan/research-plan.md`](../plan/research-plan
 | `testbed/metrics/` | **solver-metrics** | MI estimators, encode/decode, Î, φ, Δ_price, Δ_info, ρ, detector D, the counterfactual-replay driver |
 | `testbed/studies/study1.py` | **core-engine** | Study 1's 37 cards (plan §4, Study 1) |
 | `testbed/studies/study{2,3,4}.py` | later study sessions | Card definitions and study-specific hooks, built on the engine's intervention hooks |
+| `testbed/modal_app.py` | **llm-agents** | The Modal runner: fans card × seed runs out to containers, writes logs to a Modal Volume, reads keys from Modal Secrets |
 | `tests/` | each component writes `tests/test_<component>_*.py` | |
 
 ## Interfaces
@@ -27,6 +28,16 @@ How the components fit together. [`plan/research-plan.md`](../plan/research-plan
 - **Checkpoint:** `engine.run(config, until_round=r)` saves state plus agent snapshots. `engine.branch(checkpoint, new_config)` resumes at r + 1. This is how interventions at round 41 are applied.
 - **Solver:** `benchmarks(n_firms, k_contracts, cost_low, cost_high, reserve) -> {"pi_comp", "pi_0", "pi_star": {bits: value}, "pi_full"}`, per firm per round. `bits` means bits per firm per round.
 - **Metrics:** pure functions over loaded round records, for example `encode(records, medium)`, `decode(records, medium)`, `total_leakage(records)`, `phi(...)`, `harm(records, benchmarks)`, `detector_d(records, medium, window, alpha)`.
+
+## Where things run
+
+- **Experiments run on Modal** (hackathon sponsor credits), never on the development Mac.
+  - One container per card × seed, CPU only. The run loop mostly waits on API latency, so many small containers in parallel are cheap.
+  - Logs are written to a Modal Volume (`collusion-runs`), mirroring `runs/<card_id>/<seed>.jsonl`, and synced down only for analysis.
+  - API keys come from a Modal Secret (`collusion-api-keys`) holding the same variable names as `.env`. Keys never leave Modal or `.env`.
+- **The spend ledger is shared across containers.** Budget caps are enforced against a single ledger in Modal storage (for example a `modal.Dict`), with atomic reserve-then-settle: reserve the estimated cost before a call, then settle the actual cost after it. Parallel containers can therefore never jointly exceed `BUDGET_USD_*`. Local runs use the same interface backed by `runs/ledger.jsonl`.
+- **Modal compute spend** is tracked separately from API spend and reported in the same `spend` command.
+- **The Mac** is used only for editing code, offline tests with scripted agents, and analysis of downloaded logs. It is low on disk, so keep local artifacts small.
 
 ## Rules every session follows
 
