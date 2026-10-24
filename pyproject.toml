@@ -1,0 +1,25 @@
+[project]
+name = "testbed"
+version = "0.1.0"
+description = "Follow the Bits: coordination-budget testbed for LLM agent collusion (Track 3)"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+llm = ["anthropic", "openai"]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["testbed*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
