@@ -10,7 +10,11 @@ A reservation counts against the caps until it is settled or released, so
 parallel callers (threads, processes, Modal containers) can never jointly
 exceed a cap. Caps come from BUDGET_USD_<PROVIDER> (`.env` locally, the
 Modal Secret `collusion-api-keys` on Modal) and are mandatory: a missing,
-unparsable or zero provider cap blocks that provider's calls.
+unparsable or zero provider cap blocks that provider's calls. Self-hosted
+providers (SELF_HOSTED: vllm on Modal GPUs) are priced at $0 per token and need
+no cap: BUDGET_USD_VLLM applies if set, otherwise no token cap. Their GPU time
+is recorded as Modal compute (record_compute(..., gpu=...)) and bounded by the
+serving app's container limits, not by this guard.
 
 BUDGET_USD_TOTAL is optional. Unset or empty means no overall cap (spending is
 already bounded by the prepaid balances the provider caps track). A positive
@@ -29,6 +33,7 @@ from __future__ import annotations
 import contextlib
 import fcntl
 import json
+import math
 import os
 import threading
 import time
@@ -41,7 +46,8 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 PRICES_PATH = Path(__file__).with_name("prices.yaml")
-PROVIDERS = ("deepseek", "minimax", "openai", "anthropic", "moonshot")
+PROVIDERS = ("deepseek", "minimax", "openai", "anthropic", "moonshot", "vllm")
+SELF_HOSTED = ("vllm",)
 MODAL_DICT_NAME = "collusion-ledger"
 
 
@@ -110,6 +116,13 @@ class Prices:
         m = self.table.get("modal", {})
         return seconds * (cpu * m.get("cpu_core_second", 0.0) + memory_gib * m.get("memory_gib_second", 0.0))
 
+    def gpu_cost(self, seconds: float, gpu: str, cpu: float = 0.0, memory_gib: float = 0.0) -> float:
+        """A GPU container: the GPU's per-second price plus its CPU and memory."""
+        rates = self.table.get("modal", {}).get("gpu_second", {})
+        if gpu not in rates:
+            raise UnknownPrice(f"no Modal price for GPU {gpu!r} in prices.yaml (modal.gpu_second)")
+        return seconds * rates[gpu] + self.compute_cost(seconds, cpu, memory_gib)
+
 
 # ---- caps -------------------------------------------------------------------
 
@@ -138,10 +151,13 @@ class Caps:
         load_env()
         return cls(
             total=_parse_total(os.environ.get("BUDGET_USD_TOTAL")),
-            per_provider={p: _parse_cap(os.environ.get(f"BUDGET_USD_{p.upper()}")) for p in PROVIDERS},
+            per_provider={p: _parse_cap(os.environ.get(f"BUDGET_USD_{p.upper()}")) for p in PROVIDERS
+                          if p not in SELF_HOSTED or os.environ.get(f"BUDGET_USD_{p.upper()}", "").strip()},
         )
 
     def for_provider(self, provider: str) -> float:
+        if provider in SELF_HOSTED and provider not in self.per_provider:
+            return math.inf
         return self.per_provider.get(provider, 0.0)
 
 
@@ -159,7 +175,7 @@ class Ticket:
 
 
 def _empty_state() -> dict:
-    return {"providers": {}, "compute": {"usd": 0.0, "seconds": 0.0, "jobs": 0}}
+    return {"providers": {}, "compute": {"usd": 0.0, "seconds": 0.0, "jobs": 0, "gpu": {}}}
 
 
 def _prov(state: dict, provider: str) -> dict:
@@ -180,7 +196,12 @@ def apply_event(state: dict, ev: dict) -> None:
         c = state["compute"]
         c["usd"] += ev["usd"]
         c["seconds"] += ev["seconds"]
-        c["jobs"] += 1
+        if ev.get("gpu"):   # serving heartbeats: per-GPU totals, not jobs
+            g = c.setdefault("gpu", {}).setdefault(ev["gpu"], {"seconds": 0.0, "usd": 0.0})
+            g["seconds"] += ev["seconds"]
+            g["usd"] += ev["usd"]
+        else:
+            c["jobs"] += 1
         return
     p = _prov(state, ev["p"])
     if kind == "reserve":
@@ -251,9 +272,12 @@ class Ledger:
         with self._locked():
             self._commit({"ev": "release", "t": ticket.id, "p": ticket.provider, "ts": time.time()})
 
-    def record_compute(self, job: str, seconds: float, usd: float) -> None:
+    def record_compute(self, job: str, seconds: float, usd: float, gpu: str | None = None) -> None:
+        ev = {"ev": "compute", "job": job, "seconds": float(seconds), "usd": float(usd), "ts": time.time()}
+        if gpu:
+            ev["gpu"] = gpu
         with self._locked():
-            self._commit({"ev": "compute", "job": job, "seconds": float(seconds), "usd": float(usd), "ts": time.time()})
+            self._commit(ev)
 
     def release_stale(self, older_than_s: float) -> int:
         """Release reservations left behind by crashed callers. Manual only:
@@ -397,8 +421,8 @@ class CappedLedger(Ledger):
         with self._lock:
             self._open.pop(ticket.id, None)
 
-    def record_compute(self, job: str, seconds: float, usd: float) -> None:
-        self.inner.record_compute(job, seconds, usd)
+    def record_compute(self, job: str, seconds: float, usd: float, gpu: str | None = None) -> None:
+        self.inner.record_compute(job, seconds, usd, gpu)
 
     def summary(self) -> dict:
         return self.inner.summary()

@@ -143,11 +143,47 @@ providers:
         verify: true
         source: "https://platform.minimax.io/docs/pricing"
 
+  vllm:
+    # Open-weight models served by testbed/serve_vllm.py on Modal GPUs. Tokens cost
+    # $0 here so API spend stays separate; the GPU time is Modal compute (below),
+    # recorded by the serving containers. No cap is needed (budget.SELF_HOSTED).
+    key_env: VLLM_API_KEY
+    base_url: null                       # VLLM_BASE_URL, else the deployed endpoint per model
+    self_hosted: true
+    models:
+      Qwen/Qwen3.8-27B-FP8:
+        input: 0.0
+        output: 0.0
+        cached: 0.0
+        note: "Alibaba Qwen3.8 27B dense, official FP8 weights, Apache-2.0. Served on an L40S."
+        verify: true
+        source: "https://huggingface.co/Qwen/Qwen3.8-27B-FP8"
+      google/gemma-4-26B-A4B-it:
+        input: 0.0
+        output: 0.0
+        cached: 0.0
+        note: "Google Gemma 4 26B MoE (4B active), BF16 as released, Apache-2.0. Served on an A100-80GB."
+        verify: true
+        source: "https://huggingface.co/google/gemma-4-26B-A4B-it"
+
 # Modal compute, for the compute half of `python -m testbed.agents.spend`.
-# USD per second. Check https://modal.com/pricing.
+# USD per second. Checked against https://modal.com/pricing on 24 Oct 2026.
 modal:
   cpu_core_second: 0.0000131
   memory_gib_second: 0.00000222
+  gpu_second:                          # per GPU, on top of the container's CPU and memory
+    T4: 0.000164                       # $0.59/h
+    L4: 0.000222                       # $0.80/h
+    A10: 0.000306                      # $1.10/h
+    L40S: 0.000542                     # $1.95/h
+    A100-40GB: 0.000583                # $2.10/h
+    A100-80GB: 0.000694                # $2.50/h
+    H100: 0.001097                     # $3.95/h
+    H200: 0.001261                     # $4.54/h
+    B200: 0.001736                     # $6.25/h
+  # Volume storage: the serve_vllm weights (~83 GiB for both models) cost ~$7.5 a month
+  # while they stay on the `collusion-models` Volume. Not tracked by the ledger.
+  volume_gib_month: 0.09
   verify: true
   source: "https://modal.com/pricing"
 

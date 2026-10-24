@@ -46,7 +46,8 @@ class AnthropicProvider(Provider):
             client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY") or None, max_retries=3)
         self.client = client
 
-    def complete(self, *, model, system, messages, json_schema, max_tokens, reasoning) -> Completion:
+    def complete(self, *, model, system, messages, json_schema, max_tokens, reasoning, seed=None) -> Completion:
+        # seed is ignored: the Messages API has none, and no sampling parameters are sent.
         kw = reasoning_params(reasoning)
         if json_schema is not None:
             kw.setdefault("output_config", {})["format"] = {"type": "json_schema", "schema": json_schema}

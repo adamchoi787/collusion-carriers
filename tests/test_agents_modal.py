@@ -122,3 +122,148 @@ def test_study_plugins_apply_on_modal_jobs(tmp_path):
     cell = execute_job({"card_id": "s2-real-val", "study": 2, "seed": 3, "rounds": 60, "agents": colluders,
                         "checkpoint": rel}, runs_dir=runs)
     assert monitored(cell["log"])
+
+
+# ---- resume after an infrastructure failure -------------------------------------
+
+class Crashy:
+    """Wraps a scripted agent; raises `crash["exc"]` at `crash["round"]`, `crash["left"]` times."""
+
+    def __init__(self, inner, crash):
+        self.inner, self.crash = inner, crash
+
+    def act(self, obs):
+        if obs.round == self.crash.get("round") and self.crash.get("left", 0) > 0:
+            self.crash["left"] -= 1
+            raise self.crash["exc"]
+        return self.inner.act(obs)
+
+    def snapshot(self):
+        return self.inner.snapshot()
+
+    def restore(self, state):
+        self.inner.restore(state)
+
+
+@pytest.fixture
+def crash(monkeypatch):
+    import testbed.agents.scripted as scripted
+
+    state = {}
+    real = scripted.make_agent
+    monkeypatch.setattr(scripted, "make_agent", lambda spec, firm=0, config=None: Crashy(real(spec, firm, config), state))
+    return state
+
+
+class DeadlineExceeded(Exception):
+    """Like modal.exception.ConnectionError: not a builtin ConnectionError subclass."""
+
+
+RANDOM = [{"kind": "scripted", "policy": "random"}] * 2
+
+
+def rounds_of(log):
+    return [r for r in read_log(log) if r["type"] == "round"]
+
+
+def test_resubmitted_job_resumes_from_latest_checkpoint(tmp_path, crash):
+    from testbed.modal_app import resume_path
+
+    job = {"card_id": "s1-calib-all", "seed": 2, "rounds": 12, "agents": RANDOM, "checkpoint_every": 4, "retries": 0}
+    crash.update(round=10, left=1, exc=ConnectionError("Deadline exceeded"))
+    runs = tmp_path / "vol" / "runs"
+    with pytest.raises(ConnectionError):
+        execute_job(job, runs_dir=runs)
+    ckpt = resume_path(runs, "s1-calib-all", 2)
+    assert json.loads(ckpt.read_text())["round"] == 8
+    out = execute_job(job, runs_dir=runs)
+    assert out["resumed_from_round"] == 8 and out["rounds"] == 12 and not ckpt.exists()
+    log = read_log(out["log"])
+    assert log[0]["resumed"] == [{"from_round": 8}] and "branch" not in log[0]
+    clean = execute_job({**job}, runs_dir=tmp_path / "clean")
+    assert rounds_of(out["log"]) == rounds_of(clean["log"])     # identical to an uninterrupted run
+
+
+def test_connection_error_resumes_in_place_once(tmp_path, crash):
+    led = LocalLedger(tmp_path / "ledger.jsonl", caps=Caps())
+    crash.update(round=6, left=1, exc=DeadlineExceeded("Deadline exceeded"))
+    out = execute_job({"card_id": "s1-calib-all", "seed": 0, "rounds": 9, "agents": RANDOM, "checkpoint_every": 4},
+                      runs_dir=tmp_path / "runs", ledger=led)
+    assert out["retried_after"] == ["DeadlineExceeded: Deadline exceeded"] and out["resumed_from_round"] == 4
+    assert len(rounds_of(out["log"])) == 9 * 2 and led.summary()["compute"]["jobs"] == 2
+    crash.update(round=6, left=2, exc=ConnectionError("reset"))
+    with pytest.raises(ConnectionError):                       # one automatic resume, not two
+        execute_job({"card_id": "s1-calib-all", "seed": 1, "rounds": 9, "agents": RANDOM, "checkpoint_every": 4},
+                    runs_dir=tmp_path / "runs")
+
+
+def test_other_errors_are_not_retried(tmp_path, crash):
+    crash.update(round=3, left=1, exc=ValueError("bug"))
+    with pytest.raises(ValueError):
+        execute_job({"card_id": "s1-calib-all", "seed": 0, "rounds": 5, "agents": RANDOM, "checkpoint_every": 2},
+                    runs_dir=tmp_path / "runs")
+
+
+def test_changed_config_never_resumes(tmp_path, crash):
+    runs = tmp_path / "runs"
+    job = {"card_id": "s1-calib-all", "seed": 0, "rounds": 8, "agents": RANDOM, "checkpoint_every": 2, "retries": 0}
+    crash.update(round=5, left=1, exc=ConnectionError("x"))
+    with pytest.raises(ConnectionError):
+        execute_job(job, runs_dir=runs)
+    out = execute_job({**job, "rounds": 10}, runs_dir=runs)
+    assert "resumed_from_round" not in out and "different config" in out["resume_skipped"]
+    assert len(rounds_of(out["log"])) == 10 * 2 and "resumed" not in read_log(out["log"])[0]
+    crash.update(round=5, left=1, exc=ConnectionError("x"))
+    with pytest.raises(ConnectionError):
+        execute_job(job, runs_dir=runs)
+    assert "resumed_from_round" not in execute_job({**job, "resume": False}, runs_dir=runs)
+
+
+def test_resume_does_not_replay_paid_rounds(tmp_path, monkeypatch):
+    """LLM agents: the shared ledger fails in round 5 (as modal.Dict did with "Deadline
+    exceeded"); after resuming from the round-4 checkpoint only rounds 5-6 are called again."""
+    prices = Prices({"providers": {"fake": {"models": {"m": {"input": 0.1, "output": 0.5, "cached": None}}}}})
+    state = {"round5": False, "left": 1}
+
+    class FlakyLedger(LocalLedger):
+        def reserve(self, provider, est_usd):
+            if state["round5"] and state["left"]:
+                state["left"] -= 1
+                raise DeadlineExceeded("Deadline exceeded")
+            return super().reserve(provider, est_usd)
+
+    class Watching(FakeProvider):
+        def complete(self, **kw):
+            state["round5"] |= kw["messages"][-1]["content"].startswith("Round 5.")
+            return super().complete(**kw)
+
+    led = FlakyLedger(tmp_path / "ledger.jsonl", caps=Caps(per_provider={"fake": 1.0}))
+    monkeypatch.setattr(llm, "make_agent", lambda spec, firm, config: llm.LLMAgent(
+        spec, provider=Watching(), ledger=led, prices=prices))
+    agents = [{"kind": "llm", "provider": "fake", "model": "m", "reasoning": "low"}] * 2
+    job = {"card_id": "s1-calib-time", "seed": 0, "rounds": 6, "agents": agents, "checkpoint_every": 4, "retries": 0}
+    with pytest.raises(DeadlineExceeded):
+        execute_job(job, runs_dir=tmp_path / "runs")
+    before = led.summary()["providers"]["fake"]["calls"]
+    out = execute_job(job, runs_dir=tmp_path / "runs")
+    after = led.summary()["providers"]["fake"]["calls"]
+    recs = rounds_of(out["log"])
+    replayed = sum(u.get("calls", 0) for r in recs if r["round"] > 4 for u in r["usage"].values())
+    total = sum(u.get("calls", 0) for r in recs for u in r["usage"].values())
+    assert out["resumed_from_round"] == 4 and after - before == replayed > 0 and replayed < total
+    assert not any(u.get("fallback") for r in recs for u in r["usage"].values())
+
+
+def test_branch_job_resumes_with_its_plugins_and_branch_header(tmp_path, crash):
+    runs = tmp_path / "vol" / "runs"
+    colluders = [{"kind": "scripted", "policy": "kbit_colluder", "params": {"medium": "val", "k": 2}}] * 2
+    form = execute_job({"card_id": "s2-formation", "study": 2, "seed": 3, "rounds": 60, "until_round": 40,
+                        "agents": colluders}, runs_dir=runs)
+    rel = str(Path(form["checkpoint"]).relative_to(runs))
+    job = {"card_id": "s2-real-val", "study": 2, "seed": 3, "rounds": 60, "agents": colluders, "checkpoint": rel,
+           "checkpoint_every": 5}
+    crash.update(round=57, left=1, exc=ConnectionError("Deadline exceeded"))
+    out = execute_job(job, runs_dir=runs)
+    log = read_log(out["log"])
+    assert out["resumed_from_round"] == 55 and log[0]["branch"] == {"from_card": "s2-formation", "from_round": 40}
+    assert all("monitor" in r for r in log if r.get("round") in (50, 60))

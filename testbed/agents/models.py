@@ -29,6 +29,9 @@ DEFAULT_MODELS = {
     "deepseek": {"model": "deepseek-flash", "reasoning": "off"},
     "moonshot": {"model": "kimi-k2.6", "reasoning": "off"},
     "minimax": {"model": "MiniMax-M3", "reasoning": "disabled"},
+    # Open weights on Modal GPUs (testbed/serve_vllm.py); not in ACTIVE_PROVIDERS, since
+    # listing or smoking it starts a GPU. Qwen3.8 thinks unless told "off".
+    "vllm": {"model": "Qwen/Qwen3.8-27B-FP8", "reasoning": "off"},
 }
 
 MARKER = "# --- listed models (written by `python -m testbed.agents.models --write`) ---"

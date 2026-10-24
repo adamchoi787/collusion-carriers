@@ -22,9 +22,12 @@ class Completion:
 class Provider:
     """Adapters implement complete(). `json_schema` asks for structured output
     where the provider supports it; adapters that only have a JSON mode use
-    that, and the rest rely on the prompt (the agent validates either way)."""
+    that, and the rest rely on the prompt (the agent validates either way).
+    The agent passes `seed` only to adapters with accepts_seed = True (self-hosted
+    open models); hosted APIs never receive one."""
 
     name: str = "base"
+    accepts_seed: bool = False
 
     def complete(
         self,
@@ -35,6 +38,7 @@ class Provider:
         json_schema: dict | None,
         max_tokens: int,
         reasoning: str | None,
+        seed: int | None = None,
     ) -> Completion:
         raise NotImplementedError
 

@@ -214,4 +214,7 @@ def test_every_price_row_is_marked_for_verification():
     for prov, row in t["providers"].items():
         for model, r in row["models"].items():
             assert r["verify"] is True and r["source"].startswith("https://"), (prov, model)
-            assert r["input"] > 0 and r["output"] > 0
+            if row.get("self_hosted"):   # open weights on Modal GPUs: GPU time is the cost
+                assert r["input"] == r["output"] == r["cached"] == 0, (prov, model)
+            else:
+                assert r["input"] > 0 and r["output"] > 0

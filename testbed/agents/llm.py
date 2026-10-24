@@ -10,9 +10,14 @@ Every call goes through the spend guard (budget.py): estimate, reserve,
 call, settle. BudgetExceeded propagates to the caller and stops the run.
 Invalid output is retried once; then the agent falls back to the cover
 default (prebid) or abstains (bid), and says so in Action.usage.
+
+Providers that take a seed (self-hosted vllm) get one per call from
+call_seed(run seed, round, firm, phase, probe, attempt), recorded in
+Action.usage["seed"], so a rerun of the same card and seed sends the same seeds.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import time
@@ -26,6 +31,13 @@ from .providers import Provider, make_provider
 CHARS_PER_TOKEN = 2.5    # deliberately low (digit-heavy tables), so estimates run high
 DEFAULT_MAX_TOKENS = 4096
 SNAPSHOT_VERSION = 1
+
+
+def call_seed(run_seed: int, round: int, firm: int, phase: str, probe_id: str | None = None,
+              attempt: int = 0) -> int:
+    """Deterministic 31-bit seed for one call (stable across processes and Python versions)."""
+    key = json.dumps([int(run_seed), int(round), int(firm), phase, probe_id, int(attempt)])
+    return int.from_bytes(hashlib.sha256(key.encode()).digest()[:4], "big") & 0x7FFFFFFF
 
 
 def estimate_tokens(text: str) -> int:
@@ -134,10 +146,13 @@ def fallback_action(obs: Observation) -> tuple[Action, str]:
 
 class LLMAgent:
     def __init__(self, spec: AgentSpec, provider: Provider | None = None,
-                 ledger: Ledger | None = None, prices: Prices | None = None):
+                 ledger: Ledger | None = None, prices: Prices | None = None, run_seed: int | None = None):
         if not spec.provider or not spec.model:
             raise ValueError("LLM agent needs spec.provider and spec.model")
         self.spec = spec
+        self.run_seed = run_seed          # Config.seed; per-call seeds need it
+        # structured: False sends no json_schema / JSON mode (prompt-only format test)
+        self.structured = bool(spec.params.get("structured", True))
         self.paraphrase = int(spec.params.get("paraphrase", 0)) % 3
         self.max_tokens = int(spec.params.get("max_tokens", DEFAULT_MAX_TOKENS))
         # memory: "full" (default) keeps one append-only conversation for the run;
@@ -146,10 +161,12 @@ class LLMAgent:
         # ~31k tokens (mostly cached); "window:10" keeps it under ~7k.
         mem = str(spec.params.get("memory", "full"))
         self.window = int(mem.split(":", 1)[1]) if mem.startswith("window:") else 0
-        self.provider = provider or make_provider(spec.provider, extra_body=spec.params.get("extra_body"))
+        self.provider = provider or make_provider(spec.provider, extra_body=spec.params.get("extra_body"),
+                                                  model=spec.model, url=spec.params.get("base_url"))
         self.ledger = ledger if ledger is not None else get_ledger()
         self.prices = prices or Prices.load()
         self.prices.model(spec.provider, spec.model)  # fail now if the model is unpriced
+        self.self_hosted = bool(self.prices.provider(spec.provider).get("self_hosted"))
         self._reset()
 
     def _reset(self) -> None:
@@ -169,7 +186,7 @@ class LLMAgent:
         with_pm = obs.phase == "prebid" and prompts.private_message_available(obs.framing)
         turn = self._user_turn(obs, with_pm)   # may start a new epoch (replaces self.messages)
         self.messages.append({"role": "user", "content": turn})
-        schema = schema_for(obs, rules, with_pm)
+        schema = schema_for(obs, rules, with_pm) if self.structured else None
         usage = {"input": 0, "cached": 0, "output": 0, "usd": 0.0, "model": self.spec.model,
                  "provider": self.spec.provider, "reasoning": self.spec.reasoning,
                  "paraphrase": self.paraphrase, "calls": 0, "retries": 0, "fallback": False, "errors": []}
@@ -178,7 +195,11 @@ class LLMAgent:
             if attempt:
                 usage["retries"] += 1
                 self.messages.append({"role": "user", "content": prompts.text("retry", error=error)})
-            reply = self._call(schema, usage)
+            seed = None
+            if getattr(self.provider, "accepts_seed", False) and self.run_seed is not None:
+                seed = call_seed(self.run_seed, obs.round, obs.firm, obs.phase, obs.probe_id, attempt)
+                usage.setdefault("seed", seed)        # the first attempt's; retries derive from attempt
+            reply = self._call(schema, usage, seed)
             if reply is None:            # API error: already logged in usage["errors"]
                 error = "the reply did not arrive"
                 continue
@@ -267,31 +288,41 @@ class LLMAgent:
             return self.last_prompt_tokens + n + 16
         return estimate_tokens(self.system or "") + sum(estimate_tokens(m["content"]) for m in self.messages) + 16
 
-    def _complete_with_backoff(self, schema: dict, usage: dict):
+    def _retryable(self, e: Exception) -> bool:
+        status = getattr(e, "status_code", None)
+        if status == 429:
+            return True
+        # A self-hosted endpoint may be scaling up from zero or restarting: wait for it
+        # (it bills nothing per token) instead of falling back to a default action.
+        return self.self_hosted and (status in (502, 503, 504) or type(e).__name__ in (
+            "APIConnectionError", "APITimeoutError"))
+
+    def _complete_with_backoff(self, schema: dict | None, usage: dict, seed: int | None = None):
         """Rate limits (429) are waited out here, on top of the SDK's own short
         retries: low-balance accounts allow only a few requests per minute.
         A 429 is rejected unbilled, so the reservation simply stays open."""
         waits = int(self.spec.params.get("rate_limit_retries", 6))
         delay = float(self.spec.params.get("rate_limit_wait_s", 20.0))
+        kw = {"seed": seed} if seed is not None else {}
         for attempt in range(waits + 1):
             try:
                 return self.provider.complete(model=self.spec.model, system=self.system, messages=self.messages,
                                               json_schema=schema, max_tokens=self.max_tokens,
-                                              reasoning=self.spec.reasoning)
+                                              reasoning=self.spec.reasoning, **kw)
             except Exception as e:  # noqa: BLE001
-                if getattr(e, "status_code", None) != 429 or attempt == waits:
+                if not self._retryable(e) or attempt == waits:
                     raise
                 usage["rate_limited"] = usage.get("rate_limited", 0) + 1
                 time.sleep(delay)
                 delay = min(delay * 1.5, 120.0)
 
-    def _call(self, schema: dict, usage: dict) -> str | None:
+    def _call(self, schema: dict | None, usage: dict, seed: int | None = None) -> str | None:
         p, model = self.spec.provider, self.spec.model
         est = self.prices.estimate(p, model, self.estimate_input_tokens(), self.max_tokens)
         ticket = self.ledger.reserve(p, est)          # BudgetExceeded propagates
         t0 = time.time()
         try:
-            comp = self._complete_with_backoff(schema, usage)
+            comp = self._complete_with_backoff(schema, usage, seed)
         except BudgetExceeded:
             self.ledger.release(ticket)
             raise
@@ -325,5 +356,7 @@ class LLMAgent:
 
 def make_agent(spec: AgentSpec, firm: int = 0, config=None, **kwargs) -> LLMAgent:
     """Factory the engine calls for kind == "llm" (testbed.engine.factory).
-    Firm and config are unused: game parameters arrive in Observation.rules."""
+    Game parameters arrive in Observation.rules; config.seed seeds the per-call
+    seeds of providers that take one."""
+    kwargs.setdefault("run_seed", getattr(config, "seed", None))
     return LLMAgent(spec, **kwargs)

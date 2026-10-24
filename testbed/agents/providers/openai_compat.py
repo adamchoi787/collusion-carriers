@@ -1,7 +1,9 @@
-"""OpenAI and the OpenAI-compatible providers (DeepSeek, Moonshot/Kimi, MiniMax),
-all through the official `openai` SDK's Chat Completions endpoint.
+"""OpenAI and the OpenAI-compatible providers (DeepSeek, Moonshot/Kimi, MiniMax,
+and vLLM serving open-weight models on Modal), all through the official
+`openai` SDK's Chat Completions endpoint.
 
-No sampling parameters are sent. spec.reasoning maps per provider:
+No sampling parameters are sent (vLLM then applies the model's own
+generation_config). Only vllm gets a per-call `seed`. spec.reasoning maps per provider:
 
   openai    "low" | "medium" | ... -> reasoning_effort
   deepseek  None -> provider default (thinking on, effort high);
@@ -13,6 +15,12 @@ No sampling parameters are sent. spec.reasoning maps per provider:
   minimax   "disabled" -> thinking={"type": "disabled"} (M3; M3.1-Flash 400s);
             otherwise thinking={"type": "adaptive"} plus reasoning_effort=<value>;
             reasoning_split=True always, so thinking never lands in `content`
+  vllm      None -> the model's default (Qwen3.8 thinks); "off" / "on" ->
+            chat_template_kwargs={"enable_thinking": false / true}. The server's
+            reasoning parser keeps thinking out of `content`.
+
+vllm needs one endpoint per model: spec.params["base_url"], else VLLM_BASE_URL,
+else the deployed serve_vllm endpoint for the model (serve_vllm.endpoint_url).
 
 spec.params["extra_body"] is merged into the request for anything else.
 """
@@ -32,14 +40,22 @@ BASE_URLS = {
     "deepseek": "https://api.deepseek.com",
     "moonshot": "https://api.moonshot.cn/v1",
     "minimax": "https://api.minimax.io/v1",
+    "vllm": None,
 }
 
 
-def base_url(provider: str) -> str | None:
-    return os.environ.get(f"{provider.upper()}_BASE_URL", "").strip() or BASE_URLS[provider]
+def base_url(provider: str, model: str | None = None) -> str | None:
+    url = os.environ.get(f"{provider.upper()}_BASE_URL", "").strip() or BASE_URLS[provider]
+    if provider == "vllm" and not url:
+        if not model:
+            raise ValueError("vllm needs a model to find its endpoint (or set VLLM_BASE_URL)")
+        from ...serve_vllm import endpoint_url
+
+        url = endpoint_url(model)
+    return url
 KEY_ENVS = {p: f"{p.upper()}_API_KEY" for p in BASE_URLS}
 # "schema": json_schema response_format; "object": json_object; None: prompt only.
-JSON_MODES = {"openai": "schema", "deepseek": "object", "moonshot": "object", "minimax": None}
+JSON_MODES = {"openai": "schema", "deepseek": "object", "moonshot": "object", "minimax": None, "vllm": "schema"}
 
 
 def reasoning_kwargs(provider: str, reasoning: str | None) -> dict:
@@ -73,6 +89,12 @@ def reasoning_kwargs(provider: str, reasoning: str | None) -> dict:
             body["extra_body"]["thinking"] = {"type": "adaptive"}
             body["reasoning_effort"] = r
         return body
+    if provider == "vllm":
+        if not r:
+            return {}
+        if r in ("off", "on"):
+            return {"extra_body": {"chat_template_kwargs": {"enable_thinking": r == "on"}}}
+        raise ValueError(f"vllm reasoning must be None, 'off' or 'on', not {reasoning!r}")
     raise ValueError(f"unknown provider {provider!r}")
 
 
@@ -85,20 +107,27 @@ def _cached_tokens(u) -> int:
 
 
 class OpenAICompatProvider(Provider):
-    def __init__(self, name: str, client=None, extra_body: dict | None = None):
+    def __init__(self, name: str, client=None, extra_body: dict | None = None, model: str | None = None,
+                 url: str | None = None):
         if name not in BASE_URLS:
             raise ValueError(f"unknown provider {name!r}")
         self.name = name
+        self.accepts_seed = name == "vllm"    # hosted APIs never get one
         self.extra_body = extra_body or {}
         if client is None:
             import openai
 
+            # vLLM's first request after a scale-from-zero waits for the GPU container to boot.
+            timeout = 900.0 if name == "vllm" else 600.0
             client = openai.OpenAI(api_key=os.environ.get(KEY_ENVS[name]) or "missing",
-                                   base_url=base_url(name), max_retries=3)
+                                   base_url=url or base_url(name, model), max_retries=3, timeout=timeout)
         self.client = client
 
-    def complete(self, *, model, system, messages, json_schema, max_tokens, reasoning) -> Completion:
+    def complete(self, *, model, system, messages, json_schema, max_tokens, reasoning,
+                 seed: int | None = None) -> Completion:
         kw = reasoning_kwargs(self.name, reasoning)
+        if seed is not None and self.accepts_seed:
+            kw["seed"] = int(seed)
         if self.extra_body:
             kw["extra_body"] = {**kw.get("extra_body", {}), **self.extra_body}
         mode = JSON_MODES[self.name]
