@@ -63,3 +63,5 @@ H5.2 and H5.3 form one family with H5.1's Holm-adjusted minimum, and are Holm-co
 ## Deviations
 
 Any change after this tag is listed here with its date and reason.
+
+- **25 Oct 2026: MiniMax seed 301 excluded.** Its formation completed, but all three closed-chat branches stopped with `BudgetExceeded` (the MiniMax cap) before round 100. Under the incomplete-games rule the whole seed is excluded. A rerun from the checkpoint was not possible, because the cap is spent. The seed was exploratory, so the primary tests are unaffected: they use all 8 planned primary seeds.
