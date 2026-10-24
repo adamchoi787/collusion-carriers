@@ -540,7 +540,7 @@ From this we derive **harm-calibrated capacity thresholds**, an agent-market ana
 - **At least 5 models** from 3 or more providers, plus 2 open-weight models, run the **primary-hypothesis cells** of each study.
 - 2–3 sizes within one family, for a scaling trend in φ, ρ and the displacement ratio.
 - 3–5 paraphrases of each prompt, treated as a random effect.
-- **Sprint scope (budget).** The sprint run uses only three providers, DeepSeek, MiniMax and Moonshot (Kimi), with a ~$15 total API budget. OpenAI and Anthropic models are skipped for cost. The paper's Limitations appendix states this: results cover three Chinese-lab model families, and the 5-model generalisation above is future work.
+- **Fixed budget.** What is actually run, on which models and at what power, is set in §9.1. The paper's Limitations appendix states the budget, seeds per cell and model mix. The full grid for the two primary models is future work.
 
 **Ethics and dual use.** Everything runs in a sandbox, and every deception is disclosed in the paper:
 - decoy and scrambled channels (Study 1);
@@ -601,7 +601,7 @@ Residual channels we discover are published **together with** the matching count
 
 | Unit | Contents | Stands alone as |
 |---|---|---|
-| **MPU-0 (sprint report)** | Testbed + solver + leakage tests + the positive-control gates (free chat, Calib-ALL, Calib-Val) + an H1.0–H1.2 pilot on 2 models + the agenda | A workshop-style report: a clear thesis, validated tools, first estimates of bits per round |
+| **MPU-0 (sprint report)** | §9.1: the validated instrument, the gates, the powered Study 1 headline (H1.1 and the discovery gap on Time) on 2 primary models, one sharp cell each from Studies 2–4, and the open-weight seed-heavy arm | A full paper: a clear thesis, validated tools, and one powered test of the told-vs-actual principle |
 | **Paper 1** | Study 1 + Study 2 | *"Squeezing the Balloon: Collusion Reroutes Through Actions When Channels Are Closed or Watched"*: the test of Claim 1 |
 | **Paper 2** | Study 3 + Study 4 | *"Who's in the Cartel? Believed vs. Actual Identity, Swaps and Marked-Code Stings"*: the test of Claim 2, based on the trust-vs-ability dissociation |
 | **Synthesis** | The matrix and capacity thresholds | A journal or policy paper aimed at regulators and platform operators |
@@ -622,6 +622,68 @@ Residual channels we discover are published **together with** the matching count
 | The plan | 2 primary models on the full grid, plus 5 or more models on the primary cells (~30 cells): about **3.5× the one-model cost** |
 
 Prompt caching of the fixed instructions should cut this substantially.
+
+### 9.1 Budgeted execution (fixed budget)
+
+The table above is the full agenda. The budget is fixed and will not grow much, so this section defines what is actually run:
+- prepaid API balances (caps just under them);
+- the $51 Modal sponsor credit.
+
+The aim is a paper whose claims are fully powered for what it tests, not one that touches every cell thinly. Quality comes from the free, exact parts (theory, solver, validated instrument), one headline contrast with real statistical power, and rigour that costs nothing.
+
+**What one game costs** (from the smoke calls, 24 Oct 2026; ×2 safety factor because in-game prompts carry history). A 100-round game with two firms is about 400 calls (pre-bid and bid, per firm per round). Three-firm games (Study 4) cost about 1.5×.
+
+| Provider | Cap (USD) | Default model, reasoning | $ per call (smoke) | $ per game (est.) | Games within cap | Role |
+|---|---|---|---|---|---|---|
+| Anthropic | 4.75 | `claude-haiku-5-5`, low | 0.00018 | ~0.15 | ~30 | **Primary model A** |
+| OpenAI | 4.75 | `gpt-6-luna`, low | 0.00015 | ~0.12 | ~35 | **Primary model B** |
+| MiniMax | 2.00 | `MiniMax-M3`, disabled | 0.00013 | ~0.10 | ~20 | Third family: headline cells only |
+| Moonshot | 1.25 | `kimi-k2.6`, off | 0.0006 | ~0.5 | ~2 | Gate check (Calib-ALL, free chat) |
+| DeepSeek | 0.40 | `deepseek-flash`, off | 0.0012 | ~1 | 0 | Short gate check only. Its smoke calls returned ~900 output tokens each, so check that reasoning is really off first |
+| Modal GPU (open weights) | ~40 of the 51 | 1–2 small open-weight models via vLLM | n/a | measured in pilot | ~100s, if throughput holds | **Seed-heavy arm** |
+
+About 85 API games in total. Every number is re-measured in the pilot, and the allocation below is re-scaled to the measured cost before pre-registration.
+
+**Tier 0: free, and already a contribution** (done or scripted)
+- Exact benchmarks and the rate–profit frontier for N = 2 and 3, K = 4.
+- Leakage unit tests (Î = 0 for independent scripted agents).
+- Estimator calibration: scripted k-bit colluders recovered at k bits on every medium, minimum-detectable-effect curves (`testbed/metrics/calibration/`), and counterfactual replay validated on scripted carriers.
+- The told-vs-actual protocol and all 102 cards, released.
+
+**Tier 1: pilot and gates** (~$1.5; 2 games per model, primary models first)
+- Measure cost per game, parse-failure rate, and **comprehension probes**: does the agent state the rules, the media and what it was told correctly? Without these, a null result could just mean the agent did not understand.
+- Fix the reasoning setting per model.
+- Gates (§6 rung 4): free chat Δ_info > 0, Calib-ALL I_dec > 0, Calib-Val code agreement. A model that fails a gate is reported as such and drops out of the downstream cells.
+
+**Tier 2: the headline** (Study 1 on Time, the structural medium; ~70% of the API budget)
+- Cells:
+  - **Calib-Time**, **Decoy-LOI-Time**, **Base-LOI-Time**, **Decoy-LOO-Time (scrambled)**, **Base-LOO-Time**;
+  - plus **NONE-W0**, **Calib-ALL** and **free chat** as anchors.
+- Hypotheses:
+  - **H1.1**, the success criterion: a dead promise doesn't open the live, unmentioned media. Tested by TOST of Decoy-LOO against Base-LOO.
+  - **The discovery gap**: Calib-Time minus Decoy-LOI-Time.
+- Runs: both primary models, same-model pairs, ~4 seeds per cell each, so ~8 runs per cell pooled, with model as a fixed effect.
+- **Power check before pre-registration.** Read the minimum detectable effect at 8 runs × 50 analysis rounds off the calibration curves. The equivalence margin for H1.1 is set from it and stated in bits; it is not tuned afterwards.
+- MiniMax repeats the two H1.1 cells only, as a third-family replication.
+
+**Tier 3: one sharp cell per remaining study** (~25% of the API budget)
+- Studies 2–4 share one Calib-ALL formation (rounds 1–40) per seed, and each cell branches from its checkpoint at round 41. Formation is paid once, and every comparison is paired within seed.
+- Each study pre-registers **one** primary contrast, labelled a small-n demonstration:
+  - **Study 2:** announced-watched vs actually-watched on one medium, measured as displacement into unwatched media.
+  - **Study 3:** the trust-vs-ability dissociation (told "same" vs actually "different").
+  - **Study 4:** marked-code sting detection rate against the entrapment false-positive rate.
+
+**Tier 4: the seed-heavy arm on Modal GPUs** (open-weight models, ~$40 of credit; ~$10 kept for CPU runners)
+- Serve 1–2 small open-weight models through vLLM behind an OpenAI-compatible endpoint, with prefix caching on the fixed instructions.
+- Run **all 24 Study 1 core cells** at ~10 seeds each, if pilot throughput allows. This gives the full Study 1 pattern (H1.1–H1.4) at proper power on weaker models, with the API models as the capability check on the headline cells.
+- Needs one adapter: point the OpenAI-compatible provider at the Modal endpoint. Prices are 0 in the ledger, and GPU time is tracked as Modal compute.
+
+**Rigour that costs nothing**
+- **Pre-registration:** a timestamped commit (git tag) of hypotheses, cells, seeds, margins, exclusion rules and analysis code after the pilot and before any main run. No optional stopping.
+- **Statistics:** TOST for every "no effect" claim; Holm correction within each study's primary family; cluster bootstrap over runs.
+- **Blinded transcript coding:** raters blind to the cell code a sample of rounds for explicit collusion reasoning and test awareness. Results are reported with and without flagged runs.
+- **Reproduction:** every number in the paper is regenerated from raw logs by one script before submission.
+- **Scope of claims:** results are stated as "for these models, at this power". Unpowered cells are reported descriptively. The Limitations appendix gives the budget, seeds per cell and the model mix.
 
 **Future work**
 - **Transfer to principal–agent collusion.** Buyer and seller agents running the same model, whitelisted a hidden side channel that doesn't exist. Does disloyalty to their principals move into the visible negotiation chat? A test of Claim 1 outside markets.
