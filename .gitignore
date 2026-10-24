@@ -9,3 +9,6 @@ __pycache__/
 .pytest_cache/
 # experiment outputs (large; archived separately)
 runs/
+# local tooling
+.claude/
+.DS_Store
