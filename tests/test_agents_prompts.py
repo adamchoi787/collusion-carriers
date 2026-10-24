@@ -146,3 +146,23 @@ def test_history_table_is_compact():
     t = prompts.render_history(rows)
     assert t.splitlines()[0] == "round|bids.0|price"
     assert t.splitlines()[1] == "1|[1,-,9.5,2]|7"
+
+
+def test_motivation_ladder_framing():
+    """Permission.motivation reaches the prompt only with a coordination permission."""
+    from testbed.engine.framing import framing
+    from testbed.studies import study1
+
+    base = study1.card("s1-calib-all")
+    assert "motivation" not in framing(base, 0, 1)
+    for level in ("incentive", "instructed"):
+        cfg = study1.card("s1-calib-all")
+        cfg.permission.motivation = level
+        f = framing(cfg, 0, 1)
+        assert f["motivation"] == level
+        texts = {" ".join(prompts.render_framing(f, p)) for p in range(3)}
+        assert len(texts) == 3 and all(("guideline" in t) if level == "incentive" else ("combined" in t or "total" in t)
+                                       for t in texts)
+    w0 = study1.card("s1-none-w0")
+    w0.permission.motivation = "instructed"
+    assert "motivation" not in framing(w0, 0, 1)

@@ -28,7 +28,7 @@ import yaml
 from ...types import MEDIA, Observation
 
 FRAGMENTS_PATH = Path(__file__).with_name("fragments.yaml")
-FRAMING_KEYS = ("permission", "private_message", "free_chat", "identity", "role_told", "role_subject",
+FRAMING_KEYS = ("permission", "motivation", "private_message", "free_chat", "identity", "role_told", "role_subject",
                 "announced_watched", "fine", "swap_announced")
 TRUE = {"true", "1", "yes"}
 
@@ -87,6 +87,8 @@ def render_framing(framing: dict, p: int) -> list[str]:
         out.append(fill(_pick(fr["permission"]["named"], p), media_list=media_list(named)))
     else:
         out.append(_pick(fr["permission"][kind], p))
+    if framing.get("motivation"):
+        out.append(_pick(fr["motivation"][framing["motivation"]], p))
 
     if private_message_available(framing):
         out.append(_pick(fr["private_message"], p))

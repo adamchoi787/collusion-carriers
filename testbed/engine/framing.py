@@ -3,6 +3,7 @@
 The keys match what the LLM agent renders (testbed/agents/prompts FRAMING_KEYS). All
 values are strings; a key is absent when it does not apply.
     permission         "none" | "generic" | "forbid" | "named:<ch>,<ch>"   (what the firm is told)
+    motivation         "incentive" | "instructed"  (with generic or named permission; absent = plain)
     private_message    "true"  (told, or a real channel)
     free_chat          "true"
     identity           "same" | "different"  (what the firm is told about its rival's model)
@@ -26,6 +27,8 @@ def framing(config: Config, firm: int, round: int) -> dict[str, str]:
     f: dict[str, str] = {}
     p = config.permission
     f["permission"] = "named:" + ",".join(p.media) if p.kind == "named" else p.kind
+    if p.kind in ("generic", "named") and p.motivation != "plain":
+        f["motivation"] = p.motivation
     if private_message_available(config):
         f["private_message"] = "true"
     if config.free_chat:

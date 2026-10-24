@@ -31,9 +31,12 @@ COMPREHENSION = (
     "(4) What are you trying to achieve in this game?")
 
 
-def pilot_config(card_id: str, spec: dict, rounds: int, probe_rounds: list[int], memory: str) -> dict:
+def pilot_config(card_id: str, spec: dict, rounds: int, probe_rounds: list[int], memory: str,
+                 motivation: str = "plain") -> dict:
     cfg = study1.card(card_id, seed=0)
-    cfg.card_id = f"pilot-{card_id}-{spec['provider']}-{memory.replace(':', '')}-r{rounds}"
+    level = "" if motivation == "plain" else f"-{motivation}"
+    cfg.card_id = f"pilot-{card_id}{level}-{spec['provider']}-{memory.replace(':', '')}-r{rounds}"
+    cfg.permission.motivation = motivation
     cfg.rounds = rounds
     cfg.probes = [Probe(id="comprehension", question=COMPREHENSION, rounds=probe_rounds),
                   Probe(id="arrangement", question=study1.ARRANGEMENT_PROBE, rounds=[rounds])]
@@ -52,6 +55,10 @@ def jobs(phase: str) -> list[dict]:
         primary = [s for s in specs if s["provider"] in ("anthropic", "openai")]
         return [{"config": pilot_config(c, s, 100, [1, 41, 100], "full")}
                 for s in primary for c in ("s1-calib-all", "s1-free-chat", "s1-calib-val")]
+    if phase == "ladder":   # the motivation ladder on Calib-ALL, after the plain level failed the gates
+        primary = [s for s in specs if s["provider"] in ("anthropic", "openai")]
+        return [{"config": pilot_config("s1-calib-all", s, 60, [1, 60], "full", m)}
+                for s in primary for m in ("incentive", "instructed")]
     raise SystemExit(f"unknown phase {phase!r}")
 
 
@@ -78,8 +85,8 @@ def summary(runs_dir: str) -> None:
                 print(f"  r{r['round']} firm {r['firm']}: {json.dumps(r['probe'])[:600]}")
 
 
-def gates(runs_dir: str, window: tuple[int, int] = (51, 100)) -> None:
-    """§6 rung 4 on the full-length pilot games: per medium encode and decode (bits, permutation
+def gates(runs_dir: str) -> None:
+    """§6 rung 4 on the pilot games of 60+ rounds, over each game's second half: per medium encode and decode (bits, permutation
     p), total leakage, and harm against the solver benchmarks. One run per cell, so these are
     descriptive gate readings, not the pre-registered tests."""
     from testbed.metrics import build_panel, decode, encode, harm, total_leakage
@@ -87,8 +94,12 @@ def gates(runs_dir: str, window: tuple[int, int] = (51, 100)) -> None:
     from testbed.types import MEDIA
 
     bm = benchmarks(2, 4, 1, 12, 10)
-    for log in sorted(Path(runs_dir).glob("pilot-*-r100/*.jsonl")):
+    for log in sorted(Path(runs_dir).glob("pilot-*/*.jsonl")):
         recs = [dict(r, run=log.parent.name) for r in read_log(str(log)) if r["type"] == "round"]
+        total = int(log.parent.name.rsplit("-r", 1)[1])
+        if total < 60:
+            continue
+        window = (total // 2 + 1, total)        # the second half: rounds 51-100 of a 100-round game
         if max((r["round"] for r in recs), default=0) < window[1]:
             print(f"\n{log.parent.name}: incomplete ({len(recs)} records)")
             continue
@@ -114,7 +125,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     j = sub.add_parser("jobs")
-    j.add_argument("--phase", choices=["a", "b"], required=True)
+    j.add_argument("--phase", choices=["a", "b", "ladder"], required=True)
     for name in ("summary", "gates"):
         sub.add_parser(name).add_argument("runs_dir")
     a = ap.parse_args()

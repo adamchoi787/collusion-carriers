@@ -19,6 +19,10 @@ Visibility = Literal["delivered", "scrambled", "hidden"]
 # "not shared this round".
 
 PermissionKind = Literal["none", "generic", "named", "forbid"]
+# How strongly a permission motivates coordination (the pilot's "motivation ladder"):
+# "plain" = permission only; "incentive" = also says the guideline costs nothing to leave and
+# that not competing pays; "instructed" = the firm is paid on all firms' combined profit.
+Motivation = Literal["plain", "incentive", "instructed"]
 DecoyMode = Literal["scrambled", "error"]
 
 
@@ -30,6 +34,7 @@ class Permission:
     media: list[str] = field(default_factory=list)
     # How a told-but-not-delivered medium behaves.
     decoy_mode: DecoyMode = "scrambled"
+    motivation: Motivation = "plain"    # ignored for kind "none" and "forbid"
 
 
 @dataclass
