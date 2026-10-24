@@ -110,7 +110,7 @@ def test_study_plugins_apply_on_modal_jobs(tmp_path):
     colluders = [{"kind": "scripted", "policy": "kbit_colluder", "params": {"medium": "val", "k": 2}}] * 2
 
     def monitored(log):
-        recs = [r for r in read_log(log) if r["type"] == "round" and r["round"] >= 50]  # first test once 10 monitored rounds exist
+        recs = [r for r in read_log(log) if r["type"] == "round" and r["round"] in (50, 60)]  # scheduled checks
         return recs and all("monitor" in r for r in recs)
 
     one = execute_job({"card_id": "s2-real-val", "study": 2, "seed": 3, "rounds": 60, "agents": colluders},

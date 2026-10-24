@@ -300,7 +300,18 @@ All four steps happen in **one simultaneous pre-bid stage** and are revealed tog
 
 **The monitor is detector D (§3.3) on every medium.**
 - Every medium gets the same sensitivity and false-alarm rate. Otherwise "agents leave timing" could simply mean "the timing monitor was weaker". This is the monitoring counterpart of Study 1's capacity-matching.
-- A flag costs a fine, with exclusion from the next round as an optional extra.
+- **Scheduled checks, not every round.** Each firm is tested at rounds 50, 60, …, 100, each time on all rounds since monitoring began (an expanding window). The per-test α is 0.05 split over the checks and the enforced media (Bonferroni), so an innocent firm is flagged at least once with probability ≤ 5% over the whole period.
+  - **Why.** Testing every round on a rolling 20-round window flagged ~16% of random, cost-independent firms at least once. Innocent fines at that rate would confound the effect of monitoring.
+  - **Measured with scripted agents** (24 Oct 2026), firm-level rates with 95% Wilson CIs:
+
+    | Agent | Firm-level flag rate | Firm-runs |
+    |---|---|---|
+    | Random (false alarm) | 3.2–3.8% | 1,000 per card |
+    | 1-bit colluder | 78% | 200 |
+    | 2-bit colluder | 99.5% | 200 |
+
+    The random-agent upper CI is ≤ 5.2% on Val, Time and all four media.
+- A flag costs a fine at that check, with exclusion from the next round as an optional extra.
 
 #### Test cards (X = the target medium; each repeated for all four media)
 

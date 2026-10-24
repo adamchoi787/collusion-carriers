@@ -46,12 +46,15 @@ def test_enforced_medium_is_fined_when_d_fires(cells, x):
     for cid in (f"s2-real-{x}", f"s2-covert-{x}", f"s2-funnel-{x}", "s2-full-real"):
         recs = cells[x][cid].records
         tested = [r for r in recs if x in r.get("monitor", {})]
-        assert tested and all(r["round"] >= 41 + s2.DETECTOR["min_window"] - 1 for r in tested)
+        assert tested and {r["round"] for r in tested} == {50, 60, 70, 80, 90, 100}
+        n_media = len(s2.card(cid).monitoring.enforced)
+        assert all(r["monitor"][x]["alpha"] == pytest.approx(s2.DETECTOR["family_alpha"] / (6 * n_media))
+                   for r in tested)
         flagged = [r for r in tested if r["monitor"][x]["flag"]]
         assert flagged, f"{cid}: D never fired on a k=2 code"
         for r in tested:
             hit = f"fine:monitor:{x}" in r["flags"]
-            assert hit == r["monitor"][x]["flag"] == (r["monitor"][x]["p"] <= s2.DETECTOR["alpha"])
+            assert hit == r["monitor"][x]["flag"] == (r["monitor"][x]["p"] <= r["monitor"][x]["alpha"])
             assert hit == (f"detected:{x}" in r["flags"])
         assert all(r["fine"] >= s2.FINE for r in flagged)
         assert not any(r["fine"] for r in recs if r["round"] <= 40)
@@ -62,15 +65,16 @@ def test_enforced_medium_is_fined_when_d_fires(cells, x):
 
 
 def test_monitor_matches_detector_d_directly(cells):
-    """Recompute one test with testbed.metrics.test_window from the logged records."""
+    """Recompute one check with testbed.metrics.test_window from the logged records: the
+    window expands from the start of monitoring (round 41) to the check round."""
     recs = cells["val"]["s2-real-val"].records
     rec = next(r for r in recs if r["firm"] == 1 and r["round"] == 70)
-    rows = sorted((r for r in recs if r["firm"] == 1 and 51 <= r["round"] <= 70), key=lambda r: r["round"])
+    rows = sorted((r for r in recs if r["firm"] == 1 and 41 <= r["round"] <= 70), key=lambda r: r["round"])
     cq = coarsen_costs(np.array([r["costs"] for r in rows]), 1, 12, 4)
     g = np.random.default_rng([0, 70, 1, s2._TAG, MEDIA.index("val") + 1])
     stat, p = d_window(cq, np.array([r["prebid"]["val"] for r in rows]),
                           np.array([r["defaults"]["val"] for r in rows]), n_perm=s2.DETECTOR["n_perm"], rng=g)
-    assert rec["monitor"]["val"]["n"] == 20
+    assert rec["monitor"]["val"]["n"] == 30
     assert rec["monitor"]["val"]["stat"] == pytest.approx(stat) and rec["monitor"]["val"]["p"] == p
 
 
