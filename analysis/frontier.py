@@ -5,43 +5,19 @@
 # Firms with cost > r never take the contract.
 # With K independent contracts per round, a per-firm budget of b bits is split
 # across contracts; profit is additive, so the best split is found by search.
-import itertools
+#
+# The solver itself now lives in testbed/solver (N firms, exact DP over
+# thresholds, pi_0 and pi_comp as well); this script prints the plan's tables.
+import pathlib
+import sys
 
-C = list(range(1, 13))
-r = 10
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 
+from testbed.solver import Market, benchmarks, frontier, full_info_value, per_contract_frontier, r90  # noqa: E402
 
-def contract_profit(thresholds):
-    def b(c):
-        return sum(c > t for t in thresholds)
-    tot = 0.0
-    for c1, c2 in itertools.product(C, C):
-        cands = [c for c in (c1, c2) if c <= r]
-        if not cands:
-            continue
-        if len(cands) == 1:
-            tot += r - cands[0]
-            continue
-        b1, b2 = b(c1), b(c2)
-        if b1 < b2:
-            tot += r - c1
-        elif b2 < b1:
-            tot += r - c2
-        else:
-            tot += r - (c1 + c2) / 2
-    return tot / len(C) ** 2
-
-
-def best_contract_profit(k):
-    if k == 0:
-        return contract_profit(())
-    return max(contract_profit(t) for t in itertools.combinations(C[:-1], 2 ** k - 1))
-
-
-full = sum(r - min(c for c in (a, b) if c <= r)
-           for a, b in itertools.product(C, C) if min(a, b) <= r) / len(C) ** 2
-per_k = {k: best_contract_profit(k) for k in range(0, 4)}
-per_k.update({k: full for k in range(4, 9)})  # 3 bits is already 99.7%; treat >=4 as full
+m = Market(n_firms=2, cost_low=1, cost_high=12, reserve=10)
+full = full_info_value(m)
+per_k = per_contract_frontier(m)
 p0 = per_k[0]
 
 print("One contract per round:")
@@ -51,7 +27,11 @@ for k in range(0, 4):
 
 for K in (1, 2, 4):
     print(f"\nK={K} contracts per round (budget = bits per firm per round):")
+    fr = frontier(m, K, max_bits=8)
     for budget in range(0, 9):
-        best = max(sum(per_k[k] for k in split)
-                   for split in itertools.product(range(0, 5), repeat=K) if sum(split) <= budget)
-        print(f"  {budget} bits: info-dependent share {(best - K*p0)/(K*(full-p0)):.1%}")
+        print(f"  {budget} bits: info-dependent share {(fr[budget][0] - K*p0)/(K*(full-p0)):.1%}")
+
+bm = benchmarks(2, 4, 1, 12, 10)
+print(f"\nK=4, N=2 benchmarks (per firm per round): pi_comp {bm['pi_comp']:.3f}, "
+      f"pi_0 {bm['pi_0']:.3f} ({bm['pi_0_scheme']['name']} {bm['pi_0_scheme']['params']}), "
+      f"pi*(0) {bm['pi_star'][0]:.3f}, pi_full {bm['pi_full']:.3f}; R90 = {r90(bm):.0f} bits")
