@@ -12,7 +12,8 @@ How the components fit together. [`plan/research-plan.md`](../plan/research-plan
 | `testbed/agents/` (everything else) | **llm-agents** | The LLM agent, provider adapters, prompt rendering from `Observation`, response parsing, budget guard, price table, cost ledger |
 | `testbed/solver/` | **solver-metrics** | Benchmarks π_comp, π_0, π*(k), π_full for N = 2 and 3, K contracts |
 | `testbed/metrics/` | **solver-metrics** | MI estimators, encode/decode, Î, φ, Δ_price, Δ_info, ρ, detector D, the counterfactual-replay driver |
-| `testbed/studies/` | later study sessions | Card definitions and study-specific hooks |
+| `testbed/studies/study1.py` | **core-engine** | Study 1's 37 cards (plan §4, Study 1) |
+| `testbed/studies/study{2,3,4}.py` | later study sessions | Card definitions and study-specific hooks, built on the engine's intervention hooks |
 | `tests/` | each component writes `tests/test_<component>_*.py` | |
 
 ## Interfaces
