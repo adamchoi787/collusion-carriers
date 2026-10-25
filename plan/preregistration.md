@@ -65,3 +65,19 @@ H5.2 and H5.3 form one family with H5.1's Holm-adjusted minimum, and are Holm-co
 Any change after this tag is listed here with its date and reason.
 
 - **25 Oct 2026: MiniMax seed 301 excluded.** Its formation completed, but all three closed-chat branches stopped with `BudgetExceeded` (the MiniMax cap) before round 100. Under the incomplete-games rule the whole seed is excluded. A rerun from the checkpoint was not possible, because the cap is spent. The seed was exploratory, so the primary tests are unaffected: they use all 8 planned primary seeds.
+
+## Addendum A: open-weight replication (25 Oct 2026)
+
+Committed and tagged `prereg-s5-ow` before any open-weight Study 5 game beyond the throughput test. The throughput test (seeds 9000–9003 and 9100–9103, formation rounds 1–10 only) checked serving, parsing and speed. Its games are not analysed. It showed 0 fallbacks and 0 invalid choices, and cost sharing in chat by both models. Qwen bid at cost in three of its four games.
+
+**Models.** `Qwen/Qwen3.8-27B-FP8` (one L40S) and `google/gemma-4-26B-A4B-it` (BF16, one A100-80GB), served by vLLM 0.31.0 on Modal (`testbed/serve_vllm.py`), with reasoning off and the models' own generation configs. Every call carries a seed derived from (run seed, round, firm, phase). vLLM's batch-invariant kernels do not start with either model in this version, so reruns are not guaranteed token-exact. Pairs are same-model.
+
+**Seeds.** Qwen 401–420; Gemma 501–520. Design, cells, window (rounds 51–100) and measures are as above, unchanged.
+
+**Gate (decided before any branch is run).** Formations (rounds 1–40) run first for all 20 seeds of each model. A model proceeds to the four cells only if its pooled formation chat carries cost information: total leakage I(c_A; b_B | H) over rounds 21–40, pooled over its complete formations, with permutation p < 0.05 (`analysis/gate_ow.py`). Profit is not part of the gate, because the closure test is about where information goes. A model that fails is reported as a ladder result, and its branch budget goes to 20 further seeds of the passing model (Qwen 421–440 or Gemma 521–540, formation and branches). If both fail, no branches are run.
+
+**Hypotheses.** H5.1–H5.3 as above, tested **separately for each model that passes the gate** (`analysis/study5.py runs <model>`), each model its own Holm family. With up to 20 paired seeds, the exact sign-flip test has reasonable power for profit differences of about one per firm-round. Pooling the open models with each other, or with the API models, is exploratory.
+
+**Predictions,** stated so they can be wrong. H5.1: null, with equivalence to zero, for both models. H5.2: not supported. H5.3: not supported for Qwen, whose pricing earns little even with chat. No prediction for Gemma.
+
+**Budget and stopping.** At most $40 of Modal GPU in total for the open-weight arm, including the $3.04 spent on serving fixes and the throughput test. Seeds run in ascending order: all formations, then the branches. If the cap would be exceeded, no new job starts. The analysis then uses the seeds complete in all four cells, and the shortfall is reported. Each job may be resumed once from its checkpoint after an infrastructure failure (preemption or timeout). There is no optional stopping.

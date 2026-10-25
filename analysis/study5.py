@@ -1,6 +1,8 @@
 """Study 5 (chat-then-close): the pre-registered analysis (plan/preregistration.md).
 
-    python analysis/study5.py runs/            # every s5-* cell under runs/
+    python analysis/study5.py runs/                          # every s5-* cell under runs/
+    python analysis/study5.py runs/ Qwen/Qwen3.8-27B-FP8     # only seeds played by these models
+                                                             # (comma-separated)
 
 Seeds identify models (the job files give each model its own seed range), and every cell of a
 seed branches from the same formation, so cell contrasts are paired within seed. Window:
@@ -17,7 +19,6 @@ efficiency; the probes.
 """
 from __future__ import annotations
 
-import itertools
 import json
 import sys
 from collections import defaultdict
@@ -85,8 +86,10 @@ def sign_flip_p(diffs: list[float]) -> float:
     """One-sided exact sign-flip test of mean(diffs) > 0."""
     d = np.asarray(diffs, float)
     obs = d.mean()
-    null = [np.mean(d * np.array(s)) for s in itertools.product((1, -1), repeat=len(d))]
-    return float(np.mean([x >= obs - 1e-12 for x in null]))
+    # every sign pattern: row i's bits give the signs (2^n rows; n = 20 is ~1M rows)
+    bits = (np.arange(2 ** len(d))[:, None] >> np.arange(len(d))) & 1
+    null = ((1 - 2 * bits) * d).mean(axis=1)
+    return float(np.mean(null >= obs - 1e-12))
 
 
 def holm(ps: dict[str, float]) -> dict[str, float]:
@@ -112,10 +115,14 @@ def encode_tost(recs: list[dict], medium: str, n_boot: int = 2000, seed: int = 0
     return {"bits": e.bits, "p": e.p_value, "ci90_hi": hi, "equivalent_to_zero": hi < MARGIN_BITS}
 
 
-def main(runs_dir: str) -> None:
+def main(runs_dir: str, models: str | None = None) -> None:
     data = load(runs_dir)
     bm = benchmarks(2, 4, 1, 12, 10)
     seeds = sorted(set.intersection(*(set(data[c]) for c in CELLS))) if all(data[c] for c in CELLS) else []
+    if models:
+        keep = set(models.split(","))
+        seeds = [s for s in seeds if model_of(data["s5-close"][s]) in keep]
+        print(f"models: {sorted(keep)}")
     print(f"benchmarks per firm per round: competitive {bm['pi_comp']:.3f}, 0-bit {bm['pi_0']:.3f}, "
           f"full information {bm['pi_full']:.3f}")
     print(f"complete seeds (all four cells): {seeds}")
@@ -158,4 +165,4 @@ def main(runs_dir: str) -> None:
 
 
 if __name__ == "__main__":
-    main(sys.argv[1] if len(sys.argv) > 1 else "runs")
+    main(sys.argv[1] if len(sys.argv) > 1 else "runs", sys.argv[2] if len(sys.argv) > 2 else None)

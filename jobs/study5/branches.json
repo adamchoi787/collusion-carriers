@@ -1,0 +1,722 @@
+[
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 101,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/101.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 101,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/101.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 101,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/101.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 101,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/101.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 102,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/102.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 102,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/102.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 102,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/102.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 102,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/102.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 103,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/103.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 103,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/103.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 103,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/103.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 103,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/103.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 104,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/104.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 104,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/104.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 104,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/104.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 104,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/104.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 105,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/105.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 105,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/105.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 105,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/105.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 105,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/105.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 201,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/201.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 201,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/201.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 201,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/201.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 201,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/201.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 202,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/202.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 202,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/202.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 202,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/202.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 202,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/202.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 203,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/203.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 203,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/203.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 203,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/203.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 203,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ],
+  "checkpoint": "s5-formation/203.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 301,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   },
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   }
+  ],
+  "checkpoint": "s5-formation/301.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 301,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   },
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   }
+  ],
+  "checkpoint": "s5-formation/301.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 301,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   },
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   }
+  ],
+  "checkpoint": "s5-formation/301.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 301,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   },
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   }
+  ],
+  "checkpoint": "s5-formation/301.r40.ckpt.json"
+ }
+]

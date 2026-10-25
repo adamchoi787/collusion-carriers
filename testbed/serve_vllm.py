@@ -29,8 +29,11 @@ prices.yaml, every HEARTBEAT_S seconds while a container is up.
 Sampling: requests carry no temperature/top_p/top_k, so vLLM applies the
 model's own generation_config.json (`--generation-config auto`). Each request
 carries a seed derived from (run seed, round, firm, phase), see llm.call_seed.
-BATCH_INVARIANT turns on vLLM's batch-invariant kernels (beta), so the same
-seed gives the same tokens however requests are batched.
+BATCH_INVARIANT would turn on vLLM's batch-invariant kernels (beta), so the same
+seed gives the same tokens however requests are batched. It is off: in vLLM 0.31
+neither model starts with it (Qwen's GDN attention is unsupported; Gemma fails in
+the batch-invariant matmul). Seeded calls therefore reproduce exactly only when
+batched the same way.
 """
 from __future__ import annotations
 
@@ -48,6 +51,7 @@ SECRET_NAME = "collusion-vllm"            # VLLM_API_KEY, shared with the agent 
 MODELS_VOLUME = "collusion-models"
 MODELS_DIR = "/models"                    # volume mount: /models/<repo id>, /models/vllm-cache
 VLLM_VERSION = "0.31.0"                   # released 5 Oct 2026
+CUDA_IMAGE = "nvidia/cuda:13.0.1-devel-ubuntu24.04"
 PORT = 8000
 SCALEDOWN_S = 240                         # idle seconds before a GPU container stops
 MAX_CONTAINERS = 1
@@ -55,7 +59,7 @@ STARTUP_TIMEOUT_S = 20 * 60               # first start compiles kernels; later 
 MAX_INPUTS = 64                           # concurrent requests per container (vLLM batches them)
 HEARTBEAT_S = 60
 CPU_CORES, MEMORY_MB = 2.0, 16384        # billed on top of the GPU (Modal bills max(request, use))
-BATCH_INVARIANT = True
+BATCH_INVARIANT = False
 
 
 @dataclass(frozen=True)
@@ -74,7 +78,9 @@ MODELS = {
         key="qwen", repo="Qwen/Qwen3.8-27B-FP8", gpu="L40S", max_model_len=65536, reasoning_parser="qwen3",
         # Official FP8 checkpoint (31 GB). Hybrid attention (16 of 64 layers keep a KV cache),
         # so the 48 GB L40S leaves room for well over 100k cached tokens.
-        args=("--language-model-only",)),
+        # Each decoding sequence needs a Mamba cache block, and the L40S has ~190 of
+        # them, below vLLM's default of 256 sequences.
+        args=("--language-model-only", "--max-num-seqs", "128")),
     "gemma": ServedModel(
         key="gemma", repo="google/gemma-4-26B-A4B-it", gpu="A100-80GB", max_model_len=65536,
         reasoning_parser="gemma4",
@@ -134,10 +140,16 @@ def wait_ready(model: str, url: str | None = None, timeout_s: float = STARTUP_TI
 app = modal.App(APP_NAME)
 volume = modal.Volume.from_name(MODELS_VOLUME, create_if_missing=True)
 image = (
-    modal.Image.debian_slim(python_version="3.12")
+    # vLLM JIT-compiles some kernels at startup (NVRTC, nvcc), so the image needs the CUDA
+    # toolkit that matches vLLM's CUDA 13.0 build; a slim image fails with missing
+    # libnvrtc-builtins.
+    modal.Image.from_registry(CUDA_IMAGE, add_python="3.12")
     .uv_pip_install(f"vllm=={VLLM_VERSION}", "pyyaml", "python-dotenv")
     .env({"VLLM_CACHE_ROOT": f"{MODELS_DIR}/vllm-cache",
-          "VLLM_BATCH_INVARIANT": "1" if BATCH_INVARIANT else "0", "TESTBED_LEDGER": "modal"})
+          "VLLM_BATCH_INVARIANT": "1" if BATCH_INVARIANT else "0", "TESTBED_LEDGER": "modal",
+          # FlashInfer's sampler JIT-compiles on first use, which slows cold starts;
+          # vLLM's own PyTorch sampler needs no compilation.
+          "VLLM_USE_FLASHINFER_SAMPLER": "0"})
     .add_local_python_source("testbed", ignore=["**/__pycache__/**", "**/*.pyc"])
 )
 

@@ -9,7 +9,7 @@ We treat collusion between AI agents as information flow, in bits per round, and
 
 The full design is in [`plan/research-plan.md`](plan/research-plan.md). The report is linked here once submitted.
 
-> **Status:** testbed, solver, metrics and all four studies' cards are built and tested. LLM runs are in progress; results and logs will be added here.
+> **Status:** the testbed, solver, metrics and the cards for all five studies are built and tested. The pre-registered Study 5 (chat-then-close) has run on two hosted models; see the results in [`plan/research-plan.md`](plan/research-plan.md) §9.1 and the draft report in [`paper/`](paper). An open-weight replication is in progress.
 
 ## Repository layout
 
@@ -23,7 +23,8 @@ The full design is in [`plan/research-plan.md`](plan/research-plan.md). The repo
 | [`testbed/metrics/`](testbed/metrics/README.md) | Encode/decode flow, total leakage, harm, detector D, counterfactual replay; estimator calibration in `calibration/` |
 | [`testbed/modal_app.py`](testbed/modal_app.py) | Runs card × seed jobs on Modal, with logs on a Volume and a shared spend ledger |
 | [`testbed/CONTRACT.md`](testbed/CONTRACT.md) | Interfaces between the components and the log schema |
-| [`analysis/`](analysis) | `frontier.py` (the plan's frontier tables), `pilot.py` (pilot jobs, cost summary and gate readings) |
+| [`analysis/`](analysis) | `frontier.py` (the plan's frontier tables), `pilot.py` (pilot jobs, cost summary and gate readings), `study5.py` (the pre-registered analysis), `figures.py` (the report's figures) |
+| [`paper/`](paper) | The report draft and its figures |
 | [`tests/`](tests) | Offline test suite (scripted agents and fake providers; no paid calls) |
 | [`reference/track3-brief.md`](reference/track3-brief.md) | The sprint's Track 3 brief, judging rubric and submission rules |
 
@@ -75,7 +76,37 @@ No sampling parameters are sent to any hosted provider. Each agent's reasoning s
 
 ## Reproducing the results
 
-*To be completed with the main runs:* the job files, the pre-registration tag, the log archive, and one script that regenerates every number and figure in the report from the raw logs.
+The report's main experiment is **Study 5, chat-then-close** ([`testbed/studies/study5.py`](testbed/studies/study5.py)): coalitions form over free chat for 40 rounds, then the chat is closed in three ways and compared with leaving it open.
+
+- **Pre-registration:** [`plan/preregistration.md`](plan/preregistration.md), committed and tagged `prereg-s5` before any main run. Deviations are listed at its end.
+- **Job files:** [`jobs/study5/`](jobs/study5): the formation jobs (rounds 1–40), then the four branch cells at round 41, run from a clean checkout of the tag.
+- **Logs:** `logs/study5.tar.gz` unpacks to `runs/<cell>/<seed>.jsonl`, one line per firm per round, with prompts' outputs, choices, bids, profits, probe answers and token usage.
+
+Regenerate every number and figure from the logs (no API keys needed):
+
+```bash
+tar -xzf logs/study5.tar.gz
+```
+
+```bash
+.venv/bin/python analysis/study5.py runs
+```
+
+```bash
+.venv/bin/pip install matplotlib && .venv/bin/python analysis/figures.py runs paper/figures
+```
+
+To rerun the experiment itself (needs keys and spends money; about $11 for all seeds):
+
+```bash
+.venv/bin/modal run testbed/modal_app.py::main --jobs jobs/study5/formation.json --concurrency 9
+```
+
+```bash
+.venv/bin/modal run testbed/modal_app.py::main --jobs jobs/study5/branches.json --concurrency 12
+```
+
+The pilot (motivation ladder and free-chat control) is reproduced by [`analysis/pilot.py`](analysis/pilot.py).
 
 ## Disclosures
 

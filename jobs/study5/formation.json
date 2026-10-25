@@ -1,0 +1,182 @@
+[
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 101,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 102,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 103,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 104,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 105,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 201,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 202,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 203,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   },
+   {
+    "kind": "llm",
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "reasoning": "low"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 301,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   },
+   {
+    "kind": "llm",
+    "provider": "minimax",
+    "model": "MiniMax-M3",
+    "reasoning": "disabled"
+   }
+  ]
+ }
+]

@@ -713,7 +713,7 @@ For reference: competitive 7.08, 0-bit 9.92, full information 11.04.
 
 **Spend.** OpenAI $4.68 of 4.75, Anthropic $4.42 of 4.75, MiniMax $1.93 of 2.00. The API budget is spent.
 
-**Open-weight arm (Modal GPU, up to ~$40).** Two ~27B open models (Qwen3.8-27B, Gemma-4-26B-A4B) served with vLLM, with seeded and exactly reproducible calls. They run the motivation ladder and Study 5 at many more seeds, once the throughput test passes.
+**Open-weight arm (Modal GPU, up to ~$40).** Two ~27B open models (Qwen3.8-27B, Gemma-4-26B-A4B) served with vLLM, with a seed on every call (batch-invariant kernels would make reruns token-exact, but neither model starts with them in vLLM 0.31). They run the motivation ladder and Study 5 at many more seeds, once the throughput test passes.
 
 **Rigour that costs nothing:**
 - pre-registration (git tag `prereg-s5`) before any main run;
