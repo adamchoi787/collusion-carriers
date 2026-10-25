@@ -1,0 +1,802 @@
+[
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 401,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 402,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 403,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 404,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 405,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 406,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 407,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 408,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 409,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 410,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 411,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 412,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 413,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 414,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 415,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 416,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 417,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 418,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 419,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 420,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 501,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 502,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 503,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 504,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 505,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 506,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 507,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 508,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 509,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 510,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 511,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 512,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 513,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 514,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 515,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 516,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 517,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 518,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 519,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ },
+ {
+  "card_id": "s5-formation",
+  "study": 5,
+  "seed": 520,
+  "until_round": 40,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ]
+ }
+]

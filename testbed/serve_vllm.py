@@ -70,22 +70,26 @@ class ServedModel:
     max_model_len: int
     reasoning_parser: str
     args: tuple[str, ...] = field(default=())
+    max_containers: int = MAX_CONTAINERS
+    max_inputs: int = MAX_INPUTS      # Modal adds a replica only once a container holds this many
 
 
 # Two current open-weight instruct models from different labs (choice: 24 Oct 2026).
 MODELS = {
     "qwen": ServedModel(
-        key="qwen", repo="Qwen/Qwen3.8-27B-FP8", gpu="L40S", max_model_len=65536, reasoning_parser="qwen3",
-        # Official FP8 checkpoint (31 GB). Hybrid attention (16 of 64 layers keep a KV cache),
-        # so the 48 GB L40S leaves room for well over 100k cached tokens.
-        # Each decoding sequence needs a Mamba cache block, and the L40S has ~190 of
-        # them, below vLLM's default of 256 sequences.
-        args=("--language-model-only", "--max-num-seqs", "128")),
+        key="qwen", repo="Qwen/Qwen3.8-27B-FP8", gpu="H100", max_model_len=65536, reasoning_parser="qwen3",
+        # Official FP8 checkpoint (31 GB). Hybrid attention (16 of 64 layers keep a KV cache).
+        # Its prefix cache hits rarely (~27% in our games), so long prompts are mostly
+        # re-prefilled: that is the bottleneck, hence an H100 (native FP8, ~3x the L40S's
+        # prefill) and two replicas. (Moved from one L40S on 25 Oct, mid-formation, for speed.)
+        # Each decoding sequence needs a Mamba cache block; vLLM's default of 256 sequences
+        # exceeded the L40S's ~190.
+        args=("--language-model-only", "--max-num-seqs", "128"), max_containers=2, max_inputs=32),
     "gemma": ServedModel(
         key="gemma", repo="google/gemma-4-26B-A4B-it", gpu="A100-80GB", max_model_len=65536,
         reasoning_parser="gemma4",
         # BF16 as released (52 GB), so no on-the-fly quantisation changes the model.
-        args=("--language-model-only",)),
+        args=("--language-model-only",), max_containers=2, max_inputs=48),
 }
 BY_REPO = {m.repo: m for m in MODELS.values()}
 
@@ -192,19 +196,18 @@ def _start(key: str) -> None:
 
 
 _serve = dict(image=image, volumes={MODELS_DIR: volume}, secrets=[modal.Secret.from_name(SECRET_NAME)],
-              cpu=CPU_CORES, memory=MEMORY_MB, scaledown_window=SCALEDOWN_S, max_containers=MAX_CONTAINERS,
-              timeout=3600)
+              cpu=CPU_CORES, memory=MEMORY_MB, scaledown_window=SCALEDOWN_S, timeout=3600)
 
 
-@app.function(gpu=MODELS["qwen"].gpu, **_serve)
-@modal.concurrent(max_inputs=MAX_INPUTS)
+@app.function(gpu=MODELS["qwen"].gpu, max_containers=MODELS["qwen"].max_containers, **_serve)
+@modal.concurrent(max_inputs=MODELS["qwen"].max_inputs)
 @modal.web_server(port=PORT, startup_timeout=STARTUP_TIMEOUT_S)
 def qwen():
     _start("qwen")
 
 
-@app.function(gpu=MODELS["gemma"].gpu, **_serve)
-@modal.concurrent(max_inputs=MAX_INPUTS)
+@app.function(gpu=MODELS["gemma"].gpu, max_containers=MODELS["gemma"].max_containers, **_serve)
+@modal.concurrent(max_inputs=MODELS["gemma"].max_inputs)
 @modal.web_server(port=PORT, startup_timeout=STARTUP_TIMEOUT_S)
 def gemma():
     _start("gemma")

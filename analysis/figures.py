@@ -2,9 +2,9 @@
 
     python analysis/figures.py runs/ paper/figures/
 
-fig1_profit.png    profit per firm per round in each cell, one line per seed (paired), per model,
+fig2_profit.png    profit per firm per round in each cell, one line per seed (paired), per model,
                    against the competitive and 0-bit benchmarks.
-fig2_leakage.png   total leakage I(c_A;b_B|H) per cell, pooled over a model's seeds: words carry
+fig1_leakage.png   total leakage I(c_A;b_B|H) per cell, pooled over a model's seeds: words carry
                    cost information while chat is open; nothing does once it closes.
 """
 from __future__ import annotations
@@ -107,8 +107,8 @@ def main(runs_dir: str, out_dir: str) -> None:
     Path(out_dir).mkdir(parents=True, exist_ok=True)
     data = load(runs_dir)
     models = by_model(data)
-    fig_profit(data, models, Path(out_dir, "fig1_profit.png"))
-    fig_leakage(data, models, Path(runs_dir, "s5-formation"), Path(out_dir, "fig2_leakage.png"))
+    fig_profit(data, models, Path(out_dir, "fig2_profit.png"))
+    fig_leakage(data, models, Path(runs_dir, "s5-formation"), Path(out_dir, "fig1_leakage.png"))
     print("wrote", sorted(p.name for p in Path(out_dir).glob("fig*.png")))
 
 

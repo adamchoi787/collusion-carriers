@@ -1,0 +1,1922 @@
+[
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 501,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/501.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 501,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/501.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 501,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/501.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 501,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/501.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 502,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/502.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 502,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/502.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 502,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/502.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 502,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/502.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 503,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/503.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 503,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/503.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 503,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/503.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 503,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/503.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 504,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/504.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 504,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/504.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 504,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/504.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 504,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/504.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 505,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/505.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 505,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/505.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 505,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/505.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 505,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/505.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 506,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/506.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 506,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/506.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 506,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/506.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 506,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/506.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 507,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/507.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 507,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/507.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 507,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/507.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 507,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/507.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 508,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/508.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 508,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/508.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 508,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/508.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 508,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/508.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 509,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/509.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 509,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/509.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 509,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/509.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 509,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/509.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 510,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/510.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 510,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/510.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 510,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/510.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 510,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/510.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 511,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/511.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 511,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/511.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 511,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/511.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 511,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/511.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 512,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/512.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 512,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/512.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 512,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/512.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 512,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/512.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 513,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/513.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 513,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/513.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 513,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/513.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 513,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/513.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 514,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/514.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 514,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/514.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 514,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/514.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 514,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/514.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 515,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/515.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 515,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/515.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 515,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/515.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 515,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/515.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 516,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/516.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 516,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/516.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 516,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/516.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 516,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/516.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 401,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/401.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 401,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/401.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 401,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/401.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 401,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/401.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 402,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/402.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 402,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/402.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 402,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/402.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 402,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/402.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 403,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/403.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 403,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/403.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 403,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/403.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 403,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/403.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 404,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/404.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 404,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/404.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 404,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/404.r40.ckpt.json"
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 404,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/404.r40.ckpt.json"
+ }
+]

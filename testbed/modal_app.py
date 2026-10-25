@@ -316,7 +316,7 @@ def load_jobs(path: str) -> list[dict]:
 # ---- Modal functions and entrypoints ------------------------------------------
 
 @app.function(image=image, secrets=[modal.Secret.from_name(SECRET_NAME), modal.Secret.from_name(VLLM_SECRET)],
-              volumes={VOL: volume}, cpu=CPU, memory=MEMORY_MB, timeout=4 * 3600, max_containers=50, retries=0)
+              volumes={VOL: volume}, cpu=CPU, memory=MEMORY_MB, timeout=4 * 3600, max_containers=200, retries=0)
 def run_job(job: dict) -> dict:
     # retries=0 at the Modal level: a fresh container would replay the run from its last
     # checkpoint only; execute_job already resumes in place after transient errors.
