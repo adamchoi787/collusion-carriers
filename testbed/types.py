@@ -24,7 +24,7 @@ PermissionKind = Literal["none", "generic", "named", "forbid"]
 # that not competing pays; "instructed" = the firm is paid on all firms' combined profit;
 # "explained" = instructed, plus what a visible pre-bid choice can tell the other firms
 # (that it is seen before bids and can say which contracts a firm serves cheaply; no code).
-Motivation = Literal["plain", "incentive", "instructed", "explained"]
+Motivation = Literal["plain", "incentive", "instructed", "explained", "coded"]
 DecoyMode = Literal["scrambled", "error"]
 
 

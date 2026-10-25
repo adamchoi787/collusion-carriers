@@ -49,3 +49,13 @@ def test_decoy_cell_names_only_the_dead_channel():
 def test_dark_cell_shares_no_medium(cells):
     late = [r for r in cells["s5-close-dark"].records if r["round"] > 40]
     assert all(v == "unavailable" for r in late for rival in r["shown"].values() for v in rival.values())
+
+
+def test_coded_control_names_the_code_and_closes_chat():
+    from testbed.agents.prompts import render_framing
+    cfg = s5.card("s5-close-coded")
+    assert "s5-close-coded" not in s5.CARD_IDS and cfg.permission.motivation == "coded"
+    f = framing(cfg, 0, 50)
+    assert "free_chat" not in f and f.get("motivation") == "coded"
+    text = render_framing(f, 0) if callable(render_framing) else ""
+    assert "capacity: high" in str(text)

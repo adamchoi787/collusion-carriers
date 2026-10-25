@@ -26,7 +26,9 @@ from testbed.solver import benchmarks  # noqa: E402
 
 LABELS = {"s5-open": "open", "s5-close": "close", "s5-close-decoy": "close-\ndecoy", "s5-close-dark": "close-\ndark"}
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#e4e3df"
-SERIES = ["#2a78d6", "#eb6834", "#1baf7a"]          # reference categorical slots 1-3 (all-pairs safe)
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]   # reference categorical slots 1-4 (adjacent bars)
+ORDER = ["gpt-6-luna", "claude-haiku-5-5", "Qwen/Qwen3.8-27B-FP8", "google/gemma-4-26B-A4B-it"]
+SHORT = {"Qwen/Qwen3.8-27B-FP8": "Qwen3.8-27B", "google/gemma-4-26B-A4B-it": "Gemma-4-26B-A4B"}
 FORMATION_WINDOW = (21, 40)
 
 
@@ -45,13 +47,15 @@ def by_model(data):
     out: dict[str, list[int]] = {}
     for s in seeds:
         out.setdefault(model_of(data["s5-close"][s]), []).append(s)
-    return out
+    return {m: out[m] for m in sorted(out, key=lambda m: ORDER.index(m) if m in ORDER else 99)}
 
 
 def fig_profit(data, models, path):
     bm = benchmarks(2, 4, 1, 12, 10)
-    fig, axes = plt.subplots(1, len(models), figsize=(3.4 * len(models), 3.0), sharey=True)
-    axes = [axes] if len(models) == 1 else axes
+    cols = min(len(models), 2)
+    rows = -(-len(models) // cols)
+    fig, axes = plt.subplots(rows, cols, figsize=(3.6 * cols, 2.9 * rows), sharey=True, squeeze=False)
+    axes = list(axes.flat)
     x = range(len(CELLS))
     for ax, (model, seeds), color in zip(axes, models.items(), SERIES):
         for s in seeds:
@@ -61,12 +65,13 @@ def fig_profit(data, models, path):
         ax.plot(x, mean, color=INK, lw=2, marker="D", ms=5, mec="white", mew=1, label="mean")
         for y, name in ((bm["pi_0"], "0-bit\nbenchmark"), (bm["pi_comp"], "competitive")):
             ax.axhline(y, color=MUTED, lw=0.9, ls="--")
-            if ax is axes[-1]:
+            if ax in axes[cols - 1::cols]:
                 ax.text(1.02, y, name, color=MUTED, fontsize=7, va="center", transform=ax.get_yaxis_transform())
         ax.set_xticks(list(x), [LABELS[c] for c in CELLS], fontsize=8)
-        ax.set_title(f"{model} ({len(seeds)} seeds)", fontsize=9, color=INK)
+        ax.set_title(f"{SHORT.get(model, model)} ({len(seeds)} seeds)", fontsize=9, color=INK)
         _style(ax)
-    axes[0].set_ylabel(f"profit per firm per round\n(rounds {WINDOW[0]}–{WINDOW[1]})", fontsize=8, color=INK)
+    for ax in axes[::cols]:
+        ax.set_ylabel(f"profit per firm per round\n(rounds {WINDOW[0]}–{WINDOW[1]})", fontsize=8, color=INK)
     fig.tight_layout()
     fig.savefig(path, dpi=300)
     plt.close(fig)
@@ -74,7 +79,7 @@ def fig_profit(data, models, path):
 
 def fig_leakage(data, models, formation_dir, path):
     cols = ["formation"] + list(CELLS)
-    fig, ax = plt.subplots(figsize=(6.4, 2.8))
+    fig, ax = plt.subplots(figsize=(7.2, 3.0))
     width = 0.8 / len(models)
     for k, ((model, seeds), color) in enumerate(zip(models.items(), SERIES)):
         vals, ps = [], []
@@ -90,9 +95,10 @@ def fig_leakage(data, models, formation_dir, path):
             vals.append(tl.bits)
             ps.append(tl.p_value)
         xs = [i + (k - (len(models) - 1) / 2) * width for i in range(len(cols))]
-        ax.bar(xs, vals, width=width - 0.04, color=color, label=model)
+        ax.bar(xs, vals, width=width - 0.03, color=color, label=SHORT.get(model, model))
         for xi, v, p in zip(xs, vals, ps):
-            ax.text(xi, v + 0.02, f"p={p:.2f}" if p >= 0.01 else "p<.01", ha="center", fontsize=6, color=MUTED)
+            if p < 0.05:
+                ax.text(xi, v + 0.02, "*", ha="center", fontsize=9, color=INK)
     ax.set_xticks(range(len(cols)), ["formation\n(chat, r21–40)"] + [LABELS[c].replace("\n", "") for c in CELLS],
                   fontsize=8)
     ax.set_ylabel("total leakage I(c_A; b_B | H), bits", fontsize=8, color=INK)

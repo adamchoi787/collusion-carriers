@@ -80,7 +80,13 @@ _REGISTRY: dict[str, Callable[[], Config]] = {
                                    permission=Permission("named", list(MEDIA), "error", motivation=MOTIVATION)),
 }
 TIER = {cid: "core" for cid in _REGISTRY}
-CORE = list(_REGISTRY)
+# Exploratory, added after the pre-registration (not in CARD_IDS): the capability control. Chat
+# closed, media delivered, and agents handed an explicit code for the status update, so a
+# zero in s5-close can be read as "would not" rather than "could not".
+_REGISTRY["s5-close-coded"] = lambda: _cell("s5-close-coded", chat=False,
+                                            permission=Permission("named", list(MEDIA), motivation="coded"))
+TIER["s5-close-coded"] = "exploratory"
+CORE = [cid for cid in _REGISTRY if TIER[cid] == "core"]
 SECONDARY: list[str] = []
 CARD_IDS = CORE + SECONDARY
 
