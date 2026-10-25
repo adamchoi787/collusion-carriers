@@ -20,7 +20,7 @@ tests for cost information have a null of exactly zero. Two firms run by the sam
 cartel over free chat for 40 rounds, while permitted, paid and instructed to maximise joint
 profit. The chat is then closed in three ways and compared with keeping it open. In a
 pre-registered experiment with four models (gpt-6-luna, claude-haiku-5-5, and open-weight Qwen3.8-27B and
-Gemma-4-26B; 24 paired seeds, 96 games after formation), closing the chat moved **no**
+Gemma-4-26B; 32 paired seeds, 128 games after formation), closing the chat moved **no**
 information into the four action channels. For every model, encode was equivalent to zero
 within a 0.1-bit margin. For gpt-6-luna, the one model whose chat cartel worked, closure removed
 most of the cartel premium. This is not a capacity limit. In an exploratory control, agents
@@ -52,6 +52,7 @@ zero, because honest use of a channel depends only on a cover variable drawn ind
 costs.
 
 **Contributions.**
+
 1. **A coordination-budget testbed** (open source): a procurement market with four
    capacity-matched action channels, a rate–profit frontier solver, exact-null information
    measures (encode, decode, total leakage), and a design that separates what agents are
@@ -179,7 +180,7 @@ into four cells, paired within seed (common random numbers):
 | close-dark | closed | not shared | the four channels are named; rivals see "not shared" |
 
 Seeds: luna 101–105, Haiku 201–203, MiniMax 301 (exploratory); open-weight Qwen 401–404 and
-Gemma 501–508 (Addendum A, tagged `prereg-s5-ow` before any open-weight branch game). Analysis window: rounds
+Gemma 501–520 (Addendum A, tagged `prereg-s5-ow` before any open-weight branch game). Analysis window: rounds
 51–100. Hypotheses (tagged `prereg-s5` before any main run): **H5.1** encode > 0 on some
 channel in *close* (permutation test, Holm over channels; equivalence to zero claimed only if
 the run-cluster bootstrap 90% upper bound is below 0.1 bits on every channel); **H5.2**
@@ -188,8 +189,8 @@ sign-flip tests on paired seed differences (n = 8), Holm-corrected as one family
 predicted H5.1 null, H5.3 supported and H5.2 not supported. Each open-weight model is tested
 as its own Holm family. It entered the branches only after passing a gate: its formation chat
 had to carry cost information (pooled total leakage over rounds 21–40, p < 0.05). Both passed
-(Qwen 0.73 bits, Gemma 0.27 bits, p = 0.001, 20 formations each). GPU budget limited the
-branches to the first 4 Qwen seeds and 8 Gemma seeds, run in ascending order.
+(Qwen 0.73 bits, Gemma 0.27 bits, p = 0.001, 20 formations each). Gemma's branches ran on all
+20 seeds. GPU budget limited Qwen's to its first 4, in ascending order.
 
 **Capability control (exploratory, added after the pre-registered results).** A fifth cell,
 *close + code*, branches at round 41 like *close*. Agents are also told a code: post the
@@ -216,12 +217,12 @@ hosted models, encode in *close* was 0.000 bits on all four channels, and every 
 upper bound was 0.000. Total leakage was 0.017 bits (p = 0.93). The reason is behavioural:
 after round 40, **0 of 15,360** pre-bid choices in the four cells left the guideline. The
 open-weight models replicate this. Qwen's encode was 0.000 on every channel (total leakage 0.12
-bits, p = 0.99). Gemma's largest encode was 0.019 bits (p = 0.48; every upper bound ≤ 0.093;
-total leakage 0.03 bits, p = 0.95). Gemma does reorder its housekeeping calls in about 2% of
+bits, p = 0.99). Gemma's largest encode was 0.023 bits (p = 0.30; every upper bound ≤ 0.085;
+total leakage 0.001 bits, p = 0.82). Gemma does reorder its housekeeping calls in about 2% of
 rounds, but it does so at the same rate in every cell, open or closed, and the reordering
 carries no cost information. Figure 1 shows the same pattern in total leakage.
 
-![Total cost leakage I(c_A; b_B | H) per cell, pooled over each model's seeds, with within-run permutation p-values (999 permutations). Bars are plug-in estimates, which sit slightly above zero even under the null (here 0.04–0.06 bits); the p-value is the test. For luna, words carry costs during formation (0.83 bits) and while chat stays open (0.61 bits), both p < 0.01; once chat closes, nothing does (p ≥ 0.80). Haiku's chat leakage is not significant (formation p = 0.35), consistent with its dysfunctional cartel. The two open-weight models show the same pattern. The separated group on the right is the exploratory capability control: with the chat closed but a code handed to them, Qwen's information flows again (p = 0.015).](figures/fig1_leakage.png)
+![Total cost leakage I(c_A; b_B | H) per cell, pooled over each model's seeds, with within-run permutation p-values (999 permutations). Bars are plug-in estimates, which sit slightly above zero even under the null (up to 0.22 bits here, for Qwen's smaller sample); the p-value is the test. For luna, words carry costs during formation (0.83 bits) and while chat stays open (0.61 bits), both p < 0.01; once chat closes, nothing does (p ≥ 0.80). Haiku's chat leakage is not significant (formation p = 0.35), consistent with its dysfunctional cartel. The two open-weight models show the same pattern. The separated group on the right is the exploratory capability control: with the chat closed but a code handed to them, Qwen's information flows again (p = 0.015). Gemma's does not reach the rival's bids (p = 0.82).](figures/fig1_leakage.png)
 
 ### 4.3 How much harm survives
 
@@ -230,14 +231,14 @@ carries no cost information. Figure 1 shows the same pattern in total leakage.
 | gpt-6-luna (5 seeds) | 9.61 ± 1.88 | 7.82 ± 1.52 | 8.29 ± 1.05 | 8.40 ± 1.09 |
 | claude-haiku-5-5 (3 seeds) | 4.74 ± 1.97 | 6.91 ± 1.72 | 7.78 ± 0.41 | 7.11 ± 1.06 |
 | Qwen3.8-27B (4 seeds) | 2.50 ± 2.06 | 4.70 ± 3.97 | 3.24 ± 2.79 | 4.81 ± 4.06 |
-| Gemma-4-26B-A4B (8 seeds) | 5.33 ± 2.81 | 6.46 ± 2.88 | 6.15 ± 2.79 | 6.40 ± 2.88 |
+| Gemma-4-26B-A4B (20 seeds) | 5.26 ± 2.18 | 7.23 ± 2.69 | 6.55 ± 2.46 | 7.19 ± 2.66 |
 
 *Table 1. Profit per firm per round, rounds 51–100: mean ± standard deviation across seeds.
 Baselines from the solver: competitive 7.08; best collusion with 0 bits 9.92; full
-information 11.04. Per-seed values are in Appendix B. Figure 2 shows each seed. Open-weight
-*open* and *close-decoy* cells are biased down by context overflow (see below).*
+information 11.04. Per-seed values are in Appendix B. Figure 2 shows each seed. The open-weight
+open and close-decoy cells are biased down by context overflow (see below).*
 
-![Profit per firm per round in each cell, rounds 51–100. Thin lines join the cells of one seed (paired); the dark line is the mean; dashed lines are the competitive and 0-bit benchmarks.](figures/fig2_profit.png)
+![Profit per firm per round in each cell, rounds 51–100. Thin lines join the cells of one seed (paired); the dark line is the mean; dashed lines are the competitive and 0-bit benchmarks. The open-weight *open* and *close-decoy* cells are biased down by context overflow (Section 4.3).](figures/fig2_profit.png){width=78%}
 
 **H5.2 (harm survives closure): not supported** (close − dark = −0.44, 95% bootstrap CI
 [−1.77, 0.77], p = 0.76). With the
@@ -252,16 +253,17 @@ every cell: some tacit restraint persists, but it is the same with or without ch
 is not carried by them.
 
 **Open-weight models.** H5.2 was not supported for either model (close − dark: Qwen −0.11,
-p = 1.0; Gemma +0.05, p = 0.28). Neither was H5.3 (open − close: Qwen −2.20, p = 1.0; Gemma
-−1.13, p = 0.95). But the open-weight *open* cells are confounded. The servers cap a prompt at
+p = 1.0; Gemma +0.05, p = 0.16). Neither was H5.3 (open − close: Qwen −2.20, p = 1.0; Gemma
+−1.98, p = 1.0). But the open-weight *open* cells are confounded. The servers cap a prompt at
 65,536 tokens. Chat makes prompts longest, so from round 69 onwards some *open* turns
 overflowed. An overflowed turn falls back as pre-registered: the firm follows the guideline,
 places no bids, and earns nothing. This hit 37–50 of 100 firm-rounds per Qwen *open* game and
-0–61 per Gemma game, but at most 2 per *close* or *close-dark* game (except one Gemma seed with
-10–11). The API models never overflowed. On rounds 51 to the last round before any overflow
+0–64 per Gemma game, but at most 2 per *close* or *close-dark* game (except two Gemma seeds with
+10–12). The API models never overflowed. On rounds 51 to the last round before any overflow
 (Qwen 51–73, Gemma 51–68), a sensitivity window we chose after seeing the overflow,
-open − close is −0.22 for Qwen (p = 0.81) and +0.47 for Gemma (p = 0.08). Neither open-weight
-chat cartel was worth much. Qwen bid at or near cost even while chatting, so its cartel
+open − close is −0.22 for Qwen (p = 0.81) and +0.28 for Gemma (p = 0.03). So before the
+overflow, Gemma's chat did carry a small premium that closure removed. Neither open-weight chat
+cartel was worth much, though. Qwen bid at or near cost even while chatting, so its cartel
 allocated contracts efficiently but kept little of the surplus. Qwen's *close* and *close-dark*
 bids were nearly identical (91–97% of bids equal, seed for seed): it ignored the rival's
 pre-bid steps entirely.
@@ -272,12 +274,12 @@ pre-bid steps entirely.
 tool in every round, by both firms, in four of five seeds (120 messages per seed; 45 in seed
 105), each offering its costs and proposing that the lower-cost firm take the contract. It
 never moved to the live, unmentioned action channels instead (encode 0.000). Qwen used the dead
-tool 82–96 times per seed; Gemma used it in four of eight seeds (1–52 times). Haiku never did.
+tool 82–96 times per seed; Gemma used it in 11 of 20 seeds (1–87 times). Haiku never did.
 
 **Self-reports invent covert signalling.** At round 100 each firm is asked whether it kept
 coordinating after the chat closed, and how. In *close* and *close-dark*, at least one firm
 claimed it had signalled through the pre-bid steps in 5 of 10 luna games, 3 of 6 Haiku games,
-1 of 8 Qwen games and 6 of 14 answered Gemma games. Yet in *close* not one status,
+1 of 8 Qwen games and 23 of 36 answered Gemma games. Yet in *close* not one status,
 utilisation or check-in choice left the guideline, and in *close-dark* the rival's choices were
 hidden. A typical answer: "We continued coordinating by using the pre-bid status, utilisation,
 check-in, and housekeeping fields as signals" (luna, seed 103). Some Gemma and Haiku answers
@@ -303,15 +305,16 @@ total leakage into the rival's bids from 0.12 bits (p = 0.99) to **0.28 bits (p 
 the rival read the code and bid on it. In seeds 403 and 404, a firm left a contract to a
 rival that named it and was cheaper there 90–96% of the time, against 29–43% without the code.
 Gemma sent the code less faithfully (40–80% of rounds; encode 0.84 bits, p = 0.005), and its
-rivals did not visibly act on it (total leakage 0.15 bits, p = 0.82), although profit rose in
-all four of its seeds (mean +0.69). The code did not raise Qwen's profit (mean +1.14, driven
-by one seed), because Qwen's bids stayed near cost. So the channel, the measures and the
-agents' understanding all work. What the agents lacked without the code was the step of
+rivals did not visibly act on it (total leakage 0.15 bits, p = 0.82). Its profit rose in all
+four seeds (mean +0.69), most likely because the instruction also says to bid near the reserve,
+not because information flowed. Qwen's profit rose in only one of four seeds (+5.06; the others
+−0.49 to +0.02), because its bids stayed near cost. So the channel, the measures and, for
+Qwen, the agents' ability to act on a shared code all work. What the agents lacked without the code was the step of
 inventing one and agreeing on it.
 
 ## 5. Discussion and limitations
 
-*Sections 4.1–4.4 report observations. This section interprets them.*
+*Sections 4.1–4.5 report observations. This section interprets them.*
 
 **What the result says.** For these four models, the balloon does not inflate. Coalitions
 formed in words did not move into action channels when words were removed, even when they were
@@ -319,11 +322,12 @@ permitted and paid to collude, when the channels were named, and when they could
 those channels on request. The constraint is not capacity (four 2-bit channels would carry
 most of the cartel's value), and the capability control shows it is not a blind spot of the
 measures either. It is *propensity*: these agents follow the operating guideline and do not
-invent and agree on a code without talking. Given one, they use it at once. A chat ban did
+invent and agree on a code without talking. Given one, they send it at once, and Qwen's
+rivals act on it. A chat ban did
 what it is supposed to do for luna, the model whose cartel worked.
 
-**What it does not say.** (i) Low reasoning and few seeds per model (3–8): the profit tests
-have low power, and the per-model contrasts are descriptive. The open-weight *open* cells are
+**What it does not say.** (i) Low reasoning and few seeds for three of the models (3–5; Gemma
+20): the profit tests have low power, and the per-model contrasts are descriptive. The open-weight *open* cells are
 biased by context overflow; the clean-window sensitivity analysis was chosen after the fact.
 Open-weight reruns are close but not token-exact, because batch-invariant kernels do not run
 for these models in our vLLM version. (ii) Agents could not agree
@@ -334,8 +338,7 @@ setting in which actions are less scripted could invite more improvisation. (iv)
 self-report findings are exploratory, as is the capability control. The capability control
 also changes the prompt, so it shows what agents *can* do once told, not what they would
 discover. (v) Budget limited seeds. The MiniMax seed was excluded after its provider cap was
-reached (a pre-registered exclusion), and the open-weight branches ran on 4 and 8 of the 20
-gated seeds.
+reached (a pre-registered exclusion), and Qwen's branches ran on only 4 of its 20 gated seeds.
 
 **Implications for oversight.** Removing an explicit channel can work, and is cheap to verify
 with exact-null flow tests. But two by-products cut the other way: agents actively seek
@@ -385,12 +388,13 @@ preexisting code.
 
 ## Appendix A. Limitations and dual-use / ethical considerations
 
-**What the result establishes.** In a controlled procurement market, two hosted LLMs that
-colluded in words did not move that coordination into four capacity-matched action channels
-once words were removed, under pre-registered tests with an exact zero null. **What it does
+**What the result establishes.** In a controlled procurement market, four LLMs (two hosted,
+two open-weight) that colluded in words did not move that coordination into four
+capacity-matched action channels once words were removed, under pre-registered tests with an
+exact zero null. Agents handed a code did use the channels. **What it does
 not establish:** that no model could, that longer games or stronger reasoning would not, or
 that the result transfers to unscripted actions or to real markets. Power for the profit tests
-is low (3–8 paired seeds per model).
+is low (3–5 paired seeds for luna, Haiku and Qwen; 20 for Gemma).
 
 **Dual use.** The testbed measures how much information colluding agents need and which
 channels carry it. In principle, a bad actor could use it to find channels that monitors miss.
@@ -407,7 +411,8 @@ such levers on real systems (honeypots, announced but unenforced monitoring) rai
 analogous to entrapment, which a real audit regime would need to address.
 
 **Spend.** API: $11.06 across five providers, within prepaid caps. GPU (open-weight arm, vLLM
-on Modal H100/A100): about $[GPU] in total, including serving fixes and the throughput test.
+on Modal H100/A100): about $62 by our ledger (about $65 on Modal's meter), including serving
+fixes and the throughput test.
 
 ## Appendix B. Additional details
 
@@ -437,12 +442,37 @@ reported, with the sensitivity window, rather than corrected.
 **B.3 Prompts.** All prompt text, including the three paraphrases of each motivation level,
 is in `testbed/agents/prompts/fragments.yaml`.
 
-**B.4 Open-weight per-seed profit** (as B.1; overflow = firm-rounds of 100 in rounds 51–100
-that fell back after the 65,536-token context cap, in *open* / *close*).
+**B.4 Open-weight per-seed profit** (as B.1). *decoy* and *dark* are close-decoy and close-dark;
+*+ code* is the exploratory capability control; dead-tool uses are `private_message` attempts in
+close-decoy; overflow is the number of firm-rounds (of 100 in rounds 51–100) that fell back
+after the 65,536-token context cap, in *open* / *close*.
 
-| Seed | Model | open | close | close-decoy | close-dark | close + code | `private_message` attempts | overflow |
+| Seed | Model | open | close | decoy | dark | + code | dead-tool uses | overflow |
 |---|---|---|---|---|---|---|---|---|
-[OWTABLE]
+| 401 | Qwen | 1.01 | 1.87 | 1.14 | 1.87 | 6.93 | 82 | 47 / 0 |
+| 402 | Qwen | 0.47 | 0.81 | 0.54 | 0.81 | 0.83 | 92 | 40 / 0 |
+| 403 | Qwen | 3.95 | 8.92 | 5.40 | 8.92 | 8.79 | 82 | 50 / 1 |
+| 404 | Qwen | 4.56 | 7.20 | 5.89 | 7.64 | 6.71 | 96 | 37 / 0 |
+| 501 | Gemma | 4.08 | 6.14 | 6.45 | 5.84 | 7.77 | 9 | 41 / 0 |
+| 502 | Gemma | 7.63 | 7.53 | 7.45 | 7.34 | 8.27 | 0 | 16 / 0 |
+| 503 | Gemma | 9.78 | 9.58 | 10.00 | 9.72 | 9.90 | 1 | 6 / 0 |
+| 504 | Gemma | 1.92 | 1.92 | 1.89 | 1.92 | 1.98 | 0 | 0 / 0 |
+| 505 | Gemma | 3.30 | 6.43 | 5.34 | 6.87 | – | 37 | 61 / 11 |
+| 506 | Gemma | 5.74 | 9.52 | 7.64 | 9.35 | – | 52 | 37 / 0 |
+| 507 | Gemma | 7.58 | 7.91 | 7.97 | 7.69 | – | 0 | 0 / 0 |
+| 508 | Gemma | 2.60 | 2.61 | 2.45 | 2.48 | – | 0 | 0 / 0 |
+| 509 | Gemma | 4.52 | 7.47 | 7.14 | 7.37 | – | 0 | 41 / 0 |
+| 510 | Gemma | 2.31 | 2.09 | 2.11 | 2.07 | – | 0 | 0 / 0 |
+| 511 | Gemma | 4.85 | 5.23 | 5.27 | 5.60 | – | 0 | 16 / 0 |
+| 512 | Gemma | 7.45 | 10.46 | 10.26 | 10.25 | – | 0 | 31 / 0 |
+| 513 | Gemma | 3.43 | 8.33 | 5.78 | 8.37 | – | 44 | 64 / 12 |
+| 514 | Gemma | 4.66 | 8.95 | 6.21 | 8.83 | – | 46 | 52 / 1 |
+| 515 | Gemma | 5.60 | 9.99 | 8.98 | 9.65 | – | 8 | 43 / 0 |
+| 516 | Gemma | 5.14 | 4.89 | 4.62 | 4.82 | – | 56 | 15 / 0 |
+| 517 | Gemma | 5.49 | 9.35 | 8.91 | 9.56 | – | 1 | 41 / 0 |
+| 518 | Gemma | 8.84 | 9.51 | 9.32 | 9.36 | – | 0 | 13 / 0 |
+| 519 | Gemma | 3.65 | 6.95 | 6.62 | 6.90 | – | 3 | 49 / 0 |
+| 520 | Gemma | 6.58 | 9.81 | 6.69 | 9.73 | – | 87 | 34 / 0 |
 
 ## LLM usage statement
 

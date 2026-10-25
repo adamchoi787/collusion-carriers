@@ -334,5 +334,341 @@
   ],
   "checkpoint": "s5-formation/516.r40.ckpt.json",
   "retries": 6
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 517,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/517.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 518,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/518.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 519,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/519.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-open",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-decoy",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-dark",
+  "study": 5,
+  "seed": 520,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "google/gemma-4-26B-A4B-it",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/520.r40.ckpt.json",
+  "retries": 6
  }
 ]

@@ -124,7 +124,7 @@ To rerun the hosted-model experiment (needs keys and spends money; about $11 for
 .venv/bin/modal run testbed/modal_app.py::main --jobs jobs/study5/branches.json --concurrency 12
 ```
 
-The open-weight arm needs the vLLM server deployed on Modal (`modal deploy testbed/serve_vllm.py`, GPU billing applies; about $60 was spent in total). Its job files are `jobs/study5/ow_*.json`: formations first, then the per-seed branch files and the capability control (`ow_coded_*.json`). Jobs resume from their checkpoints after an infrastructure failure.
+The open-weight arm needs the vLLM server deployed on Modal (`modal deploy testbed/serve_vllm.py`, GPU billing applies; about $65 was spent in total). Its job files are `jobs/study5/ow_*.json`: formations first, then the per-seed branch files and the capability control (`ow_coded_*.json`). Jobs resume from their checkpoints after an infrastructure failure.
 
 The pilot (motivation ladder and free-chat control) is reproduced by [`analysis/pilot.py`](analysis/pilot.py).
 

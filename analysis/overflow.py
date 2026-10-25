@@ -30,6 +30,7 @@ from analysis.coded_control import rounds  # noqa: E402
 from analysis.study5 import CELLS, WINDOW, load, model_of, profit, sign_flip_p  # noqa: E402
 
 OVERFLOW = "reduce the length of the input prompt"
+SHORT = {"Qwen/Qwen3.8-27B-FP8": "Qwen", "google/gemma-4-26B-A4B-it": "Gemma"}
 
 
 def overflowed(r: dict) -> bool:
@@ -38,7 +39,7 @@ def overflowed(r: dict) -> bool:
 
 
 def table_rows(runs_dir: str, model: str, seeds: dict[int, dict[str, list[dict]]]) -> list[str]:
-    short = model.split("/")[-1]
+    short = SHORT.get(model, model)
     out = []
     for s in sorted(seeds):
         c = seeds[s]

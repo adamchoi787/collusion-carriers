@@ -715,9 +715,9 @@ For reference: competitive 7.08, 0-bit 9.92, full information 11.04.
 
 **Open-weight arm (Modal GPU; Addendum A, tag `prereg-s5-ow`).** Qwen3.8-27B-FP8 and Gemma-4-26B-A4B, served with vLLM 0.31 and seeded per call. Reruns are not token-exact: batch-invariant kernels do not start with either model.
 - **Gate:** both passed. Formation leakage over rounds 21–40 was Qwen 0.73 bits and Gemma 0.27 bits, both p = 0.001, over 20 formations each.
-- **Branches:** Qwen 401–404 and Gemma [GEMMA_SEEDS], in ascending order, cut to fit the GPU budget.
+- **Branches:** Qwen 401–404 and Gemma 501–520 (all 20); Qwen cut to its first 4 to fit the GPU budget.
 - **H5.1** is equivalent to zero for both models on every medium (`analysis/study5.py runs <model>`).
-- **H5.2 and H5.3** are not supported for either model. The open-weight *open* cells are confounded: prompts overflowed the 65,536-token context late in chat games and fell back to no bids. See `analysis/overflow.py` and the pre-registration's Deviations. In a clean pre-overflow window, open − close is −0.22 for Qwen and +0.47 for Gemma.
+- **H5.2 and H5.3** are not supported for either model. The open-weight *open* cells are confounded: prompts overflowed the 65,536-token context late in chat games and fell back to no bids. See `analysis/overflow.py` and the pre-registration's Deviations. In a clean pre-overflow window, open − close is −0.22 for Qwen (p = 0.81) and +0.28 for Gemma (p = 0.03).
 - **Decoy:** Qwen used the dead tool 82–96 times per seed.
 - **Probes misreport**, as with the API models (`analysis/self_reports.py`).
 
