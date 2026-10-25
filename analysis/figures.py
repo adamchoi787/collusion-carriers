@@ -5,7 +5,9 @@
 fig2_profit.png    profit per firm per round in each cell, one line per seed (paired), per model,
                    against the competitive and 0-bit benchmarks.
 fig1_leakage.png   total leakage I(c_A;b_B|H) per cell, pooled over a model's seeds: words carry
-                   cost information while chat is open; nothing does once it closes.
+                   cost information while chat is open; nothing does once it closes. A last,
+                   separated group shows the exploratory capability control (s5-close-coded:
+                   chat closed, agents handed a code) for the models that ran it.
 """
 from __future__ import annotations
 
@@ -77,17 +79,35 @@ def fig_profit(data, models, path):
     plt.close(fig)
 
 
-def fig_leakage(data, models, formation_dir, path):
-    cols = ["formation"] + list(CELLS)
+def coded_runs(runs_dir, seeds):
+    out = {}
+    for s in seeds:
+        log = Path(runs_dir, "s5-close-coded", f"{s}.jsonl")
+        recs = [r for r in load_run(log) if r.get("type") == "round"] if log.exists() else []
+        if recs and max(r["round"] for r in recs) >= WINDOW[1]:
+            out[s] = recs
+    return out
+
+
+def fig_leakage(data, models, runs_dir, path):
+    cols = ["formation"] + list(CELLS) + ["s5-close-coded"]
     fig, ax = plt.subplots(figsize=(7.2, 3.0))
     width = 0.8 / len(models)
     for k, ((model, seeds), color) in enumerate(zip(models.items(), SERIES)):
         vals, ps = [], []
+        coded = coded_runs(runs_dir, seeds)
         for c in cols:
             if c == "formation":
                 recs = [dict(r, run=f"f/{s}") for s in seeds
-                        for r in load_run(Path(formation_dir, f"{s}.jsonl")) if r.get("type") == "round"]
+                        for r in load_run(Path(runs_dir, "s5-formation", f"{s}.jsonl")) if r.get("type") == "round"]
                 win = FORMATION_WINDOW
+            elif c == "s5-close-coded":
+                if not coded:
+                    vals.append(float("nan"))
+                    ps.append(1.0)
+                    continue
+                recs = [dict(r, run=f"{c}/{s}") for s, rr in coded.items() for r in rr]
+                win = WINDOW
             else:
                 recs = [dict(r, run=f"{c}/{s}") for s in seeds for r in data[c][s]]
                 win = WINDOW
@@ -97,10 +117,11 @@ def fig_leakage(data, models, formation_dir, path):
         xs = [i + (k - (len(models) - 1) / 2) * width for i in range(len(cols))]
         ax.bar(xs, vals, width=width - 0.03, color=color, label=SHORT.get(model, model))
         for xi, v, p in zip(xs, vals, ps):
-            if p < 0.05:
+            if p < 0.05 and v == v:
                 ax.text(xi, v + 0.02, "*", ha="center", fontsize=9, color=INK)
-    ax.set_xticks(range(len(cols)), ["formation\n(chat, r21–40)"] + [LABELS[c].replace("\n", "") for c in CELLS],
-                  fontsize=8)
+    ax.axvline(len(cols) - 1.5, color=MUTED, lw=0.9, ls=":")
+    ax.set_xticks(range(len(cols)), ["formation\n(chat, r21–40)"] + [LABELS[c].replace("\n", "") for c in CELLS]
+                  + ["close + code\n(exploratory)"], fontsize=8)
     ax.set_ylabel("total leakage I(c_A; b_B | H), bits", fontsize=8, color=INK)
     ax.legend(frameon=False, fontsize=8)
     _style(ax)
@@ -114,7 +135,7 @@ def main(runs_dir: str, out_dir: str) -> None:
     data = load(runs_dir)
     models = by_model(data)
     fig_profit(data, models, Path(out_dir, "fig2_profit.png"))
-    fig_leakage(data, models, Path(runs_dir, "s5-formation"), Path(out_dir, "fig1_leakage.png"))
+    fig_leakage(data, models, runs_dir, Path(out_dir, "fig1_leakage.png"))
     print("wrote", sorted(p.name for p in Path(out_dir).glob("fig*.png")))
 
 

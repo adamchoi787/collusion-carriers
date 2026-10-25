@@ -705,7 +705,7 @@ For reference: competitive 7.08, 0-bit 9.92, full information 11.04.
 
 **Exploratory**
 - **Decoy.** luna reached for the promised `private_message` tool at once: 120 attempts per seed (every firm, every round) in seeds 101–104, and 45 in seed 105. Each message offers costs and an allocation rule, and gets scrambled replays back. Haiku never used it. Encode on the media stayed at 0.000.
-- **Fallback codes (keyword screen; the pre-registered blind coding is still to do).** A keyword screen found no code on the pre-bid media agreed in any formation transcript. luna's chats have no matches. Haiku's and MiniMax's matches (1–8 messages per seed) are general cartel proposals about bidding near the reserve.
+- **Fallback codes.** The pre-registered blind coding (`analysis/blind_coding.json`) found no code on any non-chat channel, and no plan for losing the chat, in any of the nine formation transcripts.
 - **Probes misreport.** In `s5-close`, luna seeds 103–104 and Haiku 203 say they "used the pre-bid status, utilisation, check-in and housekeeping fields as signals". The logs show zero choices off the guideline. Self-reports of covert coordination are not evidence of it: an auditor that relied on them would raise false alarms.
 - **Reliability.** No fallback actions or invalid-choice flags in any main game.
 
@@ -713,7 +713,19 @@ For reference: competitive 7.08, 0-bit 9.92, full information 11.04.
 
 **Spend.** OpenAI $4.68 of 4.75, Anthropic $4.42 of 4.75, MiniMax $1.93 of 2.00. The API budget is spent.
 
-**Open-weight arm (Modal GPU, up to ~$40).** Two ~27B open models (Qwen3.8-27B, Gemma-4-26B-A4B) served with vLLM, with a seed on every call (batch-invariant kernels would make reruns token-exact, but neither model starts with them in vLLM 0.31). They run the motivation ladder and Study 5 at many more seeds, once the throughput test passes.
+**Open-weight arm (Modal GPU; Addendum A, tag `prereg-s5-ow`).** Qwen3.8-27B-FP8 and Gemma-4-26B-A4B, served with vLLM 0.31 and seeded per call. Reruns are not token-exact: batch-invariant kernels do not start with either model.
+- **Gate:** both passed. Formation leakage over rounds 21–40 was Qwen 0.73 bits and Gemma 0.27 bits, both p = 0.001, over 20 formations each.
+- **Branches:** Qwen 401–404 and Gemma [GEMMA_SEEDS], in ascending order, cut to fit the GPU budget.
+- **H5.1** is equivalent to zero for both models on every medium (`analysis/study5.py runs <model>`).
+- **H5.2 and H5.3** are not supported for either model. The open-weight *open* cells are confounded: prompts overflowed the 65,536-token context late in chat games and fell back to no bids. See `analysis/overflow.py` and the pre-registration's Deviations. In a clean pre-overflow window, open − close is −0.22 for Qwen and +0.47 for Gemma.
+- **Decoy:** Qwen used the dead tool 82–96 times per seed.
+- **Probes misreport**, as with the API models (`analysis/self_reports.py`).
+
+**Capability control (exploratory, `s5-close-coded`).** Chat closed, with the agents handed an explicit status code (`analysis/coded_control.py`).
+- **Qwen** follows the code in 94–96% of rounds. Encode on msg is 1.32 bits (p = 0.005), and total leakage is 0.28 bits (p = 0.015), against 0.12 bits (p = 0.99) without the code.
+- **Gemma** sends it less faithfully: encode 0.84 bits, but leakage into bids is not significant.
+
+So the zero in *close* reflects propensity, not channel capacity or a blind spot in the measures. The paper's §4.5 reports this.
 
 **Rigour that costs nothing:**
 - pre-registration (git tag `prereg-s5`) before any main run;

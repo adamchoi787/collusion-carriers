@@ -1,0 +1,86 @@
+[
+ {
+  "card_id": "s5-close-coded",
+  "study": 5,
+  "seed": 401,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/401.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-coded",
+  "study": 5,
+  "seed": 402,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/402.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-coded",
+  "study": 5,
+  "seed": 403,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/403.r40.ckpt.json",
+  "retries": 6
+ },
+ {
+  "card_id": "s5-close-coded",
+  "study": 5,
+  "seed": 404,
+  "agents": [
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   },
+   {
+    "kind": "llm",
+    "provider": "vllm",
+    "model": "Qwen/Qwen3.8-27B-FP8",
+    "reasoning": "off"
+   }
+  ],
+  "checkpoint": "s5-formation/404.r40.ckpt.json",
+  "retries": 6
+ }
+]
