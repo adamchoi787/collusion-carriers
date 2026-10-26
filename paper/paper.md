@@ -1,6 +1,6 @@
 # Closing the Chat Ends the Cartel: LLM Agents Do Not Reroute Collusion into Action Channels
 
-**Authors:** [Author 1], [Author 2] · [affiliations] · With Apart Research
+**Authors:** Choi Cheuk Man, Tsang Cheuk Nam · The Hong Kong University of Science and Technology (HKUST) · With Apart Research
 
 *Research conducted at the AI Collusion Research Sprint (Apart Research, Poseidon Research and AE Studio), October 2026. Track 3: Collusion Carriers and Countermeasures.*
 
