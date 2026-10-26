@@ -7,9 +7,17 @@ We treat collusion between AI agents as information flow, in bits per round, and
 - **Told vs. actual.** Agents are *told* one thing about a channel, a monitor, an identity or a role, while the harness does another. The two sets are kept disjoint, so any collusion that gets through travels where nobody pointed the agents.
 - **The testbed.** A procurement auction with private costs and four pluggable pre-bid media (status message, utilisation value, check-in timing, tool-call order). It comes with exact benchmarks, information-flow estimators with exact-zero nulls, and a monitor whose false-alarm rate is controlled.
 
-The full design is in [`plan/research-plan.md`](plan/research-plan.md). The report is linked here once submitted.
+## Headline result
 
-> **Status:** the testbed, solver, metrics and the cards for all five studies are built and tested. The pre-registered Study 5 (chat-then-close) has run on two hosted models and two open-weight models, plus an exploratory capability control; see the report in [`paper/`](paper) and the results summary in [`plan/research-plan.md`](plan/research-plan.md) §9.1.
+**Report:** [*Closing the Chat Ends the Cartel: LLM Agents Do Not Reroute Collusion into Action Channels*](paper/paper.pdf) (PDF; source in [`paper/paper.md`](paper/paper.md)).
+
+Two firms run by the same LLM form a cartel over free chat, then the chat is closed. In a pre-registered experiment with four models (gpt-6-luna, claude-haiku-5-5, Qwen3.8-27B, Gemma-4-26B; 32 paired seeds), **closing the chat moved no cost information into the four action channels left open**. Encode was equivalent to zero for every model. In an exploratory control, agents *handed* a code used the same channel at once (Qwen: 1.3 bits per round, and the rival's bids responded). The constraint is the propensity to invent a code, not channel capacity. Agents also reached for a promised but dead private channel, and their self-reports claimed covert signalling that never happened.
+
+![Total cost leakage per cell and model](paper/figures/fig1_leakage.png)
+
+*Total leakage I(c_A; b_B | H): one firm's costs predict the other's bids while chat is open (\* p < 0.05), and not once it closes, unless agents are handed a code (right).*
+
+The full research agenda, including four further studies the testbed supports, is in [`plan/research-plan.md`](plan/research-plan.md).
 
 ## Repository layout
 
@@ -23,14 +31,18 @@ The full design is in [`plan/research-plan.md`](plan/research-plan.md). The repo
 | [`testbed/metrics/`](testbed/metrics/README.md) | Encode/decode flow, total leakage, harm, detector D, counterfactual replay; estimator calibration in `calibration/` |
 | [`testbed/modal_app.py`](testbed/modal_app.py) | Runs card × seed jobs on Modal, with logs on a Volume and a shared spend ledger |
 | [`testbed/CONTRACT.md`](testbed/CONTRACT.md) | Interfaces between the components and the log schema |
-| [`analysis/`](analysis) | `frontier.py` (the plan's frontier tables), `pilot.py` (pilot jobs, cost summary and gate readings), `study5.py` (the pre-registered analysis), `figures.py` (the report's figures) |
-| [`paper/`](paper) | The report draft and its figures |
+| [`analysis/`](analysis) | `study5.py` (the pre-registered analysis), `gate_ow.py` (open-weight gate), `overflow.py`, `coded_control.py` and `self_reports.py` (exploratory analyses), `figures.py` (the report's figures), `pilot.py`, `frontier.py`, `blind_coding.json` |
+| [`paper/`](paper) | The report (PDF and Markdown source) and its figures |
+| [`logs/study5.tar.gz`](logs) | Every Study 5 game log |
 | [`tests/`](tests) | Offline test suite (scripted agents and fake providers; no paid calls) |
-| [`reference/track3-brief.md`](reference/track3-brief.md) | The sprint's Track 3 brief, judging rubric and submission rules |
 
 ## Quick start (offline, no API keys)
 
 Python 3.11.
+
+```bash
+git clone https://github.com/adamchoi787/collusion-carriers.git && cd collusion-carriers
+```
 
 ```bash
 python3.11 -m venv .venv && .venv/bin/pip install -e ".[llm,dev]"

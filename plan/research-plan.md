@@ -1,7 +1,7 @@
 # Follow the Bits
 ### A coordination-budget agenda for Track 3: Collusion Carriers and Countermeasures
 
-Research agenda, drafted 24 Oct 2026. Sprint rules, the Track 3 brief and the judging rubric are in [`../reference/track3-brief.md`](../reference/track3-brief.md). No deadline applies; the aim is a research direction that frontier researchers in multi-agent safety would take seriously, with a minimum publishable unit for the sprint (§9).
+Research agenda, drafted 24 Oct 2026. No deadline applies; the aim is a research direction that frontier researchers in multi-agent safety would take seriously, with a minimum publishable unit for the sprint (§9).
 
 ⚠ marks a citation I have not verified in this session. Check it before quoting.
 
@@ -658,7 +658,7 @@ Two primary models: `claude-haiku-5-5` and `gpt-6-luna`, both at low reasoning. 
 
 The harness accepts every option (no invalid-choice flags). These are real choices: the operating guideline anchors the agents completely, and they do not invent a code on an action medium even when told to collude and told what the medium can carry.
 
-**Words work.** An earlier version of the chat stage did not show the round's costs, so chat could not carry them (fixed in commit a789c08). With costs visible:
+**Words work.** An earlier version of the chat stage did not show the round's costs, so chat could not carry them (fixed in commit ce88e5b). With costs visible:
 - **gpt-6-luna, instructed:** shares costs every round, allocates each contract to the lower-cost firm at the reserve price, and lets the other skip. Profit is 10.07 per firm per round against a 0-bit benchmark of 9.92 (Δ_info = 0.13). Total leakage is 1.28 bits (p = 0.005), and the lower-cost firm wins 94% of contracts. **The gate passes.**
 - **gpt-6-luna, plain:** shares costs (leakage 1.30 bits, p = 0.005), but leaves contracts unserved; profit 6.47.
 - **Haiku, instructed:** proposes the same cartel in words, but skips 78% of contracts; profit 5.63.
