@@ -9,7 +9,7 @@ We treat collusion between AI agents as information flow, in bits per round, and
 
 ## Headline result
 
-**Report:** [*Closing the Chat Ends the Cartel: LLM Agents Do Not Reroute Collusion into Action Channels*](paper/paper.pdf) (PDF; source in [`paper/paper.md`](paper/paper.md)).
+**Report:** [*Closing the Chat Ended the Cartel: Four LLMs Did Not Reroute Collusion into Action Channels*](paper/paper.pdf) (PDF; source in [`paper/paper.md`](paper/paper.md)).
 
 Two firms run by the same LLM form a cartel over free chat, then the chat is closed. In a pre-registered experiment with four models (gpt-6-luna, claude-haiku-5-5, Qwen3.8-27B, Gemma-4-26B; 32 paired seeds), **closing the chat moved no cost information into the four action channels left open**. Encode was equivalent to zero for every model. In an exploratory control, agents *handed* a code used the same channel at once (Qwen: 1.3 bits per round, and the rival's bids responded). The constraint is the propensity to invent a code, not channel capacity. Agents also reached for a promised but dead private channel, and their self-reports claimed covert signalling that never happened.
 

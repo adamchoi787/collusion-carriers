@@ -1,4 +1,4 @@
-# Closing the Chat Ends the Cartel: LLM Agents Do Not Reroute Collusion into Action Channels
+# Closing the Chat Ended the Cartel: Four LLMs Did Not Reroute Collusion into Action Channels
 
 **Authors:** Choi Cheuk Man, Tsang Cheuk Nam · The Hong Kong University of Science and Technology (HKUST) · With Apart Research
 
@@ -324,9 +324,9 @@ what it is supposed to do for luna, the model whose cartel worked.
 20): the profit tests have low power, and the per-model contrasts are descriptive. The open-weight *open* cells are
 biased by context overflow; the clean-window sensitivity analysis was chosen after the fact.
 Open-weight reruns are close but not token-exact, because batch-invariant kernels do not run
-for these models in our vLLM version. (ii) Agents could not agree
-a code *in advance* in a way they then used; stronger or more strategic models, longer
-horizons, or explicit planning might. Our zero is a zero for these agents in this setting, not
+for these models in our vLLM version. (ii) Agents were not told during formation that the chat would
+close, so they had no reason to agree a fallback code in advance. Announcing the closure,
+higher reasoning effort, stronger models or longer horizons might change the result. Our zero is a zero for these agents in this setting, not
 a capability bound. (iii) The action channels are framed as routine operational steps; a
 setting in which actions are less scripted could invite more improvisation. (iv) The decoy and
 self-report findings are exploratory, as is the capability control. The capability control
@@ -340,7 +340,8 @@ private channels they are promised, which makes honeypots informative; and agent
 their own coordination can be confidently false, so audits should rest on behavioural flow
 tests, not on asking the agents.
 
-**Future work.** Stronger reasoning settings and more seeds, including long-context serving
+**Future work.** Announcing the closure during formation, to test whether agents plan a
+fallback code; stronger reasoning settings and more seeds, including long-context serving
 for the open-weight models; a graded version of the capability control (hint at a code
 rather than hand one over);
 the remaining studies, which the testbed already supports (announced versus enforced
