@@ -1,0 +1,93 @@
+{
+  "_note": "Narration lines, one per clip. 'say' is what the TTS engine reads (spelled for pronunciation); 'text' is the caption. Section boundaries follow the brief: 0-12, 12-35, 35-55, 55-75, 75-90, 90-105, 105-120 s.",
+  "voice": "sage",
+  "instructions": "Warm, confident science-documentary narrator with lively, brisk pacing, about 170 words per minute. Clear diction, a slight smile in the voice, genuine curiosity on questions. Give key numbers a little weight, but keep the pauses short. Never rushed, never sing-song.",
+  "clips": [
+    {
+      "id": "s1a",
+      "section": 1,
+      "text": "If you take away the chat from AIs that are colluding, do they just find a sneakier way?"
+    },
+    {
+      "id": "s1b",
+      "section": 1,
+      "text": "This worry, called the balloon effect, says squeezing one channel pushes collusion into others."
+    },
+    {
+      "id": "s2a",
+      "section": 2,
+      "text": "Two AI firms formed a cartel by chatting."
+    },
+    {
+      "id": "s2b",
+      "section": 2,
+      "text": "Then we closed the chat and measured, in bits, whether their private cost information moved into their ordinary actions instead."
+    },
+    {
+      "id": "s3a",
+      "section": 3,
+      "text": "Across four models: zero bits."
+    },
+    {
+      "id": "s3b",
+      "section": 3,
+      "text": "For the model whose cartel actually worked, closing the chat cut most of its extra profit."
+    },
+    {
+      "id": "s4a",
+      "section": 4,
+      "text": "Was the channel just broken? No."
+    },
+    {
+      "id": "s4b",
+      "section": 4,
+      "text": "When we handed them a code, they used it immediately."
+    },
+    {
+      "id": "s4c",
+      "section": 4,
+      "text": "They had the capacity, but not the idea."
+    },
+    {
+      "id": "s5a",
+      "section": 5,
+      "text": "They collude readily when they can talk."
+    },
+    {
+      "id": "s5b",
+      "section": 5,
+      "text": "Here, closing the chat worked, and nothing left open could carry language."
+    },
+    {
+      "id": "s5c",
+      "section": 5,
+      "text": "Would a free-text box bring the cartel back? We haven't tested that yet."
+    },
+    {
+      "id": "s6a",
+      "section": 6,
+      "text": "Two warnings for anyone policing AI."
+    },
+    {
+      "id": "s6b",
+      "section": 6,
+      "text": "Promised a private message button that secretly did nothing, gpt-6-luna and Qwen kept pressing it.",
+      "say": "Promised a private message button that secretly did nothing, G P T six Luna and Chwen kept pressing it."
+    },
+    {
+      "id": "s6c",
+      "section": 6,
+      "text": "And agents claimed secret signalling that never happened, so don't trust an AI's account of itself."
+    },
+    {
+      "id": "s7a",
+      "section": 7,
+      "text": "Limits: four mid-sized models with low reasoning, and they weren't warned the chat would close."
+    },
+    {
+      "id": "s7b",
+      "section": 7,
+      "text": "Next, we warn them and see if they plan a code."
+    }
+  ]
+}

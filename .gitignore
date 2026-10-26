@@ -12,3 +12,10 @@ runs/
 # local tooling
 .claude/
 .DS_Store
+
+# Explainer video: dependencies and generated media
+video/node_modules/
+video/out/
+video/build/
+video/public/*.wav
+video/public/vo_trim/
