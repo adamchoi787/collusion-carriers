@@ -18,4 +18,4 @@ video/node_modules/
 video/out/
 video/build/
 video/public/*.wav
-video/public/vo_trim/
+video/voice_samples/

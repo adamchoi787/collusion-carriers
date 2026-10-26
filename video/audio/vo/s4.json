@@ -1,0 +1,416 @@
+[
+ {
+  "text": "Was",
+  "start": 0.25,
+  "end": 0.4125,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 0.4125,
+  "end": 0.5125,
+  "ws": " "
+ },
+ {
+  "text": "channel",
+  "start": 0.5125,
+  "end": 0.9,
+  "ws": " "
+ },
+ {
+  "text": "just",
+  "start": 0.9,
+  "end": 1.1,
+  "ws": " "
+ },
+ {
+  "text": "broken",
+  "start": 1.1,
+  "end": 1.775,
+  "ws": ""
+ },
+ {
+  "text": "?",
+  "start": 1.775,
+  "end": 1.9125,
+  "ws": " "
+ },
+ {
+  "text": "No",
+  "start": 1.9125,
+  "end": 2.475,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 2.475,
+  "end": 2.6125,
+  "ws": " "
+ },
+ {
+  "text": "In",
+  "start": 2.6125,
+  "end": 2.75,
+  "ws": " "
+ },
+ {
+  "text": "a",
+  "start": 2.75,
+  "end": 2.85,
+  "ws": " "
+ },
+ {
+  "text": "later",
+  "start": 2.85,
+  "end": 3.2125,
+  "ws": " "
+ },
+ {
+  "text": "test",
+  "start": 3.2125,
+  "end": 3.6,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 3.6,
+  "end": 3.65,
+  "ws": " "
+ },
+ {
+  "text": "we",
+  "start": 3.65,
+  "end": 3.8,
+  "ws": " "
+ },
+ {
+  "text": "handed",
+  "start": 3.8,
+  "end": 4.1375,
+  "ws": " "
+ },
+ {
+  "text": "them",
+  "start": 4.1375,
+  "end": 4.275,
+  "ws": " "
+ },
+ {
+  "text": "a",
+  "start": 4.275,
+  "end": 4.3875,
+  "ws": " "
+ },
+ {
+  "text": "code",
+  "start": 4.3875,
+  "end": 4.825,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 4.825,
+  "end": 4.8625,
+  "ws": " "
+ },
+ {
+  "text": "like",
+  "start": 4.8625,
+  "end": 5.0625,
+  "ws": " "
+ },
+ {
+  "text": "'",
+  "start": 5.0625,
+  "end": 5.1,
+  "ws": ""
+ },
+ {
+  "text": "capacity",
+  "start": 5.1,
+  "end": 5.95,
+  "ws": ""
+ },
+ {
+  "text": ":",
+  "start": 5.95,
+  "end": 6.0625,
+  "ws": " "
+ },
+ {
+  "text": "high",
+  "start": 6.0625,
+  "end": 6.425,
+  "ws": ""
+ },
+ {
+  "text": "'",
+  "start": 6.425,
+  "end": 6.5,
+  "ws": " "
+ },
+ {
+  "text": "for",
+  "start": 6.5,
+  "end": 6.65,
+  "ws": " "
+ },
+ {
+  "text": "'",
+  "start": 6.65,
+  "end": 6.75,
+  "ws": ""
+ },
+ {
+  "text": "cheapest",
+  "start": 6.75,
+  "end": 7.1625,
+  "ws": " "
+ },
+ {
+  "text": "on",
+  "start": 7.1625,
+  "end": 7.35,
+  "ws": " "
+ },
+ {
+  "text": "contract",
+  "start": 7.35,
+  "end": 7.925,
+  "ws": " "
+ },
+ {
+  "text": "one",
+  "start": 7.925,
+  "end": 8.55,
+  "ws": ""
+ },
+ {
+  "text": "'",
+  "start": 8.55,
+  "end": 8.775,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 8.775,
+  "end": 8.8625,
+  "ws": " "
+ },
+ {
+  "text": "Qwen",
+  "start": 8.8625,
+  "end": 9.15,
+  "ws": " "
+ },
+ {
+  "text": "used",
+  "start": 9.15,
+  "end": 9.4125,
+  "ws": " "
+ },
+ {
+  "text": "it",
+  "start": 9.4125,
+  "end": 9.4875,
+  "ws": " "
+ },
+ {
+  "text": "at",
+  "start": 9.4875,
+  "end": 9.575,
+  "ws": " "
+ },
+ {
+  "text": "once",
+  "start": 9.575,
+  "end": 10.0,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 10.0,
+  "end": 10.075,
+  "ws": " "
+ },
+ {
+  "text": "and",
+  "start": 10.075,
+  "end": 10.1875,
+  "ws": " "
+ },
+ {
+  "text": "its",
+  "start": 10.1875,
+  "end": 10.3625,
+  "ws": " "
+ },
+ {
+  "text": "rival's",
+  "start": 10.3625,
+  "end": 10.8375,
+  "ws": " "
+ },
+ {
+  "text": "bids",
+  "start": 10.8375,
+  "end": 11.175,
+  "ws": " "
+ },
+ {
+  "text": "responded",
+  "start": 11.175,
+  "end": 12.05,
+  "ws": ""
+ },
+ {
+  "text": ";",
+  "start": 12.05,
+  "end": 12.2,
+  "ws": " "
+ },
+ {
+  "text": "chance",
+  "start": 12.2,
+  "end": 12.575,
+  "ws": " "
+ },
+ {
+  "text": "would",
+  "start": 12.575,
+  "end": 12.75,
+  "ws": " "
+ },
+ {
+  "text": "do",
+  "start": 12.75,
+  "end": 12.975,
+  "ws": " "
+ },
+ {
+  "text": "that",
+  "start": 12.975,
+  "end": 13.1875,
+  "ws": " "
+ },
+ {
+  "text": "only",
+  "start": 13.1875,
+  "end": 13.55,
+  "ws": " "
+ },
+ {
+  "text": "one",
+  "start": 13.55,
+  "end": 13.7125,
+  "ws": " "
+ },
+ {
+  "text": "and",
+  "start": 13.7125,
+  "end": 13.8125,
+  "ws": " "
+ },
+ {
+  "text": "a",
+  "start": 13.8125,
+  "end": 13.875,
+  "ws": " "
+ },
+ {
+  "text": "half",
+  "start": 13.875,
+  "end": 14.125,
+  "ws": " "
+ },
+ {
+  "text": "percent",
+  "start": 14.125,
+  "end": 14.4625,
+  "ws": " "
+ },
+ {
+  "text": "of",
+  "start": 14.4625,
+  "end": 14.5375,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 14.5375,
+  "end": 14.625,
+  "ws": " "
+ },
+ {
+  "text": "time",
+  "start": 14.625,
+  "end": 15.4,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 15.4,
+  "end": 15.5,
+  "ws": " "
+ },
+ {
+  "text": "They",
+  "start": 15.5,
+  "end": 15.675,
+  "ws": " "
+ },
+ {
+  "text": "had",
+  "start": 15.675,
+  "end": 15.8375,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 15.8375,
+  "end": 15.925,
+  "ws": " "
+ },
+ {
+  "text": "capacity",
+  "start": 15.925,
+  "end": 16.625,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 16.625,
+  "end": 16.675,
+  "ws": " "
+ },
+ {
+  "text": "but",
+  "start": 16.675,
+  "end": 16.825,
+  "ws": " "
+ },
+ {
+  "text": "not",
+  "start": 16.825,
+  "end": 17.0375,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 17.0375,
+  "end": 17.1875,
+  "ws": " "
+ },
+ {
+  "text": "idea",
+  "start": 17.1875,
+  "end": 17.95,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 17.95,
+  "end": 18.1,
+  "ws": ""
+ }
+]

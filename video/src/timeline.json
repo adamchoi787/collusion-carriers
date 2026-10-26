@@ -1,1174 +1,2407 @@
 {
  "fps": 30,
- "duration": 118.5,
+ "durationInFrames": 3600,
  "sections": [
-  0.0,
-  15.5,
-  34.5,
-  51.0,
-  67.0,
-  81.0,
-  100.5,
-  118.5
+  {
+   "id": "s1",
+   "title": "Hook",
+   "start": 0,
+   "end": 12,
+   "clipStart": 0.1,
+   "clipEnd": 11.6,
+   "speechStart": 0.325,
+   "speechEnd": 11.375
+  },
+  {
+   "id": "s2",
+   "title": "Setup",
+   "start": 12,
+   "end": 35,
+   "clipStart": 12.1,
+   "clipEnd": 34.475,
+   "speechStart": 12.35,
+   "speechEnd": 34.225
+  },
+  {
+   "id": "s3",
+   "title": "Result",
+   "start": 35,
+   "end": 55,
+   "clipStart": 35.1,
+   "clipEnd": 52.825,
+   "speechStart": 35.325,
+   "speechEnd": 52.575
+  },
+  {
+   "id": "s4",
+   "title": "Key control",
+   "start": 55,
+   "end": 75,
+   "clipStart": 55.1,
+   "clipEnd": 73.3,
+   "speechStart": 55.35,
+   "speechEnd": 73.05
+  },
+  {
+   "id": "s5",
+   "title": "Takeaway",
+   "start": 75,
+   "end": 90,
+   "clipStart": 75.1,
+   "clipEnd": 88.625,
+   "speechStart": 75.4,
+   "speechEnd": 88.35
+  },
+  {
+   "id": "s6",
+   "title": "Two warnings",
+   "start": 90,
+   "end": 105,
+   "clipStart": 90.1,
+   "clipEnd": 104.3,
+   "speechStart": 90.325,
+   "speechEnd": 104.075
+  },
+  {
+   "id": "s7",
+   "title": "Limits and end card",
+   "start": 105,
+   "end": 120,
+   "clipStart": 105.1,
+   "clipEnd": 117.3,
+   "speechStart": 105.45,
+   "speechEnd": 117.025
+  }
  ],
- "clips": [
+ "words": [
   {
-   "id": "s1a",
-   "start": 0.7,
-   "end": 6.027,
-   "words": [
-    [
-     "If",
-     0.7,
-     0.886
-    ],
-    [
-     "you",
-     0.886,
-     1.126
-    ],
-    [
-     "take",
-     1.126,
-     1.419
-    ],
-    [
-     "away",
-     1.419,
-     1.712
-    ],
-    [
-     "the",
-     1.712,
-     1.952
-    ],
-    [
-     "chat",
-     1.952,
-     2.245
-    ],
-    [
-     "from",
-     2.245,
-     2.538
-    ],
-    [
-     "AIs",
-     2.538,
-     2.778
-    ],
-    [
-     "that",
-     2.778,
-     3.071
-    ],
-    [
-     "are",
-     3.071,
-     3.311
-    ],
-    [
-     "colluding,",
-     3.311,
-     3.87
-    ],
-    [
-     "do",
-     4.29,
-     4.457
-    ],
-    [
-     "they",
-     4.457,
-     4.718
-    ],
-    [
-     "just",
-     4.718,
-     4.98
-    ],
-    [
-     "find",
-     4.98,
-     5.242
-    ],
-    [
-     "a",
-     5.242,
-     5.361
-    ],
-    [
-     "sneakier",
-     5.361,
-     5.813
-    ],
-    [
-     "way?",
-     5.813,
-     6.027
-    ]
-   ]
+   "text": "If",
+   "start": 0.325,
+   "end": 0.512,
+   "section": "s1"
   },
   {
-   "id": "s1b",
-   "start": 6.45,
-   "end": 13.515,
-   "words": [
-    [
-     "This",
-     6.45,
-     6.766
-    ],
-    [
-     "worry,",
-     6.766,
-     7.14
-    ],
-    [
-     "called",
-     7.67,
-     8.024
-    ],
-    [
-     "the",
-     8.024,
-     8.236
-    ],
-    [
-     "balloon",
-     8.236,
-     8.636
-    ],
-    [
-     "effect,",
-     8.636,
-     8.99
-    ],
-    [
-     "says",
-     9.39,
-     9.768
-    ],
-    [
-     "squeezing",
-     9.768,
-     10.49
-    ],
-    [
-     "one",
-     10.49,
-     10.8
-    ],
-    [
-     "channel",
-     10.8,
-     11.384
-    ],
-    [
-     "pushes",
-     11.384,
-     11.9
-    ],
-    [
-     "collusion",
-     11.9,
-     12.622
-    ],
-    [
-     "into",
-     12.622,
-     13.0
-    ],
-    [
-     "others.",
-     13.0,
-     13.515
-    ]
-   ]
+   "text": "AIs",
+   "start": 0.512,
+   "end": 0.987,
+   "section": "s1"
   },
   {
-   "id": "s2a",
-   "start": 16.0,
-   "end": 20.111,
-   "words": [
-    [
-     "Two",
-     16.0,
-     16.411
-    ],
-    [
-     "AI",
-     16.411,
-     16.731
-    ],
-    [
-     "firms",
-     16.731,
-     17.325
-    ],
-    [
-     "formed",
-     17.325,
-     18.01
-    ],
-    [
-     "a",
-     18.01,
-     18.238
-    ],
-    [
-     "cartel",
-     18.238,
-     18.923
-    ],
-    [
-     "by",
-     18.923,
-     19.243
-    ],
-    [
-     "chatting.",
-     19.243,
-     20.111
-    ]
-   ]
+   "text": "that",
+   "start": 0.987,
+   "end": 1.1,
+   "section": "s1"
   },
   {
-   "id": "s2b",
-   "start": 20.7,
-   "end": 29.127,
-   "words": [
-    [
-     "Then",
-     20.7,
-     21.029
-    ],
-    [
-     "we",
-     21.029,
-     21.238
-    ],
-    [
-     "closed",
-     21.238,
-     21.686
-    ],
-    [
-     "the",
-     21.686,
-     21.955
-    ],
-    [
-     "chat",
-     21.955,
-     22.283
-    ],
-    [
-     "and",
-     22.283,
-     22.552
-    ],
-    [
-     "measured,",
-     22.552,
-     23.12
-    ],
-    [
-     "in",
-     23.47,
-     23.719
-    ],
-    [
-     "bits,",
-     23.719,
-     24.11
-    ],
-    [
-     "whether",
-     24.47,
-     24.928
-    ],
-    [
-     "their",
-     24.928,
-     25.278
-    ],
-    [
-     "private",
-     25.278,
-     25.735
-    ],
-    [
-     "cost",
-     25.735,
-     26.031
-    ],
-    [
-     "information",
-     26.031,
-     26.704
-    ],
-    [
-     "moved",
-     26.704,
-     27.054
-    ],
-    [
-     "into",
-     27.054,
-     27.351
-    ],
-    [
-     "their",
-     27.351,
-     27.701
-    ],
-    [
-     "ordinary",
-     27.701,
-     28.212
-    ],
-    [
-     "actions",
-     28.212,
-     28.67
-    ],
-    [
-     "instead.",
-     28.67,
-     29.127
-    ]
-   ]
+   "text": "are",
+   "start": 1.1,
+   "end": 1.25,
+   "section": "s1"
   },
   {
-   "id": "s3a",
-   "start": 35.7,
-   "end": 38.879,
-   "words": [
-    [
-     "Across",
-     35.7,
-     36.3
-    ],
-    [
-     "four",
-     36.3,
-     36.74
-    ],
-    [
-     "models:",
-     36.74,
-     37.34
-    ],
-    [
-     "zero",
-     37.78,
-     38.33
-    ],
-    [
-     "bits.",
-     38.33,
-     38.879
-    ]
-   ]
+   "text": "colluding,",
+   "start": 1.25,
+   "end": 1.925,
+   "section": "s1"
   },
   {
-   "id": "s3b",
-   "start": 41.7,
-   "end": 47.585,
-   "words": [
-    [
-     "For",
-     41.7,
-     41.955
-    ],
-    [
-     "the",
-     41.955,
-     42.211
-    ],
-    [
-     "model",
-     42.211,
-     42.58
-    ],
-    [
-     "whose",
-     42.58,
-     42.949
-    ],
-    [
-     "cartel",
-     42.949,
-     43.375
-    ],
-    [
-     "actually",
-     43.375,
-     43.914
-    ],
-    [
-     "worked,",
-     43.914,
-     44.34
-    ],
-    [
-     "closing",
-     44.67,
-     45.161
-    ],
-    [
-     "the",
-     45.161,
-     45.42
-    ],
-    [
-     "chat",
-     45.42,
-     45.738
-    ],
-    [
-     "cut",
-     45.738,
-     45.998
-    ],
-    [
-     "most",
-     45.998,
-     46.315
-    ],
-    [
-     "of",
-     46.315,
-     46.517
-    ],
-    [
-     "its",
-     46.517,
-     46.777
-    ],
-    [
-     "extra",
-     46.777,
-     47.152
-    ],
-    [
-     "profit.",
-     47.152,
-     47.585
-    ]
-   ]
+   "text": "secretly",
+   "start": 2.038,
+   "end": 2.475,
+   "section": "s1"
   },
   {
-   "id": "s4a",
-   "start": 51.4,
-   "end": 55.235,
-   "words": [
-    [
-     "Was",
-     51.4,
-     51.798
-    ],
-    [
-     "the",
-     51.798,
-     52.197
-    ],
-    [
-     "channel",
-     52.197,
-     52.949
-    ],
-    [
-     "just",
-     52.949,
-     53.436
-    ],
-    [
-     "broken?",
-     53.436,
-     54.1
-    ],
-    [
-     "No.",
-     54.78,
-     55.235
-    ]
-   ]
+   "text": "working",
+   "start": 2.475,
+   "end": 2.775,
+   "section": "s1"
   },
   {
-   "id": "s4b",
-   "start": 55.9,
-   "end": 59.683,
-   "words": [
-    [
-     "When",
-     55.9,
-     56.208
-    ],
-    [
-     "we",
-     56.208,
-     56.404
-    ],
-    [
-     "handed",
-     56.404,
-     56.824
-    ],
-    [
-     "them",
-     56.824,
-     57.132
-    ],
-    [
-     "a",
-     57.132,
-     57.272
-    ],
-    [
-     "code,",
-     57.272,
-     57.58
-    ],
-    [
-     "they",
-     57.99,
-     58.335
-    ],
-    [
-     "used",
-     58.335,
-     58.68
-    ],
-    [
-     "it",
-     58.68,
-     58.899
-    ],
-    [
-     "immediately.",
-     58.899,
-     59.683
-    ]
-   ]
+   "text": "together,",
+   "start": 2.775,
+   "end": 3.325,
+   "section": "s1"
   },
   {
-   "id": "s4c",
-   "start": 61.2,
-   "end": 64.069,
-   "words": [
-    [
-     "They",
-     61.2,
-     61.505
-    ],
-    [
-     "had",
-     61.505,
-     61.754
-    ],
-    [
-     "the",
-     61.754,
-     62.004
-    ],
-    [
-     "capacity,",
-     62.004,
-     62.53
-    ],
-    [
-     "but",
-     62.83,
-     63.123
-    ],
-    [
-     "not",
-     63.123,
-     63.417
-    ],
-    [
-     "the",
-     63.417,
-     63.71
-    ],
-    [
-     "idea.",
-     63.71,
-     64.068
-    ]
-   ]
+   "text": "lose",
+   "start": 3.438,
+   "end": 3.688,
+   "section": "s1"
   },
   {
-   "id": "s5a",
-   "start": 67.5,
-   "end": 70.616,
-   "words": [
-    [
-     "They",
-     67.5,
-     67.894
-    ],
-    [
-     "collude",
-     67.894,
-     68.503
-    ],
-    [
-     "readily",
-     68.503,
-     69.112
-    ],
-    [
-     "when",
-     69.112,
-     69.505
-    ],
-    [
-     "they",
-     69.505,
-     69.899
-    ],
-    [
-     "can",
-     69.899,
-     70.222
-    ],
-    [
-     "talk.",
-     70.222,
-     70.616
-    ]
-   ]
+   "text": "their",
+   "start": 3.688,
+   "end": 3.888,
+   "section": "s1"
   },
   {
-   "id": "s5b",
-   "start": 71.1,
-   "end": 75.962,
-   "words": [
-    [
-     "Here,",
-     71.1,
-     71.46
-    ],
-    [
-     "closing",
-     71.93,
-     72.371
-    ],
-    [
-     "the",
-     72.371,
-     72.605
-    ],
-    [
-     "chat",
-     72.605,
-     72.891
-    ],
-    [
-     "worked,",
-     72.891,
-     73.28
-    ],
-    [
-     "and",
-     73.64,
-     73.865
-    ],
-    [
-     "nothing",
-     73.865,
-     74.289
-    ],
-    [
-     "left",
-     74.289,
-     74.564
-    ],
-    [
-     "open",
-     74.564,
-     74.838
-    ],
-    [
-     "could",
-     74.838,
-     75.163
-    ],
-    [
-     "carry",
-     75.163,
-     75.487
-    ],
-    [
-     "language.",
-     75.487,
-     75.962
-    ]
-   ]
+   "text": "chat,",
+   "start": 3.888,
+   "end": 4.35,
+   "section": "s1"
   },
   {
-   "id": "s5c",
-   "start": 76.5,
-   "end": 80.307,
-   "words": [
-    [
-     "Would",
-     76.5,
-     76.778
-    ],
-    [
-     "a",
-     76.778,
-     76.885
-    ],
-    [
-     "free-text",
-     76.885,
-     77.291
-    ],
-    [
-     "box",
-     77.291,
-     77.484
-    ],
-    [
-     "bring",
-     77.484,
-     77.762
-    ],
-    [
-     "the",
-     77.762,
-     77.954
-    ],
-    [
-     "cartel",
-     77.954,
-     78.275
-    ],
-    [
-     "back?",
-     78.275,
-     78.51
-    ],
-    [
-     "We",
-     78.76,
-     78.95
-    ],
-    [
-     "haven't",
-     78.95,
-     79.357
-    ],
-    [
-     "tested",
-     79.357,
-     79.764
-    ],
-    [
-     "that",
-     79.764,
-     80.062
-    ],
-    [
-     "yet.",
-     80.062,
-     80.307
-    ]
-   ]
+   "text": "do",
+   "start": 4.425,
+   "end": 4.55,
+   "section": "s1"
   },
   {
-   "id": "s6a",
-   "start": 81.4,
-   "end": 84.148,
-   "words": [
-    [
-     "Two",
-     81.4,
-     81.717
-    ],
-    [
-     "warnings",
-     81.717,
-     82.386
-    ],
-    [
-     "for",
-     82.386,
-     82.703
-    ],
-    [
-     "anyone",
-     82.703,
-     83.232
-    ],
-    [
-     "policing",
-     83.232,
-     83.901
-    ],
-    [
-     "AI.",
-     83.901,
-     84.148
-    ]
-   ]
+   "text": "they",
+   "start": 4.55,
+   "end": 4.7,
+   "section": "s1"
   },
   {
-   "id": "s6b",
-   "start": 84.6,
-   "end": 92.638,
-   "words": [
-    [
-     "Promised",
-     84.6,
-     85.101
-    ],
-    [
-     "a",
-     85.101,
-     85.233
-    ],
-    [
-     "private",
-     85.233,
-     85.681
-    ],
-    [
-     "message",
-     85.681,
-     86.129
-    ],
-    [
-     "button",
-     86.129,
-     86.524
-    ],
-    [
-     "that",
-     86.524,
-     86.814
-    ],
-    [
-     "secretly",
-     86.814,
-     87.315
-    ],
-    [
-     "did",
-     87.315,
-     87.552
-    ],
-    [
-     "nothing,",
-     87.552,
-     88.0
-    ],
-    [
-     "gpt-6-luna",
-     88.54,
-     89.564
-    ],
-    [
-     "and",
-     89.564,
-     90.05
-    ],
-    [
-     "Qwen",
-     90.05,
-     90.643
-    ],
-    [
-     "kept",
-     90.643,
-     91.236
-    ],
-    [
-     "pressing",
-     91.236,
-     92.26
-    ],
-    [
-     "it.",
-     92.26,
-     92.638
-    ]
-   ]
+   "text": "just",
+   "start": 4.7,
+   "end": 4.875,
+   "section": "s1"
   },
   {
-   "id": "s6c",
-   "start": 93.1,
-   "end": 100.291,
-   "words": [
-    [
-     "And",
-     93.1,
-     93.389
-    ],
-    [
-     "agents",
-     93.389,
-     93.871
-    ],
-    [
-     "claimed",
-     93.871,
-     94.417
-    ],
-    [
-     "secret",
-     94.417,
-     94.899
-    ],
-    [
-     "signalling",
-     94.899,
-     95.638
-    ],
-    [
-     "that",
-     95.638,
-     95.992
-    ],
-    [
-     "never",
-     95.992,
-     96.41
-    ],
-    [
-     "happened,",
-     96.41,
-     97.02
-    ],
-    [
-     "so",
-     97.7,
-     97.911
-    ],
-    [
-     "don't",
-     97.911,
-     98.242
-    ],
-    [
-     "trust",
-     98.242,
-     98.634
-    ],
-    [
-     "an",
-     98.634,
-     98.845
-    ],
-    [
-     "AI's",
-     98.845,
-     99.116
-    ],
-    [
-     "account",
-     99.116,
-     99.628
-    ],
-    [
-     "of",
-     99.628,
-     99.839
-    ],
-    [
-     "itself.",
-     99.839,
-     100.291
-    ]
-   ]
+   "text": "find",
+   "start": 4.875,
+   "end": 5.112,
+   "section": "s1"
   },
   {
-   "id": "s7a",
-   "start": 101.0,
-   "end": 107.989,
-   "words": [
-    [
-     "Limits:",
-     101.0,
-     101.58
-    ],
-    [
-     "four",
-     102.12,
-     102.478
-    ],
-    [
-     "mid-sized",
-     102.478,
-     103.097
-    ],
-    [
-     "models",
-     103.097,
-     103.585
-    ],
-    [
-     "with",
-     103.585,
-     103.943
-    ],
-    [
-     "low",
-     103.943,
-     104.236
-    ],
-    [
-     "reasoning,",
-     104.236,
-     104.92
-    ],
-    [
-     "and",
-     105.33,
-     105.579
-    ],
-    [
-     "they",
-     105.579,
-     105.884
-    ],
-    [
-     "weren't",
-     105.884,
-     106.299
-    ],
-    [
-     "warned",
-     106.299,
-     106.715
-    ],
-    [
-     "the",
-     106.715,
-     106.964
-    ],
-    [
-     "chat",
-     106.964,
-     107.269
-    ],
-    [
-     "would",
-     107.269,
-     107.629
-    ],
-    [
-     "close.",
-     107.629,
-     107.989
-    ]
-   ]
+   "text": "a",
+   "start": 5.112,
+   "end": 5.188,
+   "section": "s1"
   },
   {
-   "id": "s7b",
-   "start": 108.5,
-   "end": 112.626,
-   "words": [
-    [
-     "Next,",
-     108.5,
-     109.1
-    ],
-    [
-     "we",
-     109.55,
-     109.784
-    ],
-    [
-     "warn",
-     109.784,
-     110.152
-    ],
-    [
-     "them",
-     110.152,
-     110.52
-    ],
-    [
-     "and",
-     110.52,
-     110.821
-    ],
-    [
-     "see",
-     110.821,
-     111.121
-    ],
-    [
-     "if",
-     111.121,
-     111.355
-    ],
-    [
-     "they",
-     111.355,
-     111.723
-    ],
-    [
-     "plan",
-     111.723,
-     112.091
-    ],
-    [
-     "a",
-     112.091,
-     112.258
-    ],
-    [
-     "code.",
-     112.258,
-     112.626
-    ]
-   ]
+   "text": "sneakier",
+   "start": 5.188,
+   "end": 5.7,
+   "section": "s1"
+  },
+  {
+   "text": "way?",
+   "start": 5.7,
+   "end": 6.35,
+   "section": "s1"
+  },
+  {
+   "text": "That",
+   "start": 6.537,
+   "end": 6.8,
+   "section": "s1"
+  },
+  {
+   "text": "worry,",
+   "start": 6.8,
+   "end": 7.175,
+   "section": "s1"
+  },
+  {
+   "text": "the",
+   "start": 7.25,
+   "end": 7.35,
+   "section": "s1"
+  },
+  {
+   "text": "balloon",
+   "start": 7.35,
+   "end": 7.7,
+   "section": "s1"
+  },
+  {
+   "text": "effect,",
+   "start": 7.7,
+   "end": 8.225,
+   "section": "s1"
+  },
+  {
+   "text": "says",
+   "start": 8.325,
+   "end": 8.525,
+   "section": "s1"
+  },
+  {
+   "text": "squeezing",
+   "start": 8.525,
+   "end": 9.0,
+   "section": "s1"
+  },
+  {
+   "text": "one",
+   "start": 9.0,
+   "end": 9.237,
+   "section": "s1"
+  },
+  {
+   "text": "channel",
+   "start": 9.237,
+   "end": 9.625,
+   "section": "s1"
+  },
+  {
+   "text": "pushes",
+   "start": 9.625,
+   "end": 10.025,
+   "section": "s1"
+  },
+  {
+   "text": "collusion",
+   "start": 10.025,
+   "end": 10.487,
+   "section": "s1"
+  },
+  {
+   "text": "into",
+   "start": 10.487,
+   "end": 10.725,
+   "section": "s1"
+  },
+  {
+   "text": "others.",
+   "start": 10.725,
+   "end": 11.375,
+   "section": "s1"
+  },
+  {
+   "text": "Two",
+   "start": 12.35,
+   "end": 12.588,
+   "section": "s2"
+  },
+  {
+   "text": "AI-run",
+   "start": 12.588,
+   "end": 13.2,
+   "section": "s2"
+  },
+  {
+   "text": "companies,",
+   "start": 13.2,
+   "end": 13.675,
+   "section": "s2"
+  },
+  {
+   "text": "or",
+   "start": 13.725,
+   "end": 13.887,
+   "section": "s2"
+  },
+  {
+   "text": "firms,",
+   "start": 13.887,
+   "end": 14.35,
+   "section": "s2"
+  },
+  {
+   "text": "bid",
+   "start": 14.425,
+   "end": 14.65,
+   "section": "s2"
+  },
+  {
+   "text": "for",
+   "start": 14.65,
+   "end": 14.787,
+   "section": "s2"
+  },
+  {
+   "text": "four",
+   "start": 14.787,
+   "end": 15.05,
+   "section": "s2"
+  },
+  {
+   "text": "jobs,",
+   "start": 15.05,
+   "end": 15.425,
+   "section": "s2"
+  },
+  {
+   "text": "called",
+   "start": 15.475,
+   "end": 15.75,
+   "section": "s2"
+  },
+  {
+   "text": "contracts.",
+   "start": 15.75,
+   "end": 16.7,
+   "section": "s2"
+  },
+  {
+   "text": "The",
+   "start": 16.8,
+   "end": 16.925,
+   "section": "s2"
+  },
+  {
+   "text": "lowest",
+   "start": 16.925,
+   "end": 17.325,
+   "section": "s2"
+  },
+  {
+   "text": "bid",
+   "start": 17.325,
+   "end": 17.55,
+   "section": "s2"
+  },
+  {
+   "text": "wins.",
+   "start": 17.55,
+   "end": 18.2,
+   "section": "s2"
+  },
+  {
+   "text": "Allowed,",
+   "start": 18.312,
+   "end": 18.75,
+   "section": "s2"
+  },
+  {
+   "text": "and",
+   "start": 18.8,
+   "end": 18.938,
+   "section": "s2"
+  },
+  {
+   "text": "paid,",
+   "start": 18.938,
+   "end": 19.275,
+   "section": "s2"
+  },
+  {
+   "text": "to",
+   "start": 19.325,
+   "end": 19.45,
+   "section": "s2"
+  },
+  {
+   "text": "maximise",
+   "start": 19.45,
+   "end": 20.05,
+   "section": "s2"
+  },
+  {
+   "text": "joint",
+   "start": 20.05,
+   "end": 20.275,
+   "section": "s2"
+  },
+  {
+   "text": "profit,",
+   "start": 20.275,
+   "end": 20.875,
+   "section": "s2"
+  },
+  {
+   "text": "they",
+   "start": 20.95,
+   "end": 21.112,
+   "section": "s2"
+  },
+  {
+   "text": "formed",
+   "start": 21.112,
+   "end": 21.413,
+   "section": "s2"
+  },
+  {
+   "text": "a",
+   "start": 21.413,
+   "end": 21.475,
+   "section": "s2"
+  },
+  {
+   "text": "cartel",
+   "start": 21.475,
+   "end": 21.9,
+   "section": "s2"
+  },
+  {
+   "text": "by",
+   "start": 21.9,
+   "end": 22.062,
+   "section": "s2"
+  },
+  {
+   "text": "chatting,",
+   "start": 22.062,
+   "end": 22.55,
+   "section": "s2"
+  },
+  {
+   "text": "sharing",
+   "start": 22.663,
+   "end": 23.012,
+   "section": "s2"
+  },
+  {
+   "text": "their",
+   "start": 23.012,
+   "end": 23.188,
+   "section": "s2"
+  },
+  {
+   "text": "secret",
+   "start": 23.188,
+   "end": 23.525,
+   "section": "s2"
+  },
+  {
+   "text": "costs.",
+   "start": 23.525,
+   "end": 24.325,
+   "section": "s2"
+  },
+  {
+   "text": "At",
+   "start": 24.425,
+   "end": 24.575,
+   "section": "s2"
+  },
+  {
+   "text": "round",
+   "start": 24.575,
+   "end": 24.825,
+   "section": "s2"
+  },
+  {
+   "text": "41,",
+   "start": 24.825,
+   "end": 25.375,
+   "section": "s2"
+  },
+  {
+   "text": "we",
+   "start": 25.425,
+   "end": 25.55,
+   "section": "s2"
+  },
+  {
+   "text": "closed",
+   "start": 25.55,
+   "end": 25.887,
+   "section": "s2"
+  },
+  {
+   "text": "the",
+   "start": 25.887,
+   "end": 25.975,
+   "section": "s2"
+  },
+  {
+   "text": "chat.",
+   "start": 25.975,
+   "end": 26.625,
+   "section": "s2"
+  },
+  {
+   "text": "Did",
+   "start": 26.725,
+   "end": 26.862,
+   "section": "s2"
+  },
+  {
+   "text": "those",
+   "start": 26.862,
+   "end": 27.075,
+   "section": "s2"
+  },
+  {
+   "text": "costs",
+   "start": 27.075,
+   "end": 27.5,
+   "section": "s2"
+  },
+  {
+   "text": "leak",
+   "start": 27.5,
+   "end": 27.688,
+   "section": "s2"
+  },
+  {
+   "text": "into",
+   "start": 27.688,
+   "end": 27.95,
+   "section": "s2"
+  },
+  {
+   "text": "four",
+   "start": 27.95,
+   "end": 28.225,
+   "section": "s2"
+  },
+  {
+   "text": "routine",
+   "start": 28.225,
+   "end": 28.625,
+   "section": "s2"
+  },
+  {
+   "text": "actions",
+   "start": 28.625,
+   "end": 29.075,
+   "section": "s2"
+  },
+  {
+   "text": "instead?",
+   "start": 29.075,
+   "end": 29.775,
+   "section": "s2"
+  },
+  {
+   "text": "We",
+   "start": 29.875,
+   "end": 30.0,
+   "section": "s2"
+  },
+  {
+   "text": "measured",
+   "start": 30.0,
+   "end": 30.337,
+   "section": "s2"
+  },
+  {
+   "text": "it",
+   "start": 30.337,
+   "end": 30.425,
+   "section": "s2"
+  },
+  {
+   "text": "in",
+   "start": 30.425,
+   "end": 30.575,
+   "section": "s2"
+  },
+  {
+   "text": "bits,",
+   "start": 30.575,
+   "end": 30.975,
+   "section": "s2"
+  },
+  {
+   "text": "units",
+   "start": 31.062,
+   "end": 31.413,
+   "section": "s2"
+  },
+  {
+   "text": "of",
+   "start": 31.413,
+   "end": 31.487,
+   "section": "s2"
+  },
+  {
+   "text": "information,",
+   "start": 31.487,
+   "end": 32.2,
+   "section": "s2"
+  },
+  {
+   "text": "with",
+   "start": 32.275,
+   "end": 32.462,
+   "section": "s2"
+  },
+  {
+   "text": "tests",
+   "start": 32.462,
+   "end": 32.862,
+   "section": "s2"
+  },
+  {
+   "text": "written",
+   "start": 32.862,
+   "end": 33.175,
+   "section": "s2"
+  },
+  {
+   "text": "down",
+   "start": 33.175,
+   "end": 33.413,
+   "section": "s2"
+  },
+  {
+   "text": "in",
+   "start": 33.413,
+   "end": 33.487,
+   "section": "s2"
+  },
+  {
+   "text": "advance.",
+   "start": 33.487,
+   "end": 34.225,
+   "section": "s2"
+  },
+  {
+   "text": "We",
+   "start": 35.325,
+   "end": 35.45,
+   "section": "s3"
+  },
+  {
+   "text": "ran",
+   "start": 35.45,
+   "end": 35.738,
+   "section": "s3"
+  },
+  {
+   "text": "32",
+   "start": 35.738,
+   "end": 36.3,
+   "section": "s3"
+  },
+  {
+   "text": "paired",
+   "start": 36.3,
+   "end": 36.6,
+   "section": "s3"
+  },
+  {
+   "text": "seeds:",
+   "start": 36.6,
+   "end": 37.25,
+   "section": "s3"
+  },
+  {
+   "text": "each",
+   "start": 37.35,
+   "end": 37.6,
+   "section": "s3"
+  },
+  {
+   "text": "starting",
+   "start": 37.6,
+   "end": 38.013,
+   "section": "s3"
+  },
+  {
+   "text": "setup",
+   "start": 38.013,
+   "end": 38.4,
+   "section": "s3"
+  },
+  {
+   "text": "played",
+   "start": 38.4,
+   "end": 38.725,
+   "section": "s3"
+  },
+  {
+   "text": "once",
+   "start": 38.725,
+   "end": 38.988,
+   "section": "s3"
+  },
+  {
+   "text": "with",
+   "start": 38.988,
+   "end": 39.087,
+   "section": "s3"
+  },
+  {
+   "text": "the",
+   "start": 39.087,
+   "end": 39.188,
+   "section": "s3"
+  },
+  {
+   "text": "chat",
+   "start": 39.188,
+   "end": 39.45,
+   "section": "s3"
+  },
+  {
+   "text": "open,",
+   "start": 39.45,
+   "end": 39.9,
+   "section": "s3"
+  },
+  {
+   "text": "and",
+   "start": 39.975,
+   "end": 40.1,
+   "section": "s3"
+  },
+  {
+   "text": "once",
+   "start": 40.1,
+   "end": 40.375,
+   "section": "s3"
+  },
+  {
+   "text": "closed.",
+   "start": 40.375,
+   "end": 41.2,
+   "section": "s3"
+  },
+  {
+   "text": "Across",
+   "start": 41.363,
+   "end": 41.812,
+   "section": "s3"
+  },
+  {
+   "text": "all",
+   "start": 41.812,
+   "end": 42.087,
+   "section": "s3"
+  },
+  {
+   "text": "four",
+   "start": 42.087,
+   "end": 42.325,
+   "section": "s3"
+  },
+  {
+   "text": "models:",
+   "start": 42.325,
+   "end": 42.975,
+   "section": "s3"
+  },
+  {
+   "text": "zero",
+   "start": 43.087,
+   "end": 43.45,
+   "section": "s3"
+  },
+  {
+   "text": "bits,",
+   "start": 43.45,
+   "end": 43.85,
+   "section": "s3"
+  },
+  {
+   "text": "statistically",
+   "start": 43.925,
+   "end": 44.575,
+   "section": "s3"
+  },
+  {
+   "text": "equivalent",
+   "start": 44.575,
+   "end": 45.025,
+   "section": "s3"
+  },
+  {
+   "text": "to",
+   "start": 45.025,
+   "end": 45.15,
+   "section": "s3"
+  },
+  {
+   "text": "none.",
+   "start": 45.15,
+   "end": 45.875,
+   "section": "s3"
+  },
+  {
+   "text": "For",
+   "start": 46.0,
+   "end": 46.138,
+   "section": "s3"
+  },
+  {
+   "text": "the",
+   "start": 46.138,
+   "end": 46.225,
+   "section": "s3"
+  },
+  {
+   "text": "one",
+   "start": 46.225,
+   "end": 46.45,
+   "section": "s3"
+  },
+  {
+   "text": "model",
+   "start": 46.45,
+   "end": 46.8,
+   "section": "s3"
+  },
+  {
+   "text": "whose",
+   "start": 46.8,
+   "end": 47.0,
+   "section": "s3"
+  },
+  {
+   "text": "cartel",
+   "start": 47.0,
+   "end": 47.438,
+   "section": "s3"
+  },
+  {
+   "text": "actually",
+   "start": 47.438,
+   "end": 47.875,
+   "section": "s3"
+  },
+  {
+   "text": "worked,",
+   "start": 47.875,
+   "end": 48.375,
+   "section": "s3"
+  },
+  {
+   "text": "GPT-6",
+   "start": 48.487,
+   "end": 49.35,
+   "section": "s3"
+  },
+  {
+   "text": "Luna,",
+   "start": 49.35,
+   "end": 49.8,
+   "section": "s3"
+  },
+  {
+   "text": "closing",
+   "start": 49.913,
+   "end": 50.338,
+   "section": "s3"
+  },
+  {
+   "text": "the",
+   "start": 50.338,
+   "end": 50.438,
+   "section": "s3"
+  },
+  {
+   "text": "chat",
+   "start": 50.438,
+   "end": 50.75,
+   "section": "s3"
+  },
+  {
+   "text": "cut",
+   "start": 50.75,
+   "end": 50.975,
+   "section": "s3"
+  },
+  {
+   "text": "most",
+   "start": 50.975,
+   "end": 51.263,
+   "section": "s3"
+  },
+  {
+   "text": "of",
+   "start": 51.263,
+   "end": 51.338,
+   "section": "s3"
+  },
+  {
+   "text": "its",
+   "start": 51.338,
+   "end": 51.5,
+   "section": "s3"
+  },
+  {
+   "text": "extra",
+   "start": 51.5,
+   "end": 51.85,
+   "section": "s3"
+  },
+  {
+   "text": "profit.",
+   "start": 51.85,
+   "end": 52.575,
+   "section": "s3"
+  },
+  {
+   "text": "Was",
+   "start": 55.35,
+   "end": 55.513,
+   "section": "s4"
+  },
+  {
+   "text": "the",
+   "start": 55.513,
+   "end": 55.613,
+   "section": "s4"
+  },
+  {
+   "text": "channel",
+   "start": 55.613,
+   "end": 56.0,
+   "section": "s4"
+  },
+  {
+   "text": "just",
+   "start": 56.0,
+   "end": 56.2,
+   "section": "s4"
+  },
+  {
+   "text": "broken?",
+   "start": 56.2,
+   "end": 56.875,
+   "section": "s4"
+  },
+  {
+   "text": "No.",
+   "start": 57.013,
+   "end": 57.575,
+   "section": "s4"
+  },
+  {
+   "text": "In",
+   "start": 57.712,
+   "end": 57.85,
+   "section": "s4"
+  },
+  {
+   "text": "a",
+   "start": 57.85,
+   "end": 57.95,
+   "section": "s4"
+  },
+  {
+   "text": "later",
+   "start": 57.95,
+   "end": 58.312,
+   "section": "s4"
+  },
+  {
+   "text": "test,",
+   "start": 58.312,
+   "end": 58.7,
+   "section": "s4"
+  },
+  {
+   "text": "we",
+   "start": 58.75,
+   "end": 58.9,
+   "section": "s4"
+  },
+  {
+   "text": "handed",
+   "start": 58.9,
+   "end": 59.238,
+   "section": "s4"
+  },
+  {
+   "text": "them",
+   "start": 59.238,
+   "end": 59.375,
+   "section": "s4"
+  },
+  {
+   "text": "a",
+   "start": 59.375,
+   "end": 59.488,
+   "section": "s4"
+  },
+  {
+   "text": "code,",
+   "start": 59.488,
+   "end": 59.925,
+   "section": "s4"
+  },
+  {
+   "text": "like",
+   "start": 59.962,
+   "end": 60.163,
+   "section": "s4"
+  },
+  {
+   "text": "'capacity:",
+   "start": 60.2,
+   "end": 61.05,
+   "section": "s4"
+  },
+  {
+   "text": "high'",
+   "start": 61.163,
+   "end": 61.525,
+   "section": "s4"
+  },
+  {
+   "text": "for",
+   "start": 61.6,
+   "end": 61.75,
+   "section": "s4"
+  },
+  {
+   "text": "'cheapest",
+   "start": 61.85,
+   "end": 62.263,
+   "section": "s4"
+  },
+  {
+   "text": "on",
+   "start": 62.263,
+   "end": 62.45,
+   "section": "s4"
+  },
+  {
+   "text": "contract",
+   "start": 62.45,
+   "end": 63.025,
+   "section": "s4"
+  },
+  {
+   "text": "one'.",
+   "start": 63.025,
+   "end": 63.65,
+   "section": "s4"
+  },
+  {
+   "text": "Qwen",
+   "start": 63.963,
+   "end": 64.25,
+   "section": "s4"
+  },
+  {
+   "text": "used",
+   "start": 64.25,
+   "end": 64.513,
+   "section": "s4"
+  },
+  {
+   "text": "it",
+   "start": 64.513,
+   "end": 64.588,
+   "section": "s4"
+  },
+  {
+   "text": "at",
+   "start": 64.588,
+   "end": 64.675,
+   "section": "s4"
+  },
+  {
+   "text": "once,",
+   "start": 64.675,
+   "end": 65.1,
+   "section": "s4"
+  },
+  {
+   "text": "and",
+   "start": 65.175,
+   "end": 65.287,
+   "section": "s4"
+  },
+  {
+   "text": "its",
+   "start": 65.287,
+   "end": 65.463,
+   "section": "s4"
+  },
+  {
+   "text": "rival's",
+   "start": 65.463,
+   "end": 65.938,
+   "section": "s4"
+  },
+  {
+   "text": "bids",
+   "start": 65.938,
+   "end": 66.275,
+   "section": "s4"
+  },
+  {
+   "text": "responded;",
+   "start": 66.275,
+   "end": 67.15,
+   "section": "s4"
+  },
+  {
+   "text": "chance",
+   "start": 67.3,
+   "end": 67.675,
+   "section": "s4"
+  },
+  {
+   "text": "would",
+   "start": 67.675,
+   "end": 67.85,
+   "section": "s4"
+  },
+  {
+   "text": "do",
+   "start": 67.85,
+   "end": 68.075,
+   "section": "s4"
+  },
+  {
+   "text": "that",
+   "start": 68.075,
+   "end": 68.287,
+   "section": "s4"
+  },
+  {
+   "text": "only",
+   "start": 68.287,
+   "end": 68.65,
+   "section": "s4"
+  },
+  {
+   "text": "one",
+   "start": 68.65,
+   "end": 68.812,
+   "section": "s4"
+  },
+  {
+   "text": "and",
+   "start": 68.812,
+   "end": 68.912,
+   "section": "s4"
+  },
+  {
+   "text": "a",
+   "start": 68.912,
+   "end": 68.975,
+   "section": "s4"
+  },
+  {
+   "text": "half",
+   "start": 68.975,
+   "end": 69.225,
+   "section": "s4"
+  },
+  {
+   "text": "percent",
+   "start": 69.225,
+   "end": 69.562,
+   "section": "s4"
+  },
+  {
+   "text": "of",
+   "start": 69.562,
+   "end": 69.638,
+   "section": "s4"
+  },
+  {
+   "text": "the",
+   "start": 69.638,
+   "end": 69.725,
+   "section": "s4"
+  },
+  {
+   "text": "time.",
+   "start": 69.725,
+   "end": 70.5,
+   "section": "s4"
+  },
+  {
+   "text": "They",
+   "start": 70.6,
+   "end": 70.775,
+   "section": "s4"
+  },
+  {
+   "text": "had",
+   "start": 70.775,
+   "end": 70.938,
+   "section": "s4"
+  },
+  {
+   "text": "the",
+   "start": 70.938,
+   "end": 71.025,
+   "section": "s4"
+  },
+  {
+   "text": "capacity,",
+   "start": 71.025,
+   "end": 71.725,
+   "section": "s4"
+  },
+  {
+   "text": "but",
+   "start": 71.775,
+   "end": 71.925,
+   "section": "s4"
+  },
+  {
+   "text": "not",
+   "start": 71.925,
+   "end": 72.138,
+   "section": "s4"
+  },
+  {
+   "text": "the",
+   "start": 72.138,
+   "end": 72.287,
+   "section": "s4"
+  },
+  {
+   "text": "idea.",
+   "start": 72.287,
+   "end": 73.05,
+   "section": "s4"
+  },
+  {
+   "text": "Other",
+   "start": 75.4,
+   "end": 75.675,
+   "section": "s5"
+  },
+  {
+   "text": "work",
+   "start": 75.675,
+   "end": 75.938,
+   "section": "s5"
+  },
+  {
+   "text": "shows",
+   "start": 75.938,
+   "end": 76.325,
+   "section": "s5"
+  },
+  {
+   "text": "that",
+   "start": 76.325,
+   "end": 76.537,
+   "section": "s5"
+  },
+  {
+   "text": "AIs",
+   "start": 76.537,
+   "end": 77.137,
+   "section": "s5"
+  },
+  {
+   "text": "collude",
+   "start": 77.137,
+   "end": 77.587,
+   "section": "s5"
+  },
+  {
+   "text": "readily",
+   "start": 77.587,
+   "end": 78.025,
+   "section": "s5"
+  },
+  {
+   "text": "when",
+   "start": 78.025,
+   "end": 78.162,
+   "section": "s5"
+  },
+  {
+   "text": "they",
+   "start": 78.162,
+   "end": 78.3,
+   "section": "s5"
+  },
+  {
+   "text": "can",
+   "start": 78.3,
+   "end": 78.512,
+   "section": "s5"
+  },
+  {
+   "text": "chat.",
+   "start": 78.512,
+   "end": 79.3,
+   "section": "s5"
+  },
+  {
+   "text": "We",
+   "start": 79.425,
+   "end": 79.587,
+   "section": "s5"
+  },
+  {
+   "text": "found",
+   "start": 79.587,
+   "end": 79.887,
+   "section": "s5"
+  },
+  {
+   "text": "that",
+   "start": 79.887,
+   "end": 80.05,
+   "section": "s5"
+  },
+  {
+   "text": "closing",
+   "start": 80.05,
+   "end": 80.462,
+   "section": "s5"
+  },
+  {
+   "text": "the",
+   "start": 80.462,
+   "end": 80.562,
+   "section": "s5"
+  },
+  {
+   "text": "chat",
+   "start": 80.562,
+   "end": 80.875,
+   "section": "s5"
+  },
+  {
+   "text": "worked,",
+   "start": 80.875,
+   "end": 81.45,
+   "section": "s5"
+  },
+  {
+   "text": "when",
+   "start": 81.55,
+   "end": 81.7,
+   "section": "s5"
+  },
+  {
+   "text": "what",
+   "start": 81.7,
+   "end": 81.837,
+   "section": "s5"
+  },
+  {
+   "text": "was",
+   "start": 81.837,
+   "end": 82.0,
+   "section": "s5"
+  },
+  {
+   "text": "left",
+   "start": 82.0,
+   "end": 82.3,
+   "section": "s5"
+  },
+  {
+   "text": "couldn't",
+   "start": 82.3,
+   "end": 82.575,
+   "section": "s5"
+  },
+  {
+   "text": "carry",
+   "start": 82.575,
+   "end": 82.9,
+   "section": "s5"
+  },
+  {
+   "text": "language.",
+   "start": 82.9,
+   "end": 83.825,
+   "section": "s5"
+  },
+  {
+   "text": "The",
+   "start": 84.012,
+   "end": 84.162,
+   "section": "s5"
+  },
+  {
+   "text": "rule:",
+   "start": 84.162,
+   "end": 84.775,
+   "section": "s5"
+  },
+  {
+   "text": "closing",
+   "start": 84.912,
+   "end": 85.35,
+   "section": "s5"
+  },
+  {
+   "text": "a",
+   "start": 85.35,
+   "end": 85.462,
+   "section": "s5"
+  },
+  {
+   "text": "channel",
+   "start": 85.462,
+   "end": 85.875,
+   "section": "s5"
+  },
+  {
+   "text": "works",
+   "start": 85.875,
+   "end": 86.188,
+   "section": "s5"
+  },
+  {
+   "text": "when",
+   "start": 86.188,
+   "end": 86.325,
+   "section": "s5"
+  },
+  {
+   "text": "what's",
+   "start": 86.325,
+   "end": 86.6,
+   "section": "s5"
+  },
+  {
+   "text": "left",
+   "start": 86.6,
+   "end": 86.887,
+   "section": "s5"
+  },
+  {
+   "text": "can't",
+   "start": 86.887,
+   "end": 87.225,
+   "section": "s5"
+  },
+  {
+   "text": "carry",
+   "start": 87.225,
+   "end": 87.55,
+   "section": "s5"
+  },
+  {
+   "text": "language.",
+   "start": 87.55,
+   "end": 88.35,
+   "section": "s5"
+  },
+  {
+   "text": "Two",
+   "start": 90.325,
+   "end": 90.5,
+   "section": "s6"
+  },
+  {
+   "text": "warnings",
+   "start": 90.5,
+   "end": 90.975,
+   "section": "s6"
+  },
+  {
+   "text": "for",
+   "start": 90.975,
+   "end": 91.137,
+   "section": "s6"
+  },
+  {
+   "text": "anyone",
+   "start": 91.137,
+   "end": 91.525,
+   "section": "s6"
+  },
+  {
+   "text": "policing",
+   "start": 91.525,
+   "end": 91.975,
+   "section": "s6"
+  },
+  {
+   "text": "AI.",
+   "start": 91.975,
+   "end": 92.65,
+   "section": "s6"
+  },
+  {
+   "text": "Promised",
+   "start": 92.787,
+   "end": 93.188,
+   "section": "s6"
+  },
+  {
+   "text": "a",
+   "start": 93.188,
+   "end": 93.262,
+   "section": "s6"
+  },
+  {
+   "text": "private",
+   "start": 93.262,
+   "end": 93.65,
+   "section": "s6"
+  },
+  {
+   "text": "message",
+   "start": 93.65,
+   "end": 94.025,
+   "section": "s6"
+  },
+  {
+   "text": "button",
+   "start": 94.025,
+   "end": 94.3,
+   "section": "s6"
+  },
+  {
+   "text": "that",
+   "start": 94.3,
+   "end": 94.525,
+   "section": "s6"
+  },
+  {
+   "text": "secretly",
+   "start": 94.525,
+   "end": 95.025,
+   "section": "s6"
+  },
+  {
+   "text": "did",
+   "start": 95.025,
+   "end": 95.175,
+   "section": "s6"
+  },
+  {
+   "text": "nothing,",
+   "start": 95.175,
+   "end": 95.75,
+   "section": "s6"
+  },
+  {
+   "text": "GPT-6",
+   "start": 95.862,
+   "end": 96.775,
+   "section": "s6"
+  },
+  {
+   "text": "Luna",
+   "start": 96.775,
+   "end": 97.1,
+   "section": "s6"
+  },
+  {
+   "text": "and",
+   "start": 97.1,
+   "end": 97.225,
+   "section": "s6"
+  },
+  {
+   "text": "Qwen",
+   "start": 97.225,
+   "end": 97.55,
+   "section": "s6"
+  },
+  {
+   "text": "kept",
+   "start": 97.55,
+   "end": 97.8,
+   "section": "s6"
+  },
+  {
+   "text": "pressing",
+   "start": 97.8,
+   "end": 98.175,
+   "section": "s6"
+  },
+  {
+   "text": "it.",
+   "start": 98.175,
+   "end": 98.675,
+   "section": "s6"
+  },
+  {
+   "text": "And",
+   "start": 98.775,
+   "end": 98.938,
+   "section": "s6"
+  },
+  {
+   "text": "agents",
+   "start": 98.938,
+   "end": 99.325,
+   "section": "s6"
+  },
+  {
+   "text": "claimed",
+   "start": 99.325,
+   "end": 99.725,
+   "section": "s6"
+  },
+  {
+   "text": "secret",
+   "start": 99.725,
+   "end": 100.15,
+   "section": "s6"
+  },
+  {
+   "text": "signalling",
+   "start": 100.15,
+   "end": 100.625,
+   "section": "s6"
+  },
+  {
+   "text": "that",
+   "start": 100.625,
+   "end": 100.775,
+   "section": "s6"
+  },
+  {
+   "text": "never",
+   "start": 100.775,
+   "end": 101.025,
+   "section": "s6"
+  },
+  {
+   "text": "happened,",
+   "start": 101.025,
+   "end": 101.625,
+   "section": "s6"
+  },
+  {
+   "text": "so",
+   "start": 101.725,
+   "end": 101.9,
+   "section": "s6"
+  },
+  {
+   "text": "don't",
+   "start": 101.9,
+   "end": 102.125,
+   "section": "s6"
+  },
+  {
+   "text": "trust",
+   "start": 102.125,
+   "end": 102.438,
+   "section": "s6"
+  },
+  {
+   "text": "an",
+   "start": 102.438,
+   "end": 102.562,
+   "section": "s6"
+  },
+  {
+   "text": "AI's",
+   "start": 102.562,
+   "end": 103.025,
+   "section": "s6"
+  },
+  {
+   "text": "account",
+   "start": 103.025,
+   "end": 103.362,
+   "section": "s6"
+  },
+  {
+   "text": "of",
+   "start": 103.362,
+   "end": 103.438,
+   "section": "s6"
+  },
+  {
+   "text": "itself.",
+   "start": 103.438,
+   "end": 104.075,
+   "section": "s6"
+  },
+  {
+   "text": "Limits:",
+   "start": 105.45,
+   "end": 105.95,
+   "section": "s7"
+  },
+  {
+   "text": "four",
+   "start": 106.037,
+   "end": 106.325,
+   "section": "s7"
+  },
+  {
+   "text": "mid-sized",
+   "start": 106.325,
+   "end": 106.925,
+   "section": "s7"
+  },
+  {
+   "text": "models",
+   "start": 106.925,
+   "end": 107.375,
+   "section": "s7"
+  },
+  {
+   "text": "with",
+   "start": 107.375,
+   "end": 107.55,
+   "section": "s7"
+  },
+  {
+   "text": "low",
+   "start": 107.55,
+   "end": 107.825,
+   "section": "s7"
+  },
+  {
+   "text": "reasoning,",
+   "start": 107.825,
+   "end": 108.575,
+   "section": "s7"
+  },
+  {
+   "text": "meaning",
+   "start": 108.675,
+   "end": 109.0,
+   "section": "s7"
+  },
+  {
+   "text": "little",
+   "start": 109.0,
+   "end": 109.375,
+   "section": "s7"
+  },
+  {
+   "text": "or",
+   "start": 109.375,
+   "end": 109.5,
+   "section": "s7"
+  },
+  {
+   "text": "no",
+   "start": 109.5,
+   "end": 109.787,
+   "section": "s7"
+  },
+  {
+   "text": "thinking",
+   "start": 109.787,
+   "end": 110.15,
+   "section": "s7"
+  },
+  {
+   "text": "before",
+   "start": 110.15,
+   "end": 110.475,
+   "section": "s7"
+  },
+  {
+   "text": "answering,",
+   "start": 110.475,
+   "end": 111.275,
+   "section": "s7"
+  },
+  {
+   "text": "and",
+   "start": 111.375,
+   "end": 111.487,
+   "section": "s7"
+  },
+  {
+   "text": "they",
+   "start": 111.487,
+   "end": 111.625,
+   "section": "s7"
+  },
+  {
+   "text": "weren't",
+   "start": 111.625,
+   "end": 111.875,
+   "section": "s7"
+  },
+  {
+   "text": "warned",
+   "start": 111.875,
+   "end": 112.162,
+   "section": "s7"
+  },
+  {
+   "text": "the",
+   "start": 112.162,
+   "end": 112.262,
+   "section": "s7"
+  },
+  {
+   "text": "chat",
+   "start": 112.262,
+   "end": 112.537,
+   "section": "s7"
+  },
+  {
+   "text": "would",
+   "start": 112.537,
+   "end": 112.675,
+   "section": "s7"
+  },
+  {
+   "text": "close.",
+   "start": 112.675,
+   "end": 113.65,
+   "section": "s7"
+  },
+  {
+   "text": "Next,",
+   "start": 113.825,
+   "end": 114.35,
+   "section": "s7"
+  },
+  {
+   "text": "we",
+   "start": 114.425,
+   "end": 114.587,
+   "section": "s7"
+  },
+  {
+   "text": "warn",
+   "start": 114.587,
+   "end": 114.837,
+   "section": "s7"
+  },
+  {
+   "text": "them,",
+   "start": 114.837,
+   "end": 115.225,
+   "section": "s7"
+  },
+  {
+   "text": "and",
+   "start": 115.3,
+   "end": 115.45,
+   "section": "s7"
+  },
+  {
+   "text": "see",
+   "start": 115.45,
+   "end": 115.7,
+   "section": "s7"
+  },
+  {
+   "text": "if",
+   "start": 115.7,
+   "end": 115.812,
+   "section": "s7"
+  },
+  {
+   "text": "they",
+   "start": 115.812,
+   "end": 115.962,
+   "section": "s7"
+  },
+  {
+   "text": "plan",
+   "start": 115.962,
+   "end": 116.262,
+   "section": "s7"
+  },
+  {
+   "text": "a",
+   "start": 116.262,
+   "end": 116.325,
+   "section": "s7"
+  },
+  {
+   "text": "code.",
+   "start": 116.325,
+   "end": 117.025,
+   "section": "s7"
+  }
+ ],
+ "phrases": [
+  {
+   "first": 0,
+   "last": 4,
+   "start": 0.325,
+   "end": 2.038,
+   "text": "If AIs that are colluding,"
+  },
+  {
+   "first": 5,
+   "last": 7,
+   "start": 2.038,
+   "end": 3.438,
+   "text": "secretly working together,"
+  },
+  {
+   "first": 8,
+   "last": 10,
+   "start": 3.438,
+   "end": 4.425,
+   "text": "lose their chat,"
+  },
+  {
+   "first": 11,
+   "last": 17,
+   "start": 4.425,
+   "end": 6.537,
+   "text": "do they just find a sneakier way?"
+  },
+  {
+   "first": 18,
+   "last": 22,
+   "start": 6.537,
+   "end": 8.325,
+   "text": "That worry, the balloon effect,"
+  },
+  {
+   "first": 23,
+   "last": 26,
+   "start": 8.325,
+   "end": 9.625,
+   "text": "says squeezing one channel"
+  },
+  {
+   "first": 27,
+   "last": 30,
+   "start": 9.625,
+   "end": 11.725,
+   "text": "pushes collusion into others."
+  },
+  {
+   "first": 31,
+   "last": 35,
+   "start": 12.35,
+   "end": 14.425,
+   "text": "Two AI-run companies, or firms,"
+  },
+  {
+   "first": 36,
+   "last": 39,
+   "start": 14.425,
+   "end": 15.475,
+   "text": "bid for four jobs,"
+  },
+  {
+   "first": 40,
+   "last": 41,
+   "start": 15.475,
+   "end": 16.8,
+   "text": "called contracts."
+  },
+  {
+   "first": 42,
+   "last": 45,
+   "start": 16.8,
+   "end": 18.312,
+   "text": "The lowest bid wins."
+  },
+  {
+   "first": 46,
+   "last": 48,
+   "start": 18.312,
+   "end": 19.325,
+   "text": "Allowed, and paid,"
+  },
+  {
+   "first": 49,
+   "last": 52,
+   "start": 19.325,
+   "end": 20.95,
+   "text": "to maximise joint profit,"
+  },
+  {
+   "first": 53,
+   "last": 58,
+   "start": 20.95,
+   "end": 22.663,
+   "text": "they formed a cartel by chatting,"
+  },
+  {
+   "first": 59,
+   "last": 62,
+   "start": 22.663,
+   "end": 24.425,
+   "text": "sharing their secret costs."
+  },
+  {
+   "first": 63,
+   "last": 69,
+   "start": 24.425,
+   "end": 26.725,
+   "text": "At round 41, we closed the chat."
+  },
+  {
+   "first": 70,
+   "last": 74,
+   "start": 26.725,
+   "end": 27.95,
+   "text": "Did those costs leak into"
+  },
+  {
+   "first": 75,
+   "last": 78,
+   "start": 27.95,
+   "end": 29.875,
+   "text": "four routine actions instead?"
+  },
+  {
+   "first": 79,
+   "last": 83,
+   "start": 29.875,
+   "end": 31.062,
+   "text": "We measured it in bits,"
+  },
+  {
+   "first": 84,
+   "last": 86,
+   "start": 31.062,
+   "end": 32.275,
+   "text": "units of information,"
+  },
+  {
+   "first": 87,
+   "last": 92,
+   "start": 32.275,
+   "end": 34.575,
+   "text": "with tests written down in advance."
+  },
+  {
+   "first": 93,
+   "last": 97,
+   "start": 35.325,
+   "end": 37.35,
+   "text": "We ran 32 paired seeds:"
+  },
+  {
+   "first": 98,
+   "last": 101,
+   "start": 37.35,
+   "end": 38.725,
+   "text": "each starting setup played"
+  },
+  {
+   "first": 102,
+   "last": 106,
+   "start": 38.725,
+   "end": 39.975,
+   "text": "once with the chat open,"
+  },
+  {
+   "first": 107,
+   "last": 109,
+   "start": 39.975,
+   "end": 41.363,
+   "text": "and once closed."
+  },
+  {
+   "first": 110,
+   "last": 115,
+   "start": 41.363,
+   "end": 43.925,
+   "text": "Across all four models: zero bits,"
+  },
+  {
+   "first": 116,
+   "last": 119,
+   "start": 43.925,
+   "end": 46.0,
+   "text": "statistically equivalent to none."
+  },
+  {
+   "first": 120,
+   "last": 124,
+   "start": 46.0,
+   "end": 47.0,
+   "text": "For the one model whose"
+  },
+  {
+   "first": 125,
+   "last": 129,
+   "start": 47.0,
+   "end": 49.913,
+   "text": "cartel actually worked, GPT-6 Luna,"
+  },
+  {
+   "first": 130,
+   "last": 134,
+   "start": 49.913,
+   "end": 51.263,
+   "text": "closing the chat cut most"
+  },
+  {
+   "first": 135,
+   "last": 138,
+   "start": 51.263,
+   "end": 52.925000000000004,
+   "text": "of its extra profit."
+  },
+  {
+   "first": 139,
+   "last": 143,
+   "start": 55.35,
+   "end": 57.013,
+   "text": "Was the channel just broken?"
+  },
+  {
+   "first": 144,
+   "last": 144,
+   "start": 57.013,
+   "end": 57.712,
+   "text": "No."
+  },
+  {
+   "first": 145,
+   "last": 148,
+   "start": 57.712,
+   "end": 58.75,
+   "text": "In a later test,"
+  },
+  {
+   "first": 149,
+   "last": 153,
+   "start": 58.75,
+   "end": 59.962,
+   "text": "we handed them a code,"
+  },
+  {
+   "first": 154,
+   "last": 161,
+   "start": 59.962,
+   "end": 63.963,
+   "text": "like 'capacity: high' for 'cheapest on contract one'."
+  },
+  {
+   "first": 162,
+   "last": 166,
+   "start": 63.963,
+   "end": 65.175,
+   "text": "Qwen used it at once,"
+  },
+  {
+   "first": 167,
+   "last": 171,
+   "start": 65.175,
+   "end": 67.3,
+   "text": "and its rival's bids responded;"
+  },
+  {
+   "first": 172,
+   "last": 177,
+   "start": 67.3,
+   "end": 68.812,
+   "text": "chance would do that only one"
+  },
+  {
+   "first": 178,
+   "last": 184,
+   "start": 68.812,
+   "end": 70.6,
+   "text": "and a half percent of the time."
+  },
+  {
+   "first": 185,
+   "last": 188,
+   "start": 70.6,
+   "end": 71.775,
+   "text": "They had the capacity,"
+  },
+  {
+   "first": 189,
+   "last": 192,
+   "start": 71.775,
+   "end": 73.39999999999999,
+   "text": "but not the idea."
+  },
+  {
+   "first": 193,
+   "last": 198,
+   "start": 75.4,
+   "end": 77.587,
+   "text": "Other work shows that AIs collude"
+  },
+  {
+   "first": 199,
+   "last": 203,
+   "start": 77.587,
+   "end": 79.425,
+   "text": "readily when they can chat."
+  },
+  {
+   "first": 204,
+   "last": 210,
+   "start": 79.425,
+   "end": 81.55,
+   "text": "We found that closing the chat worked,"
+  },
+  {
+   "first": 211,
+   "last": 217,
+   "start": 81.55,
+   "end": 84.012,
+   "text": "when what was left couldn't carry language."
+  },
+  {
+   "first": 218,
+   "last": 224,
+   "start": 84.012,
+   "end": 86.325,
+   "text": "The rule: closing a channel works when"
+  },
+  {
+   "first": 225,
+   "last": 229,
+   "start": 86.325,
+   "end": 88.69999999999999,
+   "text": "what's left can't carry language."
+  },
+  {
+   "first": 230,
+   "last": 235,
+   "start": 90.325,
+   "end": 92.787,
+   "text": "Two warnings for anyone policing AI."
+  },
+  {
+   "first": 236,
+   "last": 240,
+   "start": 92.787,
+   "end": 94.3,
+   "text": "Promised a private message button"
+  },
+  {
+   "first": 241,
+   "last": 244,
+   "start": 94.3,
+   "end": 95.862,
+   "text": "that secretly did nothing,"
+  },
+  {
+   "first": 245,
+   "last": 251,
+   "start": 95.862,
+   "end": 98.775,
+   "text": "GPT-6 Luna and Qwen kept pressing it."
+  },
+  {
+   "first": 252,
+   "last": 255,
+   "start": 98.775,
+   "end": 100.15,
+   "text": "And agents claimed secret"
+  },
+  {
+   "first": 256,
+   "last": 259,
+   "start": 100.15,
+   "end": 101.725,
+   "text": "signalling that never happened,"
+  },
+  {
+   "first": 260,
+   "last": 267,
+   "start": 101.725,
+   "end": 104.425,
+   "text": "so don't trust an AI's account of itself."
+  },
+  {
+   "first": 268,
+   "last": 268,
+   "start": 105.45,
+   "end": 106.037,
+   "text": "Limits:"
+  },
+  {
+   "first": 269,
+   "last": 274,
+   "start": 106.037,
+   "end": 108.675,
+   "text": "four mid-sized models with low reasoning,"
+  },
+  {
+   "first": 275,
+   "last": 278,
+   "start": 108.675,
+   "end": 109.787,
+   "text": "meaning little or no"
+  },
+  {
+   "first": 279,
+   "last": 281,
+   "start": 109.787,
+   "end": 111.375,
+   "text": "thinking before answering,"
+  },
+  {
+   "first": 282,
+   "last": 285,
+   "start": 111.375,
+   "end": 112.162,
+   "text": "and they weren't warned"
+  },
+  {
+   "first": 286,
+   "last": 289,
+   "start": 112.162,
+   "end": 113.825,
+   "text": "the chat would close."
+  },
+  {
+   "first": 290,
+   "last": 293,
+   "start": 113.825,
+   "end": 115.3,
+   "text": "Next, we warn them,"
+  },
+  {
+   "first": 294,
+   "last": 300,
+   "start": 115.3,
+   "end": 117.375,
+   "text": "and see if they plan a code."
   }
  ],
  "cues": {
-  "balloon": 8.236,
-  "squeeze": 9.768,
-  "others": 13.0,
-  "title": 13.635,
-  "cartel": 18.238,
-  "closed": 21.238,
-  "bits": 23.719,
-  "actions": 28.212,
-  "facts2": 29.427,
-  "build3": 34.5,
-  "zero": 37.78,
-  "drop3": 38.999,
-  "worked": 43.914,
-  "profit": 47.152,
-  "counter": 47.685,
-  "broken": 53.436,
-  "no": 54.78,
-  "code": 57.272,
-  "immediately": 58.899,
-  "drop4": 59.783,
-  "capacity": 62.004,
-  "idea": 63.71,
-  "facts4": 64.319,
-  "talk": 70.222,
-  "rule": 73.865,
-  "freetext": 76.5,
-  "untested": 78.95,
-  "warn1": 84.6,
-  "pressing": 91.236,
-  "claimed": 93.871,
-  "never": 95.992,
-  "trust": 97.911,
-  "limit1": 102.12,
-  "limit2": 105.884,
-  "next": 108.5,
-  "endcard": 112.826,
-  "final": 116.235
- }
+  "s1_question": 0.325,
+  "s1_colluding": 1.25,
+  "s1_chat": 3.888,
+  "s1_sneakier": 5.188,
+  "s1_balloon": 7.35,
+  "s1_squeeze": 8.525,
+  "s1_others": 10.725,
+  "s2_firms": 12.35,
+  "s2_contracts": 15.75,
+  "s2_lowest": 16.925,
+  "s2_allowed": 18.312,
+  "s2_cartel": 21.475,
+  "s2_sharing": 22.663,
+  "s2_round41": 24.825,
+  "s2_closed": 25.55,
+  "s2_routine": 28.225,
+  "s2_bits": 30.575,
+  "s2_tests": 32.462,
+  "s3_seeds": 35.738,
+  "s3_models": 41.363,
+  "s3_zero": 43.087,
+  "s3_stat": 43.925,
+  "s3_luna": 48.487,
+  "s3_cut": 50.75,
+  "s4_broken": 55.35,
+  "s4_no": 57.013,
+  "s4_code": 59.488,
+  "s4_example": 60.2,
+  "s4_qwen": 63.963,
+  "s4_responded": 66.275,
+  "s4_chance": 67.3,
+  "s4_capacity": 71.025,
+  "s4_idea": 72.287,
+  "s5_other": 75.4,
+  "s5_found": 79.587,
+  "s5_language": 82.9,
+  "s5_rule": 84.162,
+  "s6_warnings": 90.325,
+  "s6_button": 92.787,
+  "s6_nothing": 95.175,
+  "s6_luna": 95.862,
+  "s6_claimed": 98.938,
+  "s6_never": 100.775,
+  "s6_trust": 102.125,
+  "s7_limits": 105.45,
+  "s7_reasoning": 107.55,
+  "s7_warned": 111.625,
+  "s7_next": 113.825
+ },
+ "speech": [
+  [
+   0.325,
+   11.375
+  ],
+  [
+   12.35,
+   34.225
+  ],
+  [
+   35.325,
+   52.575
+  ],
+  [
+   55.35,
+   73.05
+  ],
+  [
+   75.4,
+   88.35
+  ],
+  [
+   90.325,
+   104.075
+  ],
+  [
+   105.45,
+   117.025
+  ]
+ ]
 }

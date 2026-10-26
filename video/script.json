@@ -1,93 +1,65 @@
 {
-  "_note": "Narration lines, one per clip. 'say' is what the TTS engine reads (spelled for pronunciation); 'text' is the caption. Section boundaries follow the brief: 0-12, 12-35, 35-55, 55-75, 75-90, 90-105, 105-120 s.",
-  "voice": "sage",
-  "instructions": "Warm, confident science-documentary narrator with lively, brisk pacing, about 170 words per minute. Clear diction, a slight smile in the voice, genuine curiosity on questions. Give key numbers a little weight, but keep the pauses short. Never rushed, never sing-song.",
-  "clips": [
+  "_note": "One narration clip per section. 'text' is spoken and captioned verbatim. 'say' (optional) is the same words with pronunciation hints for Kokoro. Section windows are fixed by the brief.",
+  "voice": "af_heart",
+  "sections": [
     {
-      "id": "s1a",
-      "section": 1,
-      "text": "If you take away the chat from AIs that are colluding, do they just find a sneakier way?"
+      "id": "s1",
+      "title": "Hook",
+      "start": 0,
+      "end": 12,
+      "speed": 1.1,
+      "text": "If AIs that are colluding, secretly working together, lose their chat, do they just find a sneakier way? That worry, the balloon effect, says squeezing one channel pushes collusion into others."
     },
     {
-      "id": "s1b",
-      "section": 1,
-      "text": "This worry, called the balloon effect, says squeezing one channel pushes collusion into others."
+      "id": "s2",
+      "title": "Setup",
+      "start": 12,
+      "end": 35,
+      "speed": 1.12,
+      "text": "Two AI-run companies, or firms, bid for four jobs, called contracts. The lowest bid wins. Allowed, and paid, to maximise joint profit, they formed a cartel by chatting, sharing their secret costs. At round 41, we closed the chat. Did those costs leak into four routine actions instead? We measured it in bits, units of information, with tests written down in advance.",
+      "say": "Two [AI-run](/ˈAˈI ɹˈʌn/) companies, or firms, bid for four jobs, called contracts. The lowest bid wins. Allowed, and paid, to maximise joint profit, they formed a cartel by chatting, sharing their secret costs. At round 41, we closed the chat. Did those costs leak into four routine actions instead? We measured it in bits, units of information, with tests written down in advance."
     },
     {
-      "id": "s2a",
-      "section": 2,
-      "text": "Two AI firms formed a cartel by chatting."
+      "id": "s3",
+      "title": "Result",
+      "start": 35,
+      "end": 55,
+      "speed": 1.1,
+      "text": "We ran 32 paired seeds: each starting setup played once with the chat open, and once closed. Across all four models: zero bits, statistically equivalent to none. For the one model whose cartel actually worked, GPT-6 Luna, closing the chat cut most of its extra profit."
     },
     {
-      "id": "s2b",
-      "section": 2,
-      "text": "Then we closed the chat and measured, in bits, whether their private cost information moved into their ordinary actions instead."
+      "id": "s4",
+      "title": "Key control",
+      "start": 55,
+      "end": 75,
+      "speed": 0.98,
+      "text": "Was the channel just broken? No. In a later test, we handed them a code, like 'capacity: high' for 'cheapest on contract one'. Qwen used it at once, and its rival's bids responded; chance would do that only one and a half percent of the time. They had the capacity, but not the idea.",
+      "say": "Was the channel just broken? No. In a later test, we handed them a code, like 'capacity: high' for 'cheapest on contract one'. [Qwen](/kwˈɛn/) used it at once, and its rival's bids responded; chance would do that only one and a half percent of the time. They had the capacity, but not the idea."
     },
     {
-      "id": "s3a",
-      "section": 3,
-      "text": "Across four models: zero bits."
+      "id": "s5",
+      "title": "Takeaway",
+      "start": 75,
+      "end": 90,
+      "speed": 0.95,
+      "text": "Other work shows that AIs collude readily when they can chat. We found that closing the chat worked, when what was left couldn't carry language. The rule: closing a channel works when what's left can't carry language."
     },
     {
-      "id": "s3b",
-      "section": 3,
-      "text": "For the model whose cartel actually worked, closing the chat cut most of its extra profit."
+      "id": "s6",
+      "title": "Two warnings",
+      "start": 90,
+      "end": 105,
+      "speed": 1.18,
+      "text": "Two warnings for anyone policing AI. Promised a private message button that secretly did nothing, GPT-6 Luna and Qwen kept pressing it. And agents claimed secret signalling that never happened, so don't trust an AI's account of itself.",
+      "say": "Two warnings for anyone policing AI. Promised a private message button that secretly did nothing, GPT-6 Luna and [Qwen](/kwˈɛn/) kept pressing it. And agents claimed secret signalling that never happened, so don't trust an AI's account of itself."
     },
     {
-      "id": "s4a",
-      "section": 4,
-      "text": "Was the channel just broken? No."
-    },
-    {
-      "id": "s4b",
-      "section": 4,
-      "text": "When we handed them a code, they used it immediately."
-    },
-    {
-      "id": "s4c",
-      "section": 4,
-      "text": "They had the capacity, but not the idea."
-    },
-    {
-      "id": "s5a",
-      "section": 5,
-      "text": "They collude readily when they can talk."
-    },
-    {
-      "id": "s5b",
-      "section": 5,
-      "text": "Here, closing the chat worked, and nothing left open could carry language."
-    },
-    {
-      "id": "s5c",
-      "section": 5,
-      "text": "Would a free-text box bring the cartel back? We haven't tested that yet."
-    },
-    {
-      "id": "s6a",
-      "section": 6,
-      "text": "Two warnings for anyone policing AI."
-    },
-    {
-      "id": "s6b",
-      "section": 6,
-      "text": "Promised a private message button that secretly did nothing, gpt-6-luna and Qwen kept pressing it.",
-      "say": "Promised a private message button that secretly did nothing, G P T six Luna and Chwen kept pressing it."
-    },
-    {
-      "id": "s6c",
-      "section": 6,
-      "text": "And agents claimed secret signalling that never happened, so don't trust an AI's account of itself."
-    },
-    {
-      "id": "s7a",
-      "section": 7,
-      "text": "Limits: four mid-sized models with low reasoning, and they weren't warned the chat would close."
-    },
-    {
-      "id": "s7b",
-      "section": 7,
-      "text": "Next, we warn them and see if they plan a code."
+      "id": "s7",
+      "title": "Limits and end card",
+      "start": 105,
+      "end": 120,
+      "speed": 0.95,
+      "text": "Limits: four mid-sized models with low reasoning, meaning little or no thinking before answering, and they weren't warned the chat would close. Next, we warn them, and see if they plan a code."
     }
   ]
 }

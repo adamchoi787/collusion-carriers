@@ -1,15 +1,16 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {Explainer} from './Explainer';
-import timeline from './timeline.json';
+import {TL} from './lib';
 
 export const Root: React.FC = () => (
   <Composition
     id="Explainer"
     component={Explainer}
-    durationInFrames={Math.round(timeline.duration * timeline.fps)}
-    fps={timeline.fps}
+    durationInFrames={TL.durationInFrames}
+    fps={TL.fps}
     width={1920}
     height={1080}
+    defaultProps={{debug: false}}
   />
 );

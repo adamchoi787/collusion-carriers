@@ -1,17 +1,16 @@
 {
-  "name": "collusion-carriers-video",
+  "name": "collusion-carriers-explainer",
   "private": true,
-  "description": "90-120 s explainer video for 'Closing the Chat Ended the Cartel'",
+  "description": "Explainer video (2:00) for 'Closing the Chat Ended the Cartel'",
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render": "remotion render src/index.ts Explainer out/explainer.mp4"
+    "render": "remotion render src/index.ts Explainer out/explainer.mp4 --codec=h264 --crf=18 --audio-codec=aac --audio-bitrate=320k"
   },
   "dependencies": {
     "@remotion/cli": "4.0.538",
     "@remotion/google-fonts": "4.0.538",
-    "@remotion/noise": "4.0.538",
-    "@remotion/paths": "4.0.538",
-    "@remotion/shapes": "4.0.538",
+    "@remotion/renderer": "4.0.538",
+    "@remotion/bundler": "4.0.538",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "remotion": "4.0.538"

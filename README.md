@@ -33,7 +33,7 @@ The full research agenda, including four further studies the testbed supports, i
 | [`testbed/CONTRACT.md`](testbed/CONTRACT.md) | Interfaces between the components and the log schema |
 | [`analysis/`](analysis) | `study5.py` (the pre-registered analysis), `gate_ow.py` (open-weight gate), `overflow.py`, `coded_control.py` and `self_reports.py` (exploratory analyses), `figures.py` (the report's figures), `pilot.py`, `frontier.py`, `blind_coding.json` |
 | [`paper/`](paper) | The report (PDF and Markdown source) and its figures |
-| [`video/`](video/README.md) | The 2-minute explainer video: narration, orchestral score and Remotion animation, all driven by one timeline |
+| [`video/`](video/README.md) | The 2-minute explainer video: Kokoro narration, an original underscore and a Remotion animation, all timed from the narration's word timestamps |
 | [`logs/study5.tar.gz`](logs) | Every Study 5 game log |
 | [`tests/`](tests) | Offline test suite (scripted agents and fake providers; no paid calls) |
 

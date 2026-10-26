@@ -1,129 +1,187 @@
-"""Mix narration and music into video/public/mix.wav.
+"""Duck the music under the narration and master the mix.
 
-    python video/audio/mix.py
+Music sits DUCK_DB below the narration while anyone is speaking (measured as BS.1770 loudness
+over the speech regions), and rises by RISE_DB only in gaps of at least MIN_GAP seconds. The mix
+is then normalised to -14 LUFS integrated with true peak at or below -1 dBTP.
 
-1. Voice: each trimmed clip is placed at its timeline start and cleaned up with ffmpeg
-   (high-pass, gentle compression, a little presence).
-2. Music: light glue compression and a high shelf on the orchestra bus, then ducking: for every line, the music gain is set so the voice sits MARGIN dB above it,
-   with fast attack and slow release ramps. Between lines, and on the drops, the music plays at
-   full level. Stingers on cue words inside a line are ducked less, so they still punch.
-3. Master: voice + ducked music, normalised to -14 LUFS integrated with a -1 dBTP ceiling
-   (two-pass loudnorm), the usual target for streaming.
+Reads build/vo.wav, build/music.wav and src/timeline.json; writes public/mix.wav and prints the
+measured voice-over-music margin per section.
 """
+
 import json
-import re
-import subprocess
+import pathlib
 import wave
-from pathlib import Path
 
 import numpy as np
+from scipy.signal import lfilter, resample_poly
 
-VIDEO = Path(__file__).resolve().parents[1]
-BIN = Path.home() / ".local/share/av-env/bin"
-TL = json.loads((VIDEO / "src/timeline.json").read_text())
-DUR = TL["duration"]
+ROOT = pathlib.Path(__file__).resolve().parent.parent
 SR = 48000
-MARGIN = 15.0  # dB of voice over music while a line is spoken
-STINGERS = ["closed", "no", "never", "trust", "pressing"]
-BUILD = Path(VIDEO / "build")
+DUCK_DB = 20.0
+RISE_DB = 9.0
+MIN_GAP = 0.8
+TARGET_LUFS = -14.0
+TP_CEILING = -1.0
 
 
-def ffmpeg(*args):
-    subprocess.run([BIN / "ffmpeg", "-hide_banner", "-v", "error", "-y", *map(str, args)], check=True)
-
-
-def load(path: Path) -> np.ndarray:
+def read(path):
     with wave.open(str(path)) as w:
-        assert w.getframerate() == SR, path
-        x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float32) / 32768
-        x = x.reshape(-1, w.getnchannels())
-    if x.shape[1] == 1:
-        x = np.repeat(x, 2, axis=1)
-    n = int(DUR * SR)
-    return np.pad(x, ((0, max(0, n - len(x))), (0, 0)))[:n]
+        x = np.frombuffer(w.readframes(w.getnframes()), dtype=np.int16).astype(np.float64) / 32768
+        return x.reshape(-1, w.getnchannels()).T, w.getframerate()
 
 
-def save(path: Path, x: np.ndarray):
-    y = (np.clip(x, -1, 1) * 32767).astype(np.int16)
-    with wave.open(str(path), "wb") as w:
+def kweight(x):
+    b1, a1 = [1.53512485958697, -2.69169618940638, 1.19839281085285], [1, -1.69065929318241, 0.73248077421585]
+    b2, a2 = [1.0, -2.0, 1.0], [1, -1.99004745483398, 0.99007225036621]
+    return lfilter(b2, a2, lfilter(b1, a1, x, axis=-1), axis=-1)
+
+
+def block_power(x):
+    """Mean-square K-weighted power of 400 ms blocks with 75% overlap, summed over channels."""
+    z = kweight(np.atleast_2d(x)) ** 2
+    n, hop = int(0.4 * SR), int(0.1 * SR)
+    starts = np.arange(0, z.shape[1] - n + 1, hop)
+    c = np.cumsum(np.pad(z, ((0, 0), (1, 0))), axis=1)
+    return ((c[:, starts + n] - c[:, starts]) / n).sum(0), starts
+
+
+def lufs(x, mask=None):
+    """Gated integrated loudness (BS.1770-4); with mask, only blocks fully inside the mask count."""
+    p, starts = block_power(x)
+    if mask is not None:
+        n = int(0.4 * SR)
+        cm = np.concatenate([[0], np.cumsum(mask)])
+        p = p[(cm[starts + n] - cm[starts]) == n]
+    l = -0.691 + 10 * np.log10(p + 1e-20)
+    p = p[l > -70]
+    if not len(p):
+        return -np.inf
+    rel = -0.691 + 10 * np.log10(p.mean()) - 10
+    p = p[-0.691 + 10 * np.log10(p) > rel]
+    return -0.691 + 10 * np.log10(p.mean())
+
+
+def true_peak_db(x):
+    up = resample_poly(np.atleast_2d(x), 4, 1, axis=-1)
+    return 20 * np.log10(np.abs(up).max() + 1e-20)
+
+
+def limit(x, ceiling_db, lookahead=0.004, release=0.08):
+    """Lookahead peak limiter on the 4x-oversampled peak, so true peak stays under the ceiling."""
+    from scipy.ndimage import minimum_filter1d, uniform_filter1d
+
+    c = 10 ** (ceiling_db / 20)
+    up = np.abs(resample_poly(x, 4, 1, axis=-1)).max(0)
+    peak = up[: x.shape[1] * 4].reshape(-1, 4).max(1)
+    need = np.minimum(1.0, c / np.maximum(peak, 1e-9))
+    L = int(lookahead * SR)
+    g = minimum_filter1d(need, 2 * L + 1, origin=-L)       # look ahead L samples
+    g = uniform_filter1d(g, L, origin=-(L // 2))          # smooth the attack inside the lookahead
+    g = np.minimum(g, minimum_filter1d(need, 2 * L + 1))
+    k = 1 - np.exp(-1 / (release * SR))
+    out, cur = np.empty_like(g), 1.0
+    for i, v in enumerate(g):                               # release: recover slowly, drop instantly
+        cur = v if v < cur else cur + (v - cur) * k
+        out[i] = cur
+    return x * out, 20 * np.log10(out.min())
+
+
+def envelope(n, speech):
+    """Music gain in dB relative to the ducked level: 0 under speech, +RISE_DB in long gaps."""
+    t = np.arange(n) / SR
+    regions = [(max(0, a - 0.25), b + 0.35) for a, b in speech]
+    merged = []
+    for a, b in regions:
+        if merged and a - merged[-1][1] < MIN_GAP:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+    g = np.full(n, RISE_DB)
+    attack, release = 0.35, 0.6
+    for a, b in merged:
+        # fall to 0 dB by a (start ramp `attack` earlier), rise back over `release` after b
+        down = np.clip((t - (a - attack)) / attack, 0, 1)
+        up = np.clip((t - b) / release, 0, 1)
+        inside = 1 - np.maximum(1 - down, up)  # 1 inside the region, ramps at both edges
+        g = np.minimum(g, RISE_DB * (1 - inside))
+    return g
+
+
+def main():
+    tl = json.loads((ROOT / "src" / "timeline.json").read_text())
+    vo, sr = read(ROOT / "build" / "vo.wav")
+    mu, sr2 = read(ROOT / "build" / "music.wav")
+    assert sr == sr2 == SR
+    n = int(120 * SR)
+    vo = np.pad(vo[:, :n], ((0, 0), (0, n - min(n, vo.shape[1]))))[0]
+    mu = np.pad(mu[:, :n], ((0, 0), (0, n - min(n, mu.shape[1]))))
+
+    speech = tl["speech"]
+    smask = np.zeros(n, dtype=np.int64)
+    for a, b in speech:
+        smask[int(a * SR):int(b * SR)] = 1
+
+    # Voice is mono, played equally in both channels; measure it as the stereo signal it becomes.
+    vo2 = np.vstack([vo, vo])
+    v_speech = lufs(vo2, smask)
+    # Calibrate the ducked level per section (the score's dynamics differ between sections),
+    # crossfading the calibration over 1 s at each boundary.
+    t = np.arange(n) / SR
+    base = np.zeros(n)
+    weight = np.zeros(n)
+    for s in tl["sections"]:
+        sec = np.zeros(n, dtype=np.int64)
+        sec[int(s["start"] * SR):int(s["end"] * SR)] = 1
+        m = smask & sec
+        b = (lufs(vo2, m) - DUCK_DB) - lufs(mu, m)
+        w = np.clip(np.minimum(t - s["start"] + 0.5, s["end"] + 0.5 - t), 0, 1)
+        base += b * w
+        weight += w
+    base /= np.maximum(weight, 1e-9)
+    g_db = base + envelope(n, speech)
+    mu_d = mu * 10 ** (g_db / 20)
+
+    mix0 = vo2 + mu_d
+    gain = TARGET_LUFS - lufs(mix0)
+    for _ in range(4):  # limiting lowers loudness a little, so re-gain and re-limit until stable
+        mix, gr = limit(mix0 * 10 ** (gain / 20), TP_CEILING - 0.5)
+        err = TARGET_LUFS - lufs(mix)
+        if abs(err) < 0.05:
+            break
+        gain += err
+    tp = true_peak_db(mix)
+    if tp > TP_CEILING:
+        raise SystemExit(f"true peak {tp:.2f} dBTP is above the ceiling")
+    print(f"limiter: up to {-gr:.1f} dB of gain reduction on peaks")
+
+    print(f"voice over speech {v_speech:.1f} LUFS; ducked music over speech "
+          f"{lufs(mu_d, smask):.1f} LUFS (target margin {DUCK_DB} dB)")
+    print("section   voice-music margin under speech   music in gaps vs voice")
+    for s in tl["sections"]:
+        sec = np.zeros(n, dtype=np.int64)
+        sec[int(s["start"] * SR):int(s["end"] * SR)] = 1
+        m = smask & sec
+        gaps = (1 - smask) & sec
+        gap_l = lufs(mu_d, gaps) if gaps.sum() > 0.4 * SR else float("nan")
+        print(f"  {s['id']}       {lufs(vo2, m) - lufs(mu_d, m):5.1f} dB"
+              f"                      {gap_l - lufs(vo2, m):6.1f} dB")
+    print(f"master: {lufs(mix):.2f} LUFS integrated, true peak {tp:.2f} dBTP")
+
+    (ROOT / "public").mkdir(exist_ok=True)
+    pcm = (np.clip(mix.T, -1, 1) * 32767).round().astype(np.int16)
+    with wave.open(str(ROOT / "public" / "mix.wav"), "wb") as w:
         w.setnchannels(2)
         w.setsampwidth(2)
         w.setframerate(SR)
-        w.writeframes(y.tobytes())
-
-
-def voice_stem() -> np.ndarray:
-    args, parts = [], []
-    for i, c in enumerate(TL["clips"]):
-        args += ["-i", VIDEO / "public/vo_trim" / f"{c['id']}.wav"]
-        ms = int(round(c["start"] * 1000))
-        parts.append(f"[{i}:a]aresample={SR},aformat=channel_layouts=stereo,adelay={ms}|{ms}[v{i}]")
-    n = len(TL["clips"])
-    parts.append("".join(f"[v{i}]" for i in range(n)) +
-                 f"amix=inputs={n}:normalize=0:duration=longest,apad=whole_dur={DUR},"
-                 f"atrim=0:{DUR},highpass=f=85,"
-                 "acompressor=threshold=-20dB:ratio=3:attack=4:release=90:makeup=2,"
-                 "equalizer=f=3200:t=q:w=1.1:g=2.5,equalizer=f=220:t=q:w=1:g=-1.5[out]")
-    path = BUILD / "voice.wav"
-    ffmpeg(*args, "-filter_complex", ";".join(parts), "-map", "[out]", "-ar", SR, path)
-    return load(path)
-
-
-def rms_db(x: np.ndarray) -> float:
-    return 10 * np.log10(np.mean(x ** 2) + 1e-12)
-
-
-def duck_envelope(voice: np.ndarray, music: np.ndarray) -> np.ndarray:
-    rate = 100  # envelope points per second
-    target = np.ones(int(DUR * rate) + 1)
-    for c in TL["clips"]:
-        a, b = int(c["start"] * SR), int(c["end"] * SR)
-        gain = min(1.0, 10 ** ((rms_db(voice[a:b]) - MARGIN - rms_db(music[a:b])) / 20))
-        lo, hi = int((c["start"] - 0.12) * rate), int((c["end"] + 0.2) * rate)
-        target[lo:hi] = np.minimum(target[lo:hi], max(gain, 0.05))
-    for k in STINGERS:
-        t = TL["cues"][k]
-        lo, hi = int((t - 0.01) * rate), int((t + 0.22) * rate)
-        target[lo:hi] = np.maximum(target[lo:hi], 0.5)
-    env = target.copy()
-    down, up = np.exp(-1 / (0.06 * rate)), np.exp(-1 / (0.35 * rate))
-    for i in range(1, len(env)):
-        k = down if target[i] < env[i - 1] else up
-        env[i] = k * env[i - 1] + (1 - k) * target[i]
-    # Re-assert the stinger openings after smoothing (fast in, smoothed out).
-    for k in STINGERS:
-        t = TL["cues"][k]
-        lo, hi = int((t - 0.01) * rate), int((t + 0.08) * rate)
-        env[lo:hi] = np.maximum(env[lo:hi], 0.5)
-    tt = np.arange(int(DUR * SR)) / SR
-    return np.interp(tt, np.arange(len(env)) / rate, env).astype(np.float32)[:, None]
-
-
-def main() -> None:
-    BUILD.mkdir(exist_ok=True)
-    voice = voice_stem()
-    bus = BUILD / "music_bus.wav"  # glue compression and a little air on the orchestra
-    ffmpeg("-i", VIDEO / "public/music.wav", "-af",
-           "acompressor=threshold=-16dB:ratio=2:attack=25:release=250:makeup=1.5,"
-           "highshelf=f=9000:g=2,equalizer=f=60:t=q:w=1:g=1.5", "-ar", SR, bus)
-    music = load(bus) * 0.9
-    env = duck_envelope(voice, music)
-    ducked = music * env
-    for c in TL["clips"]:
-        a, b = int(c["start"] * SR), int(c["end"] * SR)
-        print(f"{c['id']}: voice over music {rms_db(voice[a:b]) - rms_db(ducked[a:b]):5.1f} dB")
-    fade = np.clip((DUR - np.arange(len(voice)) / SR) / 0.9, 0, 1)[:, None]
-    pre = BUILD / "premaster.wav"
-    save(pre, (voice + ducked) * fade * 0.5)
-    r = subprocess.run([BIN / "ffmpeg", "-hide_banner", "-i", pre, "-af",
-                        "loudnorm=I=-14:TP=-1.0:LRA=11:print_format=json", "-f", "null", "-"],
-                       capture_output=True, text=True)
-    s = json.loads(re.findall(r"\{[^{}]*\"input_i\"[^{}]*\}", r.stderr)[-1])
-    ln = ("loudnorm=I=-14:TP=-1.0:LRA=11:linear=true:"
-          f"measured_I={s['input_i']}:measured_TP={s['input_tp']}:measured_LRA={s['input_lra']}:"
-          f"measured_thresh={s['input_thresh']}:offset={s['target_offset']}")
-    ffmpeg("-i", pre, "-af", ln, "-ar", SR, "-c:a", "pcm_s16le", VIDEO / "public/mix.wav")
-    print("wrote", VIDEO / "public/mix.wav")
+        w.writeframes(pcm.tobytes())
+    # Stems at master gain, for checks.
+    for name, x in (("vo_master.wav", vo2), ("music_master.wav", mu_d)):
+        y = (np.clip((x * 10 ** (gain / 20)).T, -1, 1) * 32767).round().astype(np.int16)
+        with wave.open(str(ROOT / "build" / name), "wb") as w:
+            w.setnchannels(2)
+            w.setsampwidth(2)
+            w.setframerate(SR)
+            w.writeframes(y.tobytes())
 
 
 if __name__ == "__main__":

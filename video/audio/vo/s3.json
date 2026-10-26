@@ -1,0 +1,332 @@
+[
+ {
+  "text": "We",
+  "start": 0.225,
+  "end": 0.35,
+  "ws": " "
+ },
+ {
+  "text": "ran",
+  "start": 0.35,
+  "end": 0.6375,
+  "ws": " "
+ },
+ {
+  "text": "32",
+  "start": 0.6375,
+  "end": 1.2,
+  "ws": " "
+ },
+ {
+  "text": "paired",
+  "start": 1.2,
+  "end": 1.5,
+  "ws": " "
+ },
+ {
+  "text": "seeds",
+  "start": 1.5,
+  "end": 2.15,
+  "ws": ""
+ },
+ {
+  "text": ":",
+  "start": 2.15,
+  "end": 2.25,
+  "ws": " "
+ },
+ {
+  "text": "each",
+  "start": 2.25,
+  "end": 2.5,
+  "ws": " "
+ },
+ {
+  "text": "starting",
+  "start": 2.5,
+  "end": 2.9125,
+  "ws": " "
+ },
+ {
+  "text": "setup",
+  "start": 2.9125,
+  "end": 3.3,
+  "ws": " "
+ },
+ {
+  "text": "played",
+  "start": 3.3,
+  "end": 3.625,
+  "ws": " "
+ },
+ {
+  "text": "once",
+  "start": 3.625,
+  "end": 3.8875,
+  "ws": " "
+ },
+ {
+  "text": "with",
+  "start": 3.8875,
+  "end": 3.9875,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 3.9875,
+  "end": 4.0875,
+  "ws": " "
+ },
+ {
+  "text": "chat",
+  "start": 4.0875,
+  "end": 4.35,
+  "ws": " "
+ },
+ {
+  "text": "open",
+  "start": 4.35,
+  "end": 4.8,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 4.8,
+  "end": 4.875,
+  "ws": " "
+ },
+ {
+  "text": "and",
+  "start": 4.875,
+  "end": 5.0,
+  "ws": " "
+ },
+ {
+  "text": "once",
+  "start": 5.0,
+  "end": 5.275,
+  "ws": " "
+ },
+ {
+  "text": "closed",
+  "start": 5.275,
+  "end": 6.1,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 6.1,
+  "end": 6.2625,
+  "ws": " "
+ },
+ {
+  "text": "Across",
+  "start": 6.2625,
+  "end": 6.7125,
+  "ws": " "
+ },
+ {
+  "text": "all",
+  "start": 6.7125,
+  "end": 6.9875,
+  "ws": " "
+ },
+ {
+  "text": "four",
+  "start": 6.9875,
+  "end": 7.225,
+  "ws": " "
+ },
+ {
+  "text": "models",
+  "start": 7.225,
+  "end": 7.875,
+  "ws": ""
+ },
+ {
+  "text": ":",
+  "start": 7.875,
+  "end": 7.9875,
+  "ws": " "
+ },
+ {
+  "text": "zero",
+  "start": 7.9875,
+  "end": 8.35,
+  "ws": " "
+ },
+ {
+  "text": "bits",
+  "start": 8.35,
+  "end": 8.75,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 8.75,
+  "end": 8.825,
+  "ws": " "
+ },
+ {
+  "text": "statistically",
+  "start": 8.825,
+  "end": 9.475,
+  "ws": " "
+ },
+ {
+  "text": "equivalent",
+  "start": 9.475,
+  "end": 9.925,
+  "ws": " "
+ },
+ {
+  "text": "to",
+  "start": 9.925,
+  "end": 10.05,
+  "ws": " "
+ },
+ {
+  "text": "none",
+  "start": 10.05,
+  "end": 10.775,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 10.775,
+  "end": 10.9,
+  "ws": " "
+ },
+ {
+  "text": "For",
+  "start": 10.9,
+  "end": 11.0375,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 11.0375,
+  "end": 11.125,
+  "ws": " "
+ },
+ {
+  "text": "one",
+  "start": 11.125,
+  "end": 11.35,
+  "ws": " "
+ },
+ {
+  "text": "model",
+  "start": 11.35,
+  "end": 11.7,
+  "ws": " "
+ },
+ {
+  "text": "whose",
+  "start": 11.7,
+  "end": 11.9,
+  "ws": " "
+ },
+ {
+  "text": "cartel",
+  "start": 11.9,
+  "end": 12.3375,
+  "ws": " "
+ },
+ {
+  "text": "actually",
+  "start": 12.3375,
+  "end": 12.775,
+  "ws": " "
+ },
+ {
+  "text": "worked",
+  "start": 12.775,
+  "end": 13.275,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 13.275,
+  "end": 13.3875,
+  "ws": " "
+ },
+ {
+  "text": "GPT-6",
+  "start": 13.3875,
+  "end": 14.25,
+  "ws": " "
+ },
+ {
+  "text": "Luna",
+  "start": 14.25,
+  "end": 14.7,
+  "ws": ""
+ },
+ {
+  "text": ",",
+  "start": 14.7,
+  "end": 14.8125,
+  "ws": " "
+ },
+ {
+  "text": "closing",
+  "start": 14.8125,
+  "end": 15.2375,
+  "ws": " "
+ },
+ {
+  "text": "the",
+  "start": 15.2375,
+  "end": 15.3375,
+  "ws": " "
+ },
+ {
+  "text": "chat",
+  "start": 15.3375,
+  "end": 15.65,
+  "ws": " "
+ },
+ {
+  "text": "cut",
+  "start": 15.65,
+  "end": 15.875,
+  "ws": " "
+ },
+ {
+  "text": "most",
+  "start": 15.875,
+  "end": 16.1625,
+  "ws": " "
+ },
+ {
+  "text": "of",
+  "start": 16.1625,
+  "end": 16.2375,
+  "ws": " "
+ },
+ {
+  "text": "its",
+  "start": 16.2375,
+  "end": 16.4,
+  "ws": " "
+ },
+ {
+  "text": "extra",
+  "start": 16.4,
+  "end": 16.75,
+  "ws": " "
+ },
+ {
+  "text": "profit",
+  "start": 16.75,
+  "end": 17.475,
+  "ws": ""
+ },
+ {
+  "text": ".",
+  "start": 17.475,
+  "end": 17.625,
+  "ws": ""
+ }
+]
